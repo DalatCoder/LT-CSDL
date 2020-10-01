@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Lab02
 {
-    public partial class Form1 : Form
+    public partial class frmTrungTam : Form
     {
-        public Form1()
+        public frmTrungTam()
         {
             InitializeComponent();
         }
