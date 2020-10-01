@@ -52,10 +52,19 @@
     <Compile Include="FormGiaoVien.Designer.cs">
       <DependentUpon>FormGiaoVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTBGiaoVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTBGiaoVien.Designer.cs">
+      <DependentUpon>FormTBGiaoVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormGiaoVien.resx">
       <DependentUpon>FormGiaoVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTBGiaoVien.resx">
+      <DependentUpon>FormTBGiaoVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
