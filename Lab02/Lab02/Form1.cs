@@ -51,7 +51,7 @@ namespace Lab02
             if (chkTiengAnhB.Checked)
                 sum += int.Parse(this.lblTienTAB.Text.Split('.')[0]);
 
-            this.txtTongTien.Text = $"{sum}.000 đồng";
+            this.txtTongTien.Text = sum + ".000 VND";
         }
     }
 }
