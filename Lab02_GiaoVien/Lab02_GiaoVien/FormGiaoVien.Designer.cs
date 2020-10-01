@@ -198,6 +198,7 @@
             this.linklbLienHe.TabIndex = 13;
             this.linklbLienHe.TabStop = true;
             this.linklbLienHe.Text = "Liên hệ";
+            this.linklbLienHe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklbLienHe_LinkClicked);
             // 
             // dtpNgaySinh
             // 
@@ -282,6 +283,7 @@
             this.lbMoncHocDay.FormattingEnabled = true;
             this.lbMoncHocDay.Location = new System.Drawing.Point(350, 275);
             this.lbMoncHocDay.Name = "lbMoncHocDay";
+            this.lbMoncHocDay.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbMoncHocDay.Size = new System.Drawing.Size(171, 121);
             this.lbMoncHocDay.TabIndex = 21;
             // 
@@ -293,6 +295,7 @@
             this.btnChon.TabIndex = 22;
             this.btnChon.Text = ">>";
             this.btnChon.UseVisualStyleBackColor = true;
+            this.btnChon.Click += new System.EventHandler(this.btnChon_Click);
             // 
             // btnXoa
             // 
@@ -302,6 +305,7 @@
             this.btnXoa.TabIndex = 23;
             this.btnXoa.Text = "<<";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLuu
             // 
@@ -311,6 +315,7 @@
             this.btnLuu.TabIndex = 24;
             this.btnLuu.Text = "Save";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnCancel
             // 
@@ -320,6 +325,7 @@
             this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnExit
             // 
@@ -329,6 +335,7 @@
             this.btnExit.TabIndex = 26;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmGiaoVien
             // 

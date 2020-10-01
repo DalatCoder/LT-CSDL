@@ -40,28 +40,29 @@ namespace Lab02_GiaoVien
         {
             StringBuilder str = new StringBuilder("");
 
-            str.AppendLine("Mã số: " + MaSo);
-            str.AppendLine("Họ tên: " + HoTen);
-            str.AppendLine("Giới tính: " + GioiTinh);
-            str.AppendLine("Số ĐT: " + SoDT);
-            str.AppendLine("Mail: " + Mail);
+            if (MaSo.Trim().Length > 0) str.AppendLine("Mã số: " + MaSo);
+            if (HoTen.Trim().Length > 0) str.AppendLine("Họ tên: " + HoTen);
+            if (GioiTinh.Trim().Length > 0) str.AppendLine("Giới tính: " + GioiTinh);
+            if (SoDT.Trim().Length > 0) str.AppendLine("Số ĐT: " + SoDT);
+            if (Mail.Trim().Length > 0) str.AppendLine("Mail: " + Mail);
+            str.AppendLine("Ngày sinh: " + NgaySinh.ToString("dd/MM/yyyy"));
 
             if (NgoaiNgu.Count > 0)
             {
-                string strNgoaiNgu = "Ngoại ngữ: ";
+                string strNgoaiNgu = "Ngoại ngữ: \n";
                 foreach (var language in NgoaiNgu)
                 {
-                    strNgoaiNgu += language + "; ";
+                    strNgoaiNgu += language + ";\n\r";
                 }
-                str.AppendLine(strNgoaiNgu);
+                str.Append(strNgoaiNgu);
             }
 
             if (dsMonHoc.ds.Count > 0)
             {
-                string strMonHoc = "Danh sách môn dạy: ";
+                string strMonHoc = "Danh sách môn dạy: \n";
                 foreach (var monHoc in dsMonHoc.ds)
                 {
-                    strMonHoc += monHoc + "; ";
+                    strMonHoc += monHoc + ";\n\r";
                 }
                 str.AppendLine(strMonHoc);
             }

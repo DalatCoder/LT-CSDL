@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DanhMucMonHoc.cs" />
     <Compile Include="FormGiaoVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +59,8 @@
     <Compile Include="FormTBGiaoVien.Designer.cs">
       <DependentUpon>FormTBGiaoVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="GiaoVien.cs" />
+    <Compile Include="MonHoc.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormGiaoVien.resx">
