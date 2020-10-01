@@ -37,7 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.tdpNgayDangKy = new System.Windows.Forms.DateTimePicker();
+            this.dtpNgayDangKy = new System.Windows.Forms.DateTimePicker();
             this.chkTinHocA = new System.Windows.Forms.CheckBox();
             this.lblTienTHA = new System.Windows.Forms.Label();
             this.lblTienTHB = new System.Windows.Forms.Label();
@@ -142,12 +142,12 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Ngày Đăng Ký";
             // 
-            // tdpNgayDangKy
+            // dtpNgayDangKy
             // 
-            this.tdpNgayDangKy.Location = new System.Drawing.Point(114, 166);
-            this.tdpNgayDangKy.Name = "tdpNgayDangKy";
-            this.tdpNgayDangKy.Size = new System.Drawing.Size(200, 20);
-            this.tdpNgayDangKy.TabIndex = 4;
+            this.dtpNgayDangKy.Location = new System.Drawing.Point(114, 166);
+            this.dtpNgayDangKy.Name = "dtpNgayDangKy";
+            this.dtpNgayDangKy.Size = new System.Drawing.Size(200, 20);
+            this.dtpNgayDangKy.TabIndex = 4;
             // 
             // chkTinHocA
             // 
@@ -252,6 +252,7 @@
             this.btnTinhTien.TabIndex = 11;
             this.btnTinhTien.Text = "Tính Tiền";
             this.btnTinhTien.UseVisualStyleBackColor = true;
+            this.btnTinhTien.Click += new System.EventHandler(this.btnTinhTien_Click);
             // 
             // btnCancel
             // 
@@ -263,7 +264,7 @@
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.button1_Click);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnExit
             // 
@@ -275,6 +276,7 @@
             this.btnExit.TabIndex = 10;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmTrungTam
             // 
@@ -294,7 +296,7 @@
             this.Controls.Add(this.chkTinHocB);
             this.Controls.Add(this.lblTienTHA);
             this.Controls.Add(this.chkTinHocA);
-            this.Controls.Add(this.tdpNgayDangKy);
+            this.Controls.Add(this.dtpNgayDangKy);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtHoTen);
             this.Controls.Add(this.label4);
@@ -322,7 +324,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtHoTen;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker tdpNgayDangKy;
+        private System.Windows.Forms.DateTimePicker dtpNgayDangKy;
         private System.Windows.Forms.CheckBox chkTinHocA;
         private System.Windows.Forms.Label lblTienTHA;
         private System.Windows.Forms.Label lblTienTHB;

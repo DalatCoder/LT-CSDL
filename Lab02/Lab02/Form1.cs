@@ -17,9 +17,41 @@ namespace Lab02
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Reset();
+        }
+        
+        private void Reset()
+        {
+            this.cboMaHV.Text = "";
+            this.txtHoTen.Text = "";
+            this.dtpNgayDangKy.Value = DateTime.Now;
+            this.rdNam.Checked = true;
+            this.chkTiengAnhA.Checked = false;
+            this.chkTiengAnhB.Checked = false;
+            this.chkTinHocA.Checked = false;
+            this.chkTinHocB.Checked = false;
+            this.txtTongTien.Text = "";
+        }
+        private void btnTinhTien_Click(object sender, EventArgs e)
+        {
+            int sum = 0;
+            if (chkTinHocA.Checked)
+                sum += int.Parse(this.lblTienTHA.Text.Split('.')[0]);
+            if (chkTinHocB.Checked)
+                sum += int.Parse(this.lblTienTHB.Text.Split('.')[0]);
+            if (chkTiengAnhA.Checked)
+                sum += int.Parse(this.lblTienTAA.Text.Split('.')[0]);
+            if (chkTiengAnhB.Checked)
+                sum += int.Parse(this.lblTienTAB.Text.Split('.')[0]);
+
+            this.txtTongTien.Text = $"{sum}.000 đồng";
         }
     }
 }
