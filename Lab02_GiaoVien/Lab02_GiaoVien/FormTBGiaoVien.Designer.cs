@@ -1,6 +1,6 @@
 ﻿namespace Lab02_GiaoVien
 {
-    partial class FormTBGiaoVien
+    partial class frmTBGiaoVien
     {
         /// <summary>
         /// Required designer variable.
@@ -42,13 +42,13 @@
             this.lblThongBao.TabIndex = 0;
             this.lblThongBao.Text = "label1";
             // 
-            // FormTBGiaoVien
+            // frmTBGiaoVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 191);
             this.Controls.Add(this.lblThongBao);
-            this.Name = "FormTBGiaoVien";
+            this.Name = "frmTBGiaoVien";
             this.Text = "FormTBGiaoVien";
             this.ResumeLayout(false);
             this.PerformLayout();

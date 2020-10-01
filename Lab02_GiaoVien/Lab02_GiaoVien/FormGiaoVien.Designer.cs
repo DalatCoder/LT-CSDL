@@ -364,6 +364,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmGiaoVien";
             this.Text = "Giáo viên";
+            this.Load += new System.EventHandler(this.frmGiaoVien_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

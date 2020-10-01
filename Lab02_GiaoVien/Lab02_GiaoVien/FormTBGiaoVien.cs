@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Lab02_GiaoVien
 {
-    public partial class FormTBGiaoVien : Form
+    public partial class frmTBGiaoVien : Form
     {
-        public FormTBGiaoVien()
+        public frmTBGiaoVien()
         {
             InitializeComponent();
+        }
+
+        public void SetText(string str)
+        {
+            this.lblThongBao.Text = str;
         }
     }
 }
