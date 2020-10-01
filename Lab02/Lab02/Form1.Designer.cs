@@ -78,6 +78,12 @@
             // cboMaHV
             // 
             this.cboMaHV.FormattingEnabled = true;
+            this.cboMaHV.Items.AddRange(new object[] {
+            "001",
+            "002",
+            "003",
+            "004",
+            "005"});
             this.cboMaHV.Location = new System.Drawing.Point(114, 69);
             this.cboMaHV.Name = "cboMaHV";
             this.cboMaHV.Size = new System.Drawing.Size(121, 21);
