@@ -89,7 +89,7 @@
             "005"});
             this.cboMaSo.Location = new System.Drawing.Point(133, 61);
             this.cboMaSo.Name = "cboMaSo";
-            this.cboMaSo.Size = new System.Drawing.Size(121, 21);
+            this.cboMaSo.Size = new System.Drawing.Size(179, 21);
             this.cboMaSo.TabIndex = 2;
             // 
             // label3
@@ -205,7 +205,7 @@
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgaySinh.Location = new System.Drawing.Point(133, 136);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
-            this.dtpNgaySinh.Size = new System.Drawing.Size(200, 20);
+            this.dtpNgaySinh.Size = new System.Drawing.Size(179, 20);
             this.dtpNgaySinh.TabIndex = 14;
             // 
             // rdNam
@@ -235,7 +235,7 @@
             this.mtxtSoDT.Location = new System.Drawing.Point(433, 104);
             this.mtxtSoDT.Mask = "(\\0633).000.000";
             this.mtxtSoDT.Name = "mtxtSoDT";
-            this.mtxtSoDT.Size = new System.Drawing.Size(100, 20);
+            this.mtxtSoDT.Size = new System.Drawing.Size(136, 20);
             this.mtxtSoDT.TabIndex = 17;
             // 
             // txtMail
@@ -334,7 +334,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 497);
+            this.ClientSize = new System.Drawing.Size(638, 497);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLuu);
