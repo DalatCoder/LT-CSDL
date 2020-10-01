@@ -55,6 +55,8 @@
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -163,7 +165,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(121, 258);
+            this.label9.Location = new System.Drawing.Point(72, 258);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(120, 13);
             this.label9.TabIndex = 10;
@@ -173,7 +175,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(347, 258);
+            this.label10.Location = new System.Drawing.Point(384, 258);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(136, 13);
             this.label10.TabIndex = 11;
@@ -272,7 +274,7 @@
             "Mạng máy tính",
             "Công nghệ phần mềm",
             "Phân tích TKHDT"});
-            this.lbDanhSachMH.Location = new System.Drawing.Point(124, 275);
+            this.lbDanhSachMH.Location = new System.Drawing.Point(75, 275);
             this.lbDanhSachMH.Name = "lbDanhSachMH";
             this.lbDanhSachMH.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbDanhSachMH.Size = new System.Drawing.Size(161, 121);
@@ -281,7 +283,7 @@
             // lbMoncHocDay
             // 
             this.lbMoncHocDay.FormattingEnabled = true;
-            this.lbMoncHocDay.Location = new System.Drawing.Point(350, 275);
+            this.lbMoncHocDay.Location = new System.Drawing.Point(387, 275);
             this.lbMoncHocDay.Name = "lbMoncHocDay";
             this.lbMoncHocDay.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbMoncHocDay.Size = new System.Drawing.Size(171, 121);
@@ -309,7 +311,7 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(124, 423);
+            this.btnLuu.Location = new System.Drawing.Point(281, 423);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(75, 23);
             this.btnLuu.TabIndex = 24;
@@ -319,7 +321,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(292, 423);
+            this.btnCancel.Location = new System.Drawing.Point(387, 423);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 25;
@@ -329,7 +331,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(446, 423);
+            this.btnExit.Location = new System.Drawing.Point(483, 423);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 26;
@@ -337,11 +339,33 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(166, 423);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 27;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(75, 423);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 28;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // frmGiaoVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 497);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLuu);
@@ -406,6 +430,8 @@
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 

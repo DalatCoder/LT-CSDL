@@ -7,9 +7,12 @@ namespace Lab02_GiaoVien
 {
     public partial class frmGiaoVien : Form
     {
+        private QuanLyGiaoVien quanLyGV;
+
         public frmGiaoVien()
         {
             InitializeComponent();
+            quanLyGV = new QuanLyGiaoVien();
         }
 
         private void frmGiaoVien_Load(object sender, EventArgs e)
@@ -107,6 +110,23 @@ namespace Lab02_GiaoVien
             }
 
             return new GiaoVien(maSo, hoTen, ngaySinh, dsMonHoc, gioiTinh, languages, soDT, mail);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var frmTimKiem = new frmTimKiem(quanLyGV);
+            frmTimKiem.ShowDialog();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var giaoVien = GetGiaoVien();
+
+            var success = quanLyGV.Them(giaoVien);
+            if (!success) 
+                MessageBox.Show("Giáo viên có mã số: " + giaoVien.MaSo + " đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+                MessageBox.Show("Thêm giáo viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
