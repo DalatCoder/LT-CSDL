@@ -33,7 +33,7 @@ namespace Lab02_GiaoVien
             switch (kieuTim)
             {
                 case KieuTim.TheoHoTen:
-                    giaoVien = dsGiaoVien.Find(gv => gv.HoTen == value);
+                    giaoVien = dsGiaoVien.Find(gv => Utils.NormalizeVietnameseString(gv.HoTen).ToLower() == Utils.NormalizeVietnameseString(value).ToLower());
                     break;
                 case KieuTim.TheoMa:
                     giaoVien = dsGiaoVien.Find(gv => gv.MaSo == value);

@@ -94,7 +94,11 @@ namespace Lab02_GiaoVien
             string hoTen = txtHoTen.Text;
             DateTime ngaySinh = dtpNgaySinh.Value;
             string mail = txtMail.Text;
-            string soDT = mtxtSoDT.Text;
+            string rawSoDT = mtxtSoDT.Text;
+            rawSoDT = rawSoDT.Replace(".", "");
+            rawSoDT = rawSoDT.Replace("(", "");
+            rawSoDT = rawSoDT.Replace(")", "");
+            string soDT = rawSoDT;
 
             List<string> languages = new List<string>();
             for (int i = 0; i < chklbNgoaiNgu.Items.Count; i++)
@@ -124,7 +128,7 @@ namespace Lab02_GiaoVien
 
             var success = quanLyGV.Them(giaoVien);
             if (!success) 
-                MessageBox.Show("Giáo viên có mã số: " + giaoVien.MaSo + " đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giáo viên có mã số " + giaoVien.MaSo + " đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
                 MessageBox.Show("Thêm giáo viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

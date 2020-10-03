@@ -71,6 +71,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanLyGiaoVien.cs" />
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="FormGiaoVien.resx">
       <DependentUpon>FormGiaoVien.cs</DependentUpon>
     </EmbeddedResource>

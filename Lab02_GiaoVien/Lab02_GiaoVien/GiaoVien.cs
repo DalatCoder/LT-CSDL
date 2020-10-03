@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Lab02_GiaoVien
 {
@@ -43,28 +44,34 @@ namespace Lab02_GiaoVien
             if (MaSo.Trim().Length > 0) str.AppendLine("Mã số: " + MaSo);
             if (HoTen.Trim().Length > 0) str.AppendLine("Họ tên: " + HoTen);
             if (GioiTinh.Trim().Length > 0) str.AppendLine("Giới tính: " + GioiTinh);
-            if (SoDT.Trim().Length > 0) str.AppendLine("Số ĐT: " + SoDT);
+            if (SoDT.Trim().Length == 10) 
+                str.AppendLine("Số ĐT: " + Regex.Replace(SoDT, @"(\d{4})(\d{3})(\d{3})", "$1-$2-$3"));
             if (Mail.Trim().Length > 0) str.AppendLine("Mail: " + Mail);
             str.AppendLine("Ngày sinh: " + NgaySinh.ToString("dd/MM/yyyy"));
 
+            str.AppendLine();
             if (NgoaiNgu.Count > 0)
             {
-                string strNgoaiNgu = "Ngoại ngữ: \n";
+                str.AppendLine("Ngoại ngữ:");
                 foreach (var language in NgoaiNgu)
-                {
-                    strNgoaiNgu += language + ";\n\r";
-                }
-                str.Append(strNgoaiNgu);
+                    str.AppendLine(language);
+            }
+            else
+            {
+                str.AppendLine("Không có ngoại ngữ nào được chọn!!!");
             }
 
+            str.AppendLine();
             if (dsMonHoc.ds.Count > 0)
             {
-                string strMonHoc = "Danh sách môn dạy: \n";
+                str.AppendLine("Danh sách môn dạy:");
+
                 foreach (var monHoc in dsMonHoc.ds)
-                {
-                    strMonHoc += monHoc + ";\n\r";
-                }
-                str.AppendLine(strMonHoc);
+                    str.AppendLine(monHoc.ToString());
+            }
+            else
+            {
+                str.AppendLine("Không có môn học nào được chọn!!!");
             }
 
             return str.ToString();
