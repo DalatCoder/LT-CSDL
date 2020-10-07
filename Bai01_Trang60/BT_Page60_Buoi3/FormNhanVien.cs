@@ -37,6 +37,7 @@ namespace BT_Page60_Buoi3
 
             ListMain.Add(nhanVien);
             AddListView();
+            this.Reset();
         }
 
         private NhanVien GetNhanVien()
@@ -100,6 +101,7 @@ namespace BT_Page60_Buoi3
             this.cboPhongBan.Text = "";
             this.txtMail.Text = "";
             this.txtHinh.Text = "";
+            this.pictureBox1.Image = null;
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -112,9 +114,11 @@ namespace BT_Page60_Buoi3
         {
             OpenFileDialog op = new OpenFileDialog();
             op.Filter = "JPG file|*.jpg|All file|*.*";
+
             if (op.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 txtHinh.Text = op.FileName;
+                pictureBox1.ImageLocation = op.FileName;
             }
         }
 
@@ -167,6 +171,7 @@ namespace BT_Page60_Buoi3
                 txtAddress.Text = diaChi;
                 txtMail.Text = email;
                 txtHinh.Text = hinh;
+                pictureBox1.ImageLocation = hinh;
                 cboPhongBan.Text = phongBan;
                 mtbSoDT.Text = soDT;
             }    
