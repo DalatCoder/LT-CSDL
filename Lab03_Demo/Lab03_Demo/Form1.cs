@@ -24,7 +24,7 @@ namespace Lab03_Demo
         private SinhVien GetSinhVien()
         {
             bool gioiTinh = rdNam.Checked ? true : false;
-            string maSo = mtxtMaSo.Text;
+            string maSo = mtxtMaSo.Text.Split('.')[1];
             string hoTen = txtHoTen.Text;
             DateTime ngaySinh = dtpNgaySinh.Value;
             string diaChi = txtDiaChi.Text;
@@ -91,6 +91,71 @@ namespace Lab03_Demo
         private void btnThoat_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int itemSelectedCount = listView1.SelectedItems.Count;
+            if (itemSelectedCount > 0)
+            {
+                ListViewItem itemSelected = listView1.SelectedItems[0];
+                ThietLapThongTin(GetSinhVienOnListViewItem(itemSelected));
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            SinhVien sv = GetSinhVien();
+
+            try
+            {
+                quanLySV.Them(sv);
+                RenderListView();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi thêm dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+                if (item.Checked) 
+                    quanLySV.Xoa(GetSinhVienOnListViewItem(item));
+
+            RenderListView();
+            btnMacDinh.PerformClick();
+        }
+
+        private void btnMacDinh_Click(object sender, EventArgs e)
+        {
+            mtxtMaSo.Text = "";
+            txtHoTen.Text = "";
+            dtpNgaySinh.Value = DateTime.Now;
+            txtDiaChi.Text = "";
+            cboLop.Text = cboLop.Items[0].ToString();
+            txtHinh.Text = "";
+            pbHinh.ImageLocation = "";
+            rdNam.Checked = true;
+
+            for (int i = 0; i < clbChuyenNganh.Items.Count; i++)
+                clbChuyenNganh.SetItemChecked(i, false);
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            SinhVien svMoi = GetSinhVien();
+
+            try
+            {
+                quanLySV.Sua(new SinhVien { MaSo = svMoi.MaSo }, svMoi);
+                RenderListView();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi sửa thông tin sinh viên", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
