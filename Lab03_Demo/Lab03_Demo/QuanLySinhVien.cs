@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Lab03_Demo
 {
@@ -56,7 +57,7 @@ namespace Lab03_Demo
 
         public void DocTuFile()
         {
-            string filename = "DanhSachSV.txt";
+            string filename = $"{Utils.GetCurrentProjectDirectory()}\\Data\\DanhSachSV.txt";
             string temp;
 
             string[] s;

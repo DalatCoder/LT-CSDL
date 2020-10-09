@@ -31,7 +31,7 @@ namespace Lab03_Demo
             string lop = cboLop.Text;
             string hinh = txtHinh.Text;
 
-            List<string> chuyenNganh = new List<string>();
+            List<string> chuyenNganh = new List<string>();  
             for (int i = 0; i < clbChuyenNganh.Items.Count; i++)
                 if (clbChuyenNganh.GetItemChecked(i))
                     chuyenNganh.Add(clbChuyenNganh.Items[i].ToString());

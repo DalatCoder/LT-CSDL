@@ -118,7 +118,12 @@ namespace BT_Page60_Buoi3
             if (op.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 txtHinh.Text = op.FileName;
-                pictureBox1.ImageLocation = op.FileName;
+                // pictureBox1.ImageLocation = op.FileName;
+                Image image = new Bitmap(op.FileName);
+                Size size = new Size(pictureBox1.Width, pictureBox1.Height);
+                Bitmap bmp1 = new Bitmap(image, size);
+                
+                pictureBox1.Image = bmp1;
             }
         }
 
@@ -194,6 +199,11 @@ namespace BT_Page60_Buoi3
                 btnSua.Text = "Sửa";
                 mtbMaNV.ReadOnly = false;
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

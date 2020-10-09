@@ -1,0 +1,10 @@
+﻿1512451 	Nguyễn Xuân Thắng 	5/12/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Mạng và truyền thông, Công nghệ phần mềm		
+1610195 	Nguyễn Đức Duy Ân 	02/24/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Mạng và truyền thông, Khoa học máy tính 			
+1610167 	Nguyễn Quốc Anh 	08/10/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Trí tuệ nhân tạo, Công nghệ phần mềm 			
+1611288 	Lê Nhật Ánh 	10/07/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Hệ thống thông tin, Công nghệ phần mềm 	
+1612166 	Võ Thị Thu Ngân 	03/16/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	0	Hệ thống thông tin, Khoa học dữ liệu		
+1610089 	Hứa Duy Băng 	01/18/1998	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Mạng và truyền thông, Công nghệ phần mềm, Tin học ứng dụng 	
+1610094 	Lê Thùy Lan Chi 	07/03/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	0	Tin học ứng dụng, Khoa học dữ liệu 			
+1611290 	Trần Huỳnh Quốc Bảo 	7/28/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Mạng và truyền thông, Khoa học dữ liệu 			
+1611091 	Phan Đình Huỳnh Bảo 	11/14/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Khoa học dữ liệu, Tin học ứng dụng 			
+1611192 	Nguyễn Gia Bảo 	5/10/1998 	01 Phù Đổng Thiên Vương, P8, Đà Lạt	CTK40	D:\Images\	1	Tin học ứng dụng, Khoa học máy tính, Hệ thống thông tin
