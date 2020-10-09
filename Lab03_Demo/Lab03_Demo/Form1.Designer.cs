@@ -64,7 +64,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pictureDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -254,6 +254,7 @@
             this.btnBrowse.TabIndex = 6;
             this.btnBrowse.Text = "...";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // txtHinh
             // 
@@ -463,10 +464,10 @@
             this.columnHeader8.Text = "Hình";
             this.columnHeader8.Width = 200;
             // 
-            // openFileDialog1
+            // pictureDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "File GIF|*.GifFile|JPEG|*.jpg";
+            this.pictureDialog.FileName = "openFileDialog1";
+            this.pictureDialog.Filter = "File GIF|*.GifFile|JPEG|*.jpg";
             // 
             // frmSinhVien
             // 
@@ -497,7 +498,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog pictureDialog;
         private System.Windows.Forms.CheckedListBox clbChuyenNganh;
         private System.Windows.Forms.RadioButton rdNu;
         private System.Windows.Forms.RadioButton rdNam;
