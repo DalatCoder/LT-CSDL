@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Lab03_Demo
 {
@@ -12,5 +13,12 @@ namespace Lab03_Demo
 
             return projectDirectory;
         }
+
+        public static string GetPathTo(params string[] args)
+        {
+            string relativePath = String.Join("\\", args);
+            return GetCurrentProjectDirectory() + "\\" + relativePath;
+        }
     }
 }
+    

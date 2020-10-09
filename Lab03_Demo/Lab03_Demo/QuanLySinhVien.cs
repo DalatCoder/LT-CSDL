@@ -57,7 +57,7 @@ namespace Lab03_Demo
 
         public void DocTuFile()
         {
-            string filename = $"{Utils.GetCurrentProjectDirectory()}\\Data\\DanhSachSV.txt";
+            string filename = Utils.GetPathTo("Data", "DanhSachSV.txt");
             string temp;
 
             string[] s;
