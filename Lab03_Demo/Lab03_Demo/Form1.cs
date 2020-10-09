@@ -18,7 +18,7 @@ namespace Lab03_Demo
         {
             InitializeComponent();
             quanLySV = new QuanLySinhVien();
-            quanLySV.DocTuFile();
+            quanLySV.DocTuFile(renderStatusBar);
             RenderListView();
         }
 
@@ -69,6 +69,11 @@ namespace Lab03_Demo
             }       
         }
 
+        private void renderStatusBar()
+        {
+            sttLabelTongSinhVien.Text = "Tổng Số Sinh Viên: " + quanLySV.DanhSach.Count;
+        }
+
         private void RenderListViewItem(SinhVien sv)
         {
             ListViewItem item = new ListViewItem(sv.MaSo);
@@ -110,7 +115,7 @@ namespace Lab03_Demo
 
             try
             {
-                quanLySV.Them(sv);
+                quanLySV.Them(sv, renderStatusBar);
                 RenderListView();
             }
             catch (ArgumentException ex)
@@ -123,7 +128,7 @@ namespace Lab03_Demo
         {
             foreach (ListViewItem item in listView1.Items)
                 if (item.Checked) 
-                    quanLySV.Xoa(GetSinhVienOnListViewItem(item));
+                    quanLySV.Xoa(GetSinhVienOnListViewItem(item), renderStatusBar);
 
             RenderListView();
             btnMacDinh.PerformClick();

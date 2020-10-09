@@ -13,13 +13,14 @@ namespace Lab03_Demo
             DanhSach = new List<SinhVien>();
         }
         
-        public void Them(SinhVien sinhVien)
+        public void Them(SinhVien sinhVien, Action callback)
         {
             var isExists = DanhSach.Exists(sv => sv.MaSo == sinhVien.MaSo);
             if (isExists)
                 throw new ArgumentException("Sinh vien co ma: " + sinhVien.MaSo + " da ton tai!");
 
             DanhSach.Add(sinhVien);
+            callback();
         }
 
         public SinhVien this[int index]
@@ -35,13 +36,14 @@ namespace Lab03_Demo
             set { DanhSach[index] = value; }
         }
 
-        public void Xoa(SinhVien sv)
+        public void Xoa(SinhVien sv, Action callback)
         {
             var sinhVien = DanhSach.Find(s => s.MaSo == sv.MaSo);
             if (sinhVien is null)
                 throw new ArgumentException($"Sinh vien co ma {sv.MaSo} khong ton tai!");
 
             DanhSach.Remove(sv);
+            callback();
         }
 
         public SinhVien Tim(SinhVien sv) => DanhSach.Find(s => s.MaSo == sv.MaSo);
@@ -55,7 +57,7 @@ namespace Lab03_Demo
             DanhSach[sinhVienIdx] = svMoi;
         }
 
-        public void DocTuFile()
+        public void DocTuFile(Action callback)
         {
             string filename = Utils.GetPathTo("Data", "DanhSachSV.txt");
             string temp;
@@ -81,7 +83,7 @@ namespace Lab03_Demo
                 {
                     sv.ChuyenNganh.Add(c.Trim());
                 }
-                Them(sv);
+                Them(sv, callback);
             }
 
             reader.Close();

@@ -30,6 +30,8 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.sttLabelTongSinhVien = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnMacDinh = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
@@ -70,6 +72,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbHinh)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.statusStrip1);
             this.groupBox1.Controls.Add(this.btnThoat);
             this.groupBox1.Controls.Add(this.btnMacDinh);
             this.groupBox1.Controls.Add(this.btnSua);
@@ -125,6 +129,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin sinh viên";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sttLabelTongSinhVien});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 486);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(598, 22);
+            this.statusStrip1.TabIndex = 17;
+            this.statusStrip1.Text = "Tổng sinh viên";
+            // 
+            // sttLabelTongSinhVien
+            // 
+            this.sttLabelTongSinhVien.Name = "sttLabelTongSinhVien";
+            this.sttLabelTongSinhVien.Size = new System.Drawing.Size(114, 17);
+            this.sttLabelTongSinhVien.Text = "Tổng Số Sinh Viên: 0";
             // 
             // btnThoat
             // 
@@ -487,6 +508,8 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbHinh)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -532,6 +555,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel sttLabelTongSinhVien;
     }
 }
 
