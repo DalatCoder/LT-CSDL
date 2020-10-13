@@ -141,10 +141,9 @@ namespace Lab03_Demo
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            SinhVien svMoi = GetSinhVien();
-
             try
             {
+                SinhVien svMoi = GetSinhVien();
                 quanLySV.Sua(new SinhVien { MaSo = svMoi.MaSo }, svMoi);
                 RenderListView();
             }
@@ -225,6 +224,26 @@ namespace Lab03_Demo
             {
                 listView1.ForeColor = colorDialog.Color;
             }
+        }
+
+        private void menuItemSearch_Click(object sender, EventArgs e)
+        {
+            var formTuyChon = new frmTuyChon(quanLySV, listView1 , "search");
+            formTuyChon.ShowDialog();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0) return;
+
+            var sinhVien = GetSinhVienOnListViewItem(listView1.SelectedItems[0]);
+            ThietLapThongTin(sinhVien);
+        }
+
+        private void menuItemSort_Click(object sender, EventArgs e)
+        {
+            var formTuyChon = new frmTuyChon(quanLySV, listView1, "sort");
+            formTuyChon.ShowDialog();
         }
     }
 }

@@ -369,7 +369,7 @@
             // mtxtMaSo
             // 
             this.mtxtMaSo.Location = new System.Drawing.Point(320, 28);
-            this.mtxtMaSo.Mask = "SV.00000";
+            this.mtxtMaSo.Mask = "SV.0000000";
             this.mtxtMaSo.Name = "mtxtMaSo";
             this.mtxtMaSo.Size = new System.Drawing.Size(247, 22);
             this.mtxtMaSo.TabIndex = 1;
@@ -490,7 +490,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.btnThem_Click);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -811,12 +811,14 @@
             this.menuItemSort.Name = "menuItemSort";
             this.menuItemSort.Size = new System.Drawing.Size(180, 22);
             this.menuItemSort.Text = "Sắp xếp";
+            this.menuItemSort.Click += new System.EventHandler(this.menuItemSort_Click);
             // 
             // menuItemSearch
             // 
             this.menuItemSearch.Name = "menuItemSearch";
             this.menuItemSearch.Size = new System.Drawing.Size(180, 22);
             this.menuItemSearch.Text = "Tìm kiếm";
+            this.menuItemSearch.Click += new System.EventHandler(this.menuItemSearch_Click);
             // 
             // frmSinhVien
             // 
