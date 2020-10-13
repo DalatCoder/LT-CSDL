@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Lab03_Demo
@@ -26,6 +20,10 @@ namespace Lab03_Demo
         {
             bool gioiTinh = rdNam.Checked ? true : false;
             string maSo = mtxtMaSo.Text.Split('.')[1];
+
+            if (maSo.Trim().Length != 7)
+                throw new ArgumentException("Vui long nhap ma sinh vien hop le");
+
             string hoTen = txtHoTen.Text;
             DateTime ngaySinh = dtpNgaySinh.Value;
             string diaChi = txtDiaChi.Text;
@@ -99,22 +97,11 @@ namespace Lab03_Demo
             Application.Exit();
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int itemSelectedCount = listView1.SelectedItems.Count;
-            if (itemSelectedCount > 0)
-            {
-                ListViewItem itemSelected = listView1.SelectedItems[0];
-                ThietLapThongTin(GetSinhVienOnListViewItem(itemSelected));
-            }
-        }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
-            SinhVien sv = GetSinhVien();
-
             try
             {
+                SinhVien sv = GetSinhVien();
                 quanLySV.Them(sv, renderStatusBar);
                 RenderListView();
             }
@@ -126,6 +113,9 @@ namespace Lab03_Demo
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if (listView1.CheckedItems.Count == 0)
+                MessageBox.Show("Vui long chon sinh vien de xoa", "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             foreach (ListViewItem item in listView1.Items)
                 if (item.Checked) 
                     quanLySV.Xoa(GetSinhVienOnListViewItem(item), renderStatusBar);
@@ -187,6 +177,53 @@ namespace Lab03_Demo
 
                 txtHinh.Text = projectPath;
                 pbHinh.ImageLocation = projectPath;
+            }
+        }
+
+        private void menuItemOpenFile_Click(object sender, EventArgs e)
+        {
+            btnBrowse.PerformClick();
+        }
+
+        private void menuItemExit_Click(object sender, EventArgs e)
+        {
+            btnThoat.PerformClick();
+        }
+
+        private void menuItemAdd_Click(object sender, EventArgs e)
+        {
+            btnThem.PerformClick();
+        }
+
+        private void menuItemDelete_Click(object sender, EventArgs e)
+        {
+            btnXoa.PerformClick();
+        }
+
+        private void menuItemEdit_Click(object sender, EventArgs e)
+        {
+            btnSua.PerformClick();
+        }
+
+        private void menuItemFont_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = fontDialog1;
+            var isOK = fontDialog.ShowDialog();
+
+            if (isOK == DialogResult.OK)
+            {
+                listView1.Font = fontDialog.Font;
+            }
+        }
+
+        private void menuItemFontColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            var isOK = colorDialog.ShowDialog();
+
+            if(isOK == DialogResult.OK)
+            {
+                listView1.ForeColor = colorDialog.Color;
             }
         }
     }

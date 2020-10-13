@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Lab03_Demo
 {
@@ -38,6 +37,9 @@ namespace Lab03_Demo
 
         public void Xoa(SinhVien sv, Action callback)
         {
+            if (String.IsNullOrWhiteSpace(sv.MaSo))
+                throw new ArgumentException("Vui long nhap ma sinh vien can chinh xoa!");
+
             var sinhVien = DanhSach.Find(s => s.MaSo == sv.MaSo);
             if (sinhVien is null)
                 throw new ArgumentException($"Sinh vien co ma {sv.MaSo} khong ton tai!");
@@ -50,6 +52,9 @@ namespace Lab03_Demo
 
         public void Sua(SinhVien svCu, SinhVien svMoi)
         {
+            if (String.IsNullOrWhiteSpace(svMoi.MaSo))
+                throw new ArgumentException("Vui long nhap ma sinh vien can chinh sua!");
+
             var sinhVienIdx = DanhSach.FindIndex(s => s.MaSo == svCu.MaSo);
             if (sinhVienIdx == -1)
                 throw new ArgumentException($"Sinh vien co ma {svCu.MaSo} khong ton tai!");
