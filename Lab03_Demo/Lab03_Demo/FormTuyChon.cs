@@ -14,7 +14,7 @@ namespace Lab03_Demo
     {
         public int Compare(SinhVien x, SinhVien y)
         {
-            return x.NgaySinh.Year - y.NgaySinh.Year;
+            return x.NgaySinh.CompareTo(y.NgaySinh);
         }
     }
 
@@ -30,7 +30,13 @@ namespace Lab03_Demo
     {
         public int Compare(SinhVien x, SinhVien y)
         {
-            return x.HoTen.CompareTo(y.HoTen);
+            var firstWords = x.HoTen.Split(' ');
+            var secondWords = y.HoTen.Split(' ');
+
+            var firstName = firstWords[firstWords.Length - 1];
+            var secondName = secondWords[secondWords.Length - 1];
+
+            return firstName.CompareTo(secondName);
         }
     }
 
