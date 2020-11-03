@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Lab05_Winform
 {
 	public partial class frmNhapThongTinSV : Form
 	{
-		QLSinhVienRepository qLSinhVienRepository;
-		List<string> dsMonHocDangKy;
+		private readonly QLSinhVien qlSinhVien;
+		private readonly List<string> dsMonHocDangKy;
 
 		public frmNhapThongTinSV()
 		{
 			InitializeComponent();
-		}
 
-		private void frmNhapThongTinSV_Load(object sender, EventArgs e)
-		{
-			qLSinhVienRepository = new QLSinhVienRepository();
+			string filePath = Utils.GetPathTo("DanhSachSV.txt");
+
+			qlSinhVien = new QLSinhVien(new FileDataStorage(filePath));
+
 			dsMonHocDangKy = new List<string>
 			{
 				"Mạng máy tính",
@@ -30,13 +29,12 @@ namespace Lab05_Winform
 				"Lập trình trên thiết bị di động",
 				"An toàn và bảo mật hệ thống"
 			};
+		}
 
-			foreach (var monHoc in dsMonHocDangKy)
-			{
-				clbMonHocDangKy.Items.Add(monHoc, false);
-			}
-
-			RenderListView(qLSinhVienRepository.GetAll());
+		private void frmNhapThongTinSV_Load(object sender, EventArgs e)
+		{
+			RenderDanhSachMonHoc(dsMonHocDangKy);
+			RenderListView(qlSinhVien.GetAll());
 		}
 
 		public SinhVien GetSinhVien()
@@ -105,25 +103,29 @@ namespace Lab05_Winform
 			dtpNgaySinh.Value = sv.NgaySinh;
 			txtSoCMND.Text = sv.SoCMND;
 
+			dtpNgaySinh.Value = sv.NgaySinh;
+
 			rdNam.Checked = false;
 			rdNam.Checked = false;
 			if (sv.gioiTinh == GioiTinh.NAM)
 				rdNam.Checked = true;
 			else
-				rdNam.Checked = true;
+				rdNu.Checked = true;
 
 			txtTen.Text = sv.Ten;
 			cboLop.Text = sv.Lop;
 			txtSDT.Text = sv.SDT;
 			txtDiaChi.Text = sv.DiaChi;
 
+			for (int i = 0; i < clbMonHocDangKy.Items.Count; i++)
+			{
+				clbMonHocDangKy.SetItemChecked(i, false);
+			}
+
 			foreach (var monHoc in sv.dsMonHocDangKy)
 			{
 				for(int i = 0; i < clbMonHocDangKy.Items.Count; i++)
-				{
-					// Clear
-					clbMonHocDangKy.SetItemChecked(i, false);
-
+				{					
 					if (clbMonHocDangKy.Items[i].ToString() == monHoc)
 						clbMonHocDangKy.SetItemChecked(i, true);
 				}
@@ -141,6 +143,7 @@ namespace Lab05_Winform
 			txtSoCMND.Text = "";
 			txtTen.Text = "";
 			cboLop.Text = "";
+			dtpNgaySinh.Value = DateTime.Now;
 
 			rdNam.Checked = false;
 			rdNam.Checked = false;
@@ -172,6 +175,12 @@ namespace Lab05_Winform
 				lvDanhSachSV.Items.Add(createListViewItem(sinhVien));
 		}
 
+		public void RenderDanhSachMonHoc(List<string> dsMonHocDangKy)
+		{
+			foreach (var monHoc in dsMonHocDangKy)
+				clbMonHocDangKy.Items.Add(monHoc, false);
+		}
+
 		private void btnThoat_Click(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận thoát", MessageBoxButtons.YesNo);
@@ -185,8 +194,8 @@ namespace Lab05_Winform
 			try
 			{
 				SinhVien sinhVien = GetSinhVien();
-				qLSinhVienRepository.Save(sinhVien);
-				RenderListView(qLSinhVienRepository.GetAll());
+				qlSinhVien.Add(sinhVien);
+				RenderListView(qlSinhVien.GetAll());
 				ClearForm();
 			} catch(Exception ex)
 			{
@@ -209,7 +218,7 @@ namespace Lab05_Winform
 
 			if (!string.IsNullOrWhiteSpace(mssv))
 			{
-				var sinhVien = qLSinhVienRepository.GetByID(mssv);
+				var sinhVien = qlSinhVien.GetByID(mssv);
 				if (sinhVien is null)
 				{
 					MessageBox.Show($"Không tìm thấy sinh viên có mã số: {mssv}.");
@@ -225,12 +234,12 @@ namespace Lab05_Winform
 			List<SinhVien> danhSachKetQua = new List<SinhVien>();
 			if (!string.IsNullOrWhiteSpace(ten))
 			{
-				danhSachKetQua = qLSinhVienRepository.GetByName(ten);
+				danhSachKetQua = qlSinhVien.GetByName(ten);
 			}
 
 			if (!string.IsNullOrWhiteSpace(lop))
 			{
-				danhSachKetQua = qLSinhVienRepository.GetByClassName(lop);
+				danhSachKetQua = qlSinhVien.GetByClassName(lop);
 			}
 
 			if (danhSachKetQua.Count == 0)
@@ -247,8 +256,8 @@ namespace Lab05_Winform
 			try
 			{
 				SinhVien sinhVien = GetSinhVien();
-				qLSinhVienRepository.UpdateByID(sinhVien.MSSV, sinhVien);
-				RenderListView(qLSinhVienRepository.GetAll());
+				qlSinhVien.UpdateByID(sinhVien.MSSV, sinhVien);
+				RenderListView(qlSinhVien.GetAll());
 				ClearForm();
 			}
 			catch (Exception ex)
@@ -276,11 +285,11 @@ namespace Lab05_Winform
 			for (int i = 0; i < lvDanhSachSV.CheckedIndices.Count; i++)
 			{
 				SinhVien sv = GetSinhVienFromListViewItem(lvDanhSachSV.Items[i]);
-				qLSinhVienRepository.DeleteByID(sv.MSSV);
+				qlSinhVien.DeleteByID(sv.MSSV);
 			}
 
 			ClearForm();
-			RenderListView(qLSinhVienRepository.GetAll());
+			RenderListView(qlSinhVien.GetAll());
 		}
 
 		private void menuItemThemMonHoc_Click(object sender, EventArgs e)
