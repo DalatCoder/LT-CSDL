@@ -282,9 +282,9 @@ namespace Lab05_Winform
 				return;
 			}
 
-			for (int i = 0; i < lvDanhSachSV.CheckedIndices.Count; i++)
+			foreach (ListViewItem item in lvDanhSachSV.CheckedItems)
 			{
-				SinhVien sv = GetSinhVienFromListViewItem(lvDanhSachSV.Items[i]);
+				SinhVien sv = GetSinhVienFromListViewItem(item);
 				qlSinhVien.DeleteByID(sv.MSSV);
 			}
 

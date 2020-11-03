@@ -29,6 +29,9 @@ namespace Lab05_Winform
 
 		public SinhVien GetByID(string MSSV)
 		{
+			if (string.IsNullOrWhiteSpace(MSSV))
+				throw new ArgumentException($"Tên sinh viên không hợp lệ!");
+
 			SinhVien sv = null;
 
 			sv = dsSinhVien.Find(s => s.MSSV == MSSV);
@@ -38,22 +41,28 @@ namespace Lab05_Winform
 
 		public List<SinhVien> GetByName(string name)
 		{
+			if (string.IsNullOrWhiteSpace(name))
+				throw new ArgumentException($"Tên sinh viên không hợp lệ!");
+
 			return dsSinhVien.FindAll(sv => sv.Ten.ToLower() == name.ToLower());
 		}
 
 		public List<SinhVien> GetByClassName(string className)
 		{
+			if (string.IsNullOrWhiteSpace(className))
+				throw new ArgumentException($"Lớp không hợp lệ!");
+
 			return dsSinhVien.FindAll(sv => sv.Lop.ToLower() == className.ToLower());
 		}
 
 		public void UpdateByID(string MSSV, SinhVien sinhVienMoi)
 		{
+			if (string.IsNullOrWhiteSpace(MSSV))
+				throw new ArgumentException($"Mã số sinh viên không hợp lệ!");
+
 			var isExist = dsSinhVien.Exists(sv => sv.MSSV == MSSV);
 			if (!isExist)
-				throw new ArgumentException($"Sinh viên có mã số {MSSV} không tồn tại!");
-
-			if (MSSV is null)
-				throw new ArgumentException($"Mã số sinh viên không hợp lệ!");
+				throw new ArgumentException($"Sinh viên có mã số {MSSV} không tồn tại!");			
 
 			var index = dsSinhVien.FindIndex(sv => sv.MSSV == MSSV);
 			dsSinhVien[index] = sinhVienMoi;
@@ -63,18 +72,22 @@ namespace Lab05_Winform
 
 		public void DeleteByID(string MSSV)
 		{
-			var isExist = dsSinhVien.Exists(sv => sv.MSSV == MSSV);
-			if (!isExist)
-				throw new ArgumentException($"Sinh viên có mã số {MSSV} không tồn tại!");
+			if (string.IsNullOrWhiteSpace(MSSV))
+				throw new ArgumentException($"Mã số sinh viên không hợp lệ!");
 
-			var index = dsSinhVien.FindIndex(sv => sv.MSSV == MSSV);
-			dsSinhVien.RemoveAt(index);
+			var sinhVien = dsSinhVien.Find(sv => sv.MSSV == MSSV);
+			if (sinhVien is null)
+				throw new ArgumentException($"Không tồn tại sinh viên có mã số {MSSV}");
 
+			dsSinhVien.Remove(sinhVien);
 			dataStorage.Write(dsSinhVien);
 		}
 
 		public void Add(SinhVien sinhVien)
 		{
+			if (sinhVien is null)
+				throw new ArgumentException($"Sinh viên không hợp lệ!");
+
 			var isExist = dsSinhVien.Exists(sv => sv.MSSV == sinhVien.MSSV);
 			if (isExist)
 				throw new ArgumentException($"Sinh viên có mã số {sinhVien.MSSV} đã tồn tại!");
