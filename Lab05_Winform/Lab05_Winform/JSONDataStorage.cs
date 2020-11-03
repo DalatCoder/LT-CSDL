@@ -24,6 +24,9 @@ namespace Lab05_Winform
 			using (StreamReader r = new StreamReader(FilePath))
 			{
 				string json = r.ReadToEnd();
+				if (string.IsNullOrWhiteSpace(json))
+					return new List<SinhVien>();
+
 				List<SinhVien> items = JsonConvert.DeserializeObject<List<SinhVien>>(json);
 				return items;
 			}
