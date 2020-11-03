@@ -14,9 +14,11 @@ namespace Lab05_Winform
 		{
 			InitializeComponent();
 
-			string filePath = Utils.GetPathTo("DanhSachSV.txt");
+			string txtFilePath = Utils.GetPathTo("DanhSachSV.txt");
+			string jsonFilePath = Utils.GetPathTo("DanhSachSV.json");
 
-			qlSinhVien = new QLSinhVien(new FileDataStorage(filePath));
+			// qlSinhVien = new QLSinhVien(new FileDataStorage(filePath));
+			qlSinhVien = new QLSinhVien(new JSONDataStorage(jsonFilePath));
 
 			dsMonHocDangKy = new List<string>
 			{
