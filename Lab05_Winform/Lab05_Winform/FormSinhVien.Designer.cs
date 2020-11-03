@@ -49,6 +49,9 @@
 			this.cboLop = new System.Windows.Forms.ComboBox();
 			this.txtSDT = new System.Windows.Forms.MaskedTextBox();
 			this.clbMonHocDangKy = new System.Windows.Forms.CheckedListBox();
+			this.ctMenuLcbMonHoc = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.menuItemThemMonHoc = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuItemXoaMonHoc = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnTimKiem = new System.Windows.Forms.Button();
 			this.btnThem = new System.Windows.Forms.Button();
 			this.btnCapNhat = new System.Windows.Forms.Button();
@@ -65,15 +68,13 @@
 			this.colDiaChi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colGioiTinh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colMonHocDK = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.txtDiaChi = new System.Windows.Forms.TextBox();
 			this.ctListViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.menuItemXoaSinhVien = new System.Windows.Forms.ToolStripMenuItem();
-			this.ctMenuLcbMonHoc = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.menuItemThemMonHoc = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuItemXoaMonHoc = new System.Windows.Forms.ToolStripMenuItem();
+			this.txtDiaChi = new System.Windows.Forms.TextBox();
+			this.btnMacDinh = new System.Windows.Forms.Button();
+			this.ctMenuLcbMonHoc.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.ctListViewMenu.SuspendLayout();
-			this.ctMenuLcbMonHoc.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -262,6 +263,28 @@
 			this.clbMonHocDangKy.Size = new System.Drawing.Size(588, 79);
 			this.clbMonHocDangKy.TabIndex = 20;
 			// 
+			// ctMenuLcbMonHoc
+			// 
+			this.ctMenuLcbMonHoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemThemMonHoc,
+            this.menuItemXoaMonHoc});
+			this.ctMenuLcbMonHoc.Name = "ctMenuLcbMonHoc";
+			this.ctMenuLcbMonHoc.Size = new System.Drawing.Size(199, 48);
+			// 
+			// menuItemThemMonHoc
+			// 
+			this.menuItemThemMonHoc.Name = "menuItemThemMonHoc";
+			this.menuItemThemMonHoc.Size = new System.Drawing.Size(198, 22);
+			this.menuItemThemMonHoc.Text = "Thêm môn học";
+			this.menuItemThemMonHoc.Click += new System.EventHandler(this.menuItemThemMonHoc_Click);
+			// 
+			// menuItemXoaMonHoc
+			// 
+			this.menuItemXoaMonHoc.Name = "menuItemXoaMonHoc";
+			this.menuItemXoaMonHoc.Size = new System.Drawing.Size(198, 22);
+			this.menuItemXoaMonHoc.Text = "Xóa môn học đánh dấu";
+			this.menuItemXoaMonHoc.Click += new System.EventHandler(this.menuItemXoaMonHoc_Click);
+			// 
 			// btnTimKiem
 			// 
 			this.btnTimKiem.Location = new System.Drawing.Point(145, 312);
@@ -274,7 +297,7 @@
 			// 
 			// btnThem
 			// 
-			this.btnThem.Location = new System.Drawing.Point(307, 312);
+			this.btnThem.Location = new System.Drawing.Point(273, 312);
 			this.btnThem.Name = "btnThem";
 			this.btnThem.Size = new System.Drawing.Size(75, 23);
 			this.btnThem.TabIndex = 22;
@@ -284,7 +307,7 @@
 			// 
 			// btnCapNhat
 			// 
-			this.btnCapNhat.Location = new System.Drawing.Point(484, 312);
+			this.btnCapNhat.Location = new System.Drawing.Point(403, 312);
 			this.btnCapNhat.Name = "btnCapNhat";
 			this.btnCapNhat.Size = new System.Drawing.Size(75, 23);
 			this.btnCapNhat.TabIndex = 23;
@@ -383,13 +406,6 @@
 			this.colMonHocDK.Text = "Môn học đăng ký";
 			this.colMonHocDK.Width = 200;
 			// 
-			// txtDiaChi
-			// 
-			this.txtDiaChi.Location = new System.Drawing.Point(148, 180);
-			this.txtDiaChi.Name = "txtDiaChi";
-			this.txtDiaChi.Size = new System.Drawing.Size(585, 20);
-			this.txtDiaChi.TabIndex = 26;
-			// 
 			// ctListViewMenu
 			// 
 			this.ctListViewMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -404,33 +420,29 @@
 			this.menuItemXoaSinhVien.Text = "Xóa sinh viên đã đánh dấu";
 			this.menuItemXoaSinhVien.Click += new System.EventHandler(this.menuItemXoaSinhVien_Click);
 			// 
-			// ctMenuLcbMonHoc
+			// txtDiaChi
 			// 
-			this.ctMenuLcbMonHoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemThemMonHoc,
-            this.menuItemXoaMonHoc});
-			this.ctMenuLcbMonHoc.Name = "ctMenuLcbMonHoc";
-			this.ctMenuLcbMonHoc.Size = new System.Drawing.Size(199, 48);
+			this.txtDiaChi.Location = new System.Drawing.Point(148, 180);
+			this.txtDiaChi.Name = "txtDiaChi";
+			this.txtDiaChi.Size = new System.Drawing.Size(585, 20);
+			this.txtDiaChi.TabIndex = 26;
 			// 
-			// menuItemThemMonHoc
+			// btnMacDinh
 			// 
-			this.menuItemThemMonHoc.Name = "menuItemThemMonHoc";
-			this.menuItemThemMonHoc.Size = new System.Drawing.Size(198, 22);
-			this.menuItemThemMonHoc.Text = "Thêm môn học";
-			this.menuItemThemMonHoc.Click += new System.EventHandler(this.menuItemThemMonHoc_Click);
-			// 
-			// menuItemXoaMonHoc
-			// 
-			this.menuItemXoaMonHoc.Name = "menuItemXoaMonHoc";
-			this.menuItemXoaMonHoc.Size = new System.Drawing.Size(198, 22);
-			this.menuItemXoaMonHoc.Text = "Xóa môn học đánh dấu";
-			this.menuItemXoaMonHoc.Click += new System.EventHandler(this.menuItemXoaMonHoc_Click);
+			this.btnMacDinh.Location = new System.Drawing.Point(531, 312);
+			this.btnMacDinh.Name = "btnMacDinh";
+			this.btnMacDinh.Size = new System.Drawing.Size(75, 23);
+			this.btnMacDinh.TabIndex = 27;
+			this.btnMacDinh.Text = "Mặc định";
+			this.btnMacDinh.UseVisualStyleBackColor = true;
+			this.btnMacDinh.Click += new System.EventHandler(this.btnMacDinh_Click);
 			// 
 			// frmNhapThongTinSV
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(759, 711);
+			this.Controls.Add(this.btnMacDinh);
 			this.Controls.Add(this.txtDiaChi);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnThoat);
@@ -461,9 +473,9 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Nhập thông tin sinh viên";
 			this.Load += new System.EventHandler(this.frmNhapThongTinSV_Load);
+			this.ctMenuLcbMonHoc.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.ctListViewMenu.ResumeLayout(false);
-			this.ctMenuLcbMonHoc.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -513,6 +525,7 @@
 		private System.Windows.Forms.ContextMenuStrip ctMenuLcbMonHoc;
 		private System.Windows.Forms.ToolStripMenuItem menuItemThemMonHoc;
 		private System.Windows.Forms.ToolStripMenuItem menuItemXoaMonHoc;
+		private System.Windows.Forms.Button btnMacDinh;
 	}
 }
 

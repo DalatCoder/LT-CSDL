@@ -146,7 +146,7 @@ namespace Lab05_Winform
 			dtpNgaySinh.Value = DateTime.Now;
 
 			rdNam.Checked = false;
-			rdNam.Checked = false;
+			rdNu.Checked = false;
 
 			for (int i = 0; i < clbMonHocDangKy.Items.Count; i++)
 				clbMonHocDangKy.SetItemChecked(i, false);
@@ -334,6 +334,11 @@ namespace Lab05_Winform
 			clbMonHocDangKy.Items.Clear();
 			foreach (var monHoc in dsMonHocDangKy)
 				clbMonHocDangKy.Items.Add(monHoc, false);
+		}
+
+		private void btnMacDinh_Click(object sender, EventArgs e)
+		{
+			ClearForm();
 		}
 	}
 }
