@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -7,7 +6,7 @@ namespace Lab05_Winform
 {
 	public class JSONDataStorage : IStudentDataStorage
 	{
-		public string FilePath { get; set; }
+		public string FilePath { get; }
 
 		public JSONDataStorage(string filePath)
 		{
@@ -16,6 +15,12 @@ namespace Lab05_Winform
 
 		public List<SinhVien> Load()
 		{
+			if (!File.Exists(FilePath))
+			{
+				FileStream fs = File.Create(FilePath);
+				fs.Close();
+			}
+
 			using (StreamReader r = new StreamReader(FilePath))
 			{
 				string json = r.ReadToEnd();
