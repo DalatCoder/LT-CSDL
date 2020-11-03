@@ -340,5 +340,11 @@ namespace Lab05_Winform
 		{
 			ClearForm();
 		}
+
+		private void btnHienThiSV_Click(object sender, EventArgs e)
+		{
+			ClearForm();
+			RenderListView(qlSinhVien.GetAll());
+		}
 	}
 }

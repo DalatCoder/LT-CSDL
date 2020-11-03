@@ -72,6 +72,7 @@
 			this.menuItemXoaSinhVien = new System.Windows.Forms.ToolStripMenuItem();
 			this.txtDiaChi = new System.Windows.Forms.TextBox();
 			this.btnMacDinh = new System.Windows.Forms.Button();
+			this.btnHienThiSV = new System.Windows.Forms.Button();
 			this.ctMenuLcbMonHoc.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.ctListViewMenu.SuspendLayout();
@@ -169,7 +170,7 @@
 			// 
 			// txtMSSV
 			// 
-			this.txtMSSV.Location = new System.Drawing.Point(149, 22);
+			this.txtMSSV.Location = new System.Drawing.Point(149, 19);
 			this.txtMSSV.Mask = "0000000";
 			this.txtMSSV.Name = "txtMSSV";
 			this.txtMSSV.Size = new System.Drawing.Size(209, 20);
@@ -177,7 +178,7 @@
 			// 
 			// txtHoTen
 			// 
-			this.txtHoTen.Location = new System.Drawing.Point(149, 60);
+			this.txtHoTen.Location = new System.Drawing.Point(149, 57);
 			this.txtHoTen.Name = "txtHoTen";
 			this.txtHoTen.Size = new System.Drawing.Size(209, 20);
 			this.txtHoTen.TabIndex = 11;
@@ -202,7 +203,7 @@
 			// rdNam
 			// 
 			this.rdNam.AutoSize = true;
-			this.rdNam.Location = new System.Drawing.Point(540, 25);
+			this.rdNam.Location = new System.Drawing.Point(540, 20);
 			this.rdNam.Name = "rdNam";
 			this.rdNam.Size = new System.Drawing.Size(47, 17);
 			this.rdNam.TabIndex = 15;
@@ -213,7 +214,7 @@
 			// rdNu
 			// 
 			this.rdNu.AutoSize = true;
-			this.rdNu.Location = new System.Drawing.Point(611, 23);
+			this.rdNu.Location = new System.Drawing.Point(609, 18);
 			this.rdNu.Name = "rdNu";
 			this.rdNu.Size = new System.Drawing.Size(39, 17);
 			this.rdNu.TabIndex = 16;
@@ -287,7 +288,7 @@
 			// 
 			// btnTimKiem
 			// 
-			this.btnTimKiem.Location = new System.Drawing.Point(145, 312);
+			this.btnTimKiem.Location = new System.Drawing.Point(246, 312);
 			this.btnTimKiem.Name = "btnTimKiem";
 			this.btnTimKiem.Size = new System.Drawing.Size(75, 23);
 			this.btnTimKiem.TabIndex = 21;
@@ -297,7 +298,7 @@
 			// 
 			// btnThem
 			// 
-			this.btnThem.Location = new System.Drawing.Point(273, 312);
+			this.btnThem.Location = new System.Drawing.Point(353, 312);
 			this.btnThem.Name = "btnThem";
 			this.btnThem.Size = new System.Drawing.Size(75, 23);
 			this.btnThem.TabIndex = 22;
@@ -307,7 +308,7 @@
 			// 
 			// btnCapNhat
 			// 
-			this.btnCapNhat.Location = new System.Drawing.Point(403, 312);
+			this.btnCapNhat.Location = new System.Drawing.Point(456, 312);
 			this.btnCapNhat.Name = "btnCapNhat";
 			this.btnCapNhat.Size = new System.Drawing.Size(75, 23);
 			this.btnCapNhat.TabIndex = 23;
@@ -429,7 +430,7 @@
 			// 
 			// btnMacDinh
 			// 
-			this.btnMacDinh.Location = new System.Drawing.Point(531, 312);
+			this.btnMacDinh.Location = new System.Drawing.Point(562, 312);
 			this.btnMacDinh.Name = "btnMacDinh";
 			this.btnMacDinh.Size = new System.Drawing.Size(75, 23);
 			this.btnMacDinh.TabIndex = 27;
@@ -437,11 +438,22 @@
 			this.btnMacDinh.UseVisualStyleBackColor = true;
 			this.btnMacDinh.Click += new System.EventHandler(this.btnMacDinh_Click);
 			// 
+			// btnHienThiSV
+			// 
+			this.btnHienThiSV.Location = new System.Drawing.Point(145, 312);
+			this.btnHienThiSV.Name = "btnHienThiSV";
+			this.btnHienThiSV.Size = new System.Drawing.Size(75, 23);
+			this.btnHienThiSV.TabIndex = 28;
+			this.btnHienThiSV.Text = "Tất cả SV";
+			this.btnHienThiSV.UseVisualStyleBackColor = true;
+			this.btnHienThiSV.Click += new System.EventHandler(this.btnHienThiSV_Click);
+			// 
 			// frmNhapThongTinSV
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(759, 711);
+			this.Controls.Add(this.btnHienThiSV);
 			this.Controls.Add(this.btnMacDinh);
 			this.Controls.Add(this.txtDiaChi);
 			this.Controls.Add(this.groupBox1);
@@ -526,6 +538,7 @@
 		private System.Windows.Forms.ToolStripMenuItem menuItemThemMonHoc;
 		private System.Windows.Forms.ToolStripMenuItem menuItemXoaMonHoc;
 		private System.Windows.Forms.Button btnMacDinh;
+		private System.Windows.Forms.Button btnHienThiSV;
 	}
 }
 

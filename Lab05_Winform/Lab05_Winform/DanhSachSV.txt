@@ -1,3 +1,3 @@
 1812756	Nguyễn Trọng Hiếu	Hiếu	CTK42	Nam	3/11/2000	123456789	0123.456.789	Đà Lạt, Lâm Đồng	Mạng máy tính;Hệ điều hành;Lập trình CSDL
 1812751	Nguyễn Thị	Hà	CTK42	Nữ	10/20/2000	123123123	0123.123.123	Đà Lạt, Lâm Đồng	Mạng máy tính;Hệ điều hành;Lập trình CSDL;Lập trình trên thiết bị di động
-1711712	Nguyễn Văn	A	CTK41	Nam	11/3/1999	124515152	0341.414.242	Đức Trọng, Lâm Đồng	Mạng máy tính;Hệ điều hành;Lập trình CSDL;Lập trình mạng;Đồ án cơ sở;Phương pháp NCKH;Lập trình trên thiết bị di động;An toàn và bảo mật hệ thống
+1711712	Nguyễn Văn	Dũng	CTK41	Nam	11/3/1999	124515152	0341.414.242	Đức Trọng, Lâm Đồng	Mạng máy tính;Hệ điều hành;Lập trình CSDL;Lập trình mạng;Đồ án cơ sở;Phương pháp NCKH;Lập trình trên thiết bị di động;An toàn và bảo mật hệ thống
