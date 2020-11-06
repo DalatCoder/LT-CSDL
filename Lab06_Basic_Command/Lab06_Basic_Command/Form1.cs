@@ -127,5 +127,35 @@ namespace Lab06_Basic_Command
 
 			connection.Close();
 		}
+
+		private void btnDelete_Click(object sender, EventArgs e)
+		{
+			string connectionString = "server=.; database = RestaunrantManagement; Integrated Security = true; ";
+			SqlConnection connection = new SqlConnection(connectionString);
+			SqlCommand command = connection.CreateCommand();
+
+			command.CommandText = $"DELETE FROM Category WHERE ID = {txtID.Text}";
+
+			connection.Open();
+
+			int numOfRowsEffected = command.ExecuteNonQuery();
+
+			if (numOfRowsEffected != 1)
+			{
+				MessageBox.Show("Có lỗi xảy ra.");
+				return;
+			}
+
+			lvCategory.Items.Remove(lvCategory.SelectedItems[0]);
+
+			txtID.Text = "";
+			txtName.Text = "";
+			txtType.Text = "";
+
+			btnUpdate.Enabled = false;
+			btnDelete.Enabled = false;
+
+			connection.Close();
+		}
 	}
 }
