@@ -157,5 +157,21 @@ namespace Lab06_Basic_Command
 
 			connection.Close();
 		}
+
+		private void tsmDelete_Click(object sender, EventArgs e)
+		{
+			if (lvCategory.SelectedItems.Count > 0)
+				btnDelete.PerformClick();
+		}
+
+		private void tsmViewFood_Click(object sender, EventArgs e)
+		{
+			if(txtID.Text != "")
+			{
+				frmFood frmFood = new frmFood();
+				frmFood.Show(this);
+				frmFood.LoadFood(Convert.ToInt32(txtID.Text));
+			}
+		}
 	}
 }
