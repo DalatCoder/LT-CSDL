@@ -68,6 +68,7 @@
 			this.lvCategory.TabIndex = 1;
 			this.lvCategory.UseCompatibleStateImageBehavior = false;
 			this.lvCategory.View = System.Windows.Forms.View.Details;
+			this.lvCategory.Click += new System.EventHandler(this.lvCategory_Click);
 			// 
 			// chID
 			// 
@@ -103,6 +104,7 @@
 			this.btnUpdate.TabIndex = 3;
 			this.btnUpdate.Text = "Cập nhật";
 			this.btnUpdate.UseVisualStyleBackColor = true;
+			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
 			// 
 			// btnAdd
 			// 

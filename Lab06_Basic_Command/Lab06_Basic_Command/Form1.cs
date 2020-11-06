@@ -79,5 +79,53 @@ namespace Lab06_Basic_Command
 			txtName.Text = "";
 			txtType.Text = "";
 		}
+
+		private void lvCategory_Click(object sender, EventArgs e)
+		{
+			ListViewItem item = lvCategory.SelectedItems[0];
+
+			txtID.Text = item.SubItems[0].Text;
+			txtName.Text = item.SubItems[1].Text;
+			txtType.Text = item.SubItems[2].Text == "0" ? "Thức uống" : "Đồ ăn";
+
+			btnUpdate.Enabled = true;
+			btnDelete.Enabled = true;
+		}
+
+		private void btnUpdate_Click(object sender, EventArgs e)
+		{
+			string connectionString = "server=.; database = RestaunrantManagement; Integrated Security = true; ";
+			SqlConnection connection = new SqlConnection(connectionString);
+			SqlCommand command = connection.CreateCommand();
+
+			string name = txtName.Text;
+			string type = txtType.Text == "Thức uống" ? "0" : "1";
+			string id = txtID.Text;
+
+			command.CommandText = $"UPDATE Category SET Name = N'{name}', [Type] = {type} WHERE ID = {id}";
+
+			connection.Open();
+
+			int numOfRowsEffected = command.ExecuteNonQuery();
+
+			if (numOfRowsEffected != 1)
+			{
+				MessageBox.Show("Có lỗi xảy ra");
+				return;
+			}
+
+			ListViewItem item = lvCategory.SelectedItems[0];
+			item.SubItems[1].Text = name;
+			item.SubItems[2].Text = type;
+
+			txtID.Text = "";
+			txtName.Text = "";
+			txtType.Text = "";
+
+			btnUpdate.Enabled = false;
+			btnDelete.Enabled = false;
+
+			connection.Close();
+		}
 	}
 }
