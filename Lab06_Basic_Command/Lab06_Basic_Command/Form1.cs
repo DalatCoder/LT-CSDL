@@ -53,5 +53,31 @@ namespace Lab06_Basic_Command
 				lvCategory.Items.Add(item);
 			}
 		}
+
+		private void btnAdd_Click(object sender, EventArgs e)
+		{
+			string connectionString = "server=.; database = RestaunrantManagement; Integrated Security = true; ";
+			SqlConnection connection = new SqlConnection(connectionString);
+
+			SqlCommand command = connection.CreateCommand();
+			command.CommandText = $"INSERT INTO Category(Name, [Type]) VALUES (N'{txtName.Text}', {int.Parse(txtType.Text)})";
+
+			connection.Open();
+
+			int numOfRowsEffected = command.ExecuteNonQuery();
+
+			connection.Close();
+
+			if (numOfRowsEffected != 1)
+			{
+				MessageBox.Show("Có lỗi xảy ra.");
+				return;
+			}
+
+			btnLoad.PerformClick();
+
+			txtName.Text = "";
+			txtType.Text = "";
+		}
 	}
 }
