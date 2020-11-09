@@ -48,6 +48,7 @@
 			this.ClientSize = new System.Drawing.Size(632, 380);
 			this.Controls.Add(this.dgvFood);
 			this.Name = "frmFood";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "FoodForm";
 			((System.ComponentModel.ISupportInitialize)(this.dgvFood)).EndInit();
 			this.ResumeLayout(false);
