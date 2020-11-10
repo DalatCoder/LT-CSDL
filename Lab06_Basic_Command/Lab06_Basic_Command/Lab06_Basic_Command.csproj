@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountManagerForm.Designer.cs">
+      <DependentUpon>AccountManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BillDetailsForm.Designer.cs">
+      <DependentUpon>BillDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BillsForm.Designer.cs">
+      <DependentUpon>BillsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FoodForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +78,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AccountManagerForm.resx">
+      <DependentUpon>AccountManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillDetailsForm.resx">
+      <DependentUpon>BillDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillsForm.resx">
+      <DependentUpon>BillsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FoodForm.resx">
       <DependentUpon>FoodForm.cs</DependentUpon>
     </EmbeddedResource>

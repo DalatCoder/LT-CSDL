@@ -98,7 +98,7 @@ namespace Lab06_Basic_Command
 			SqlConnection connection = new SqlConnection(connectionString);
 			SqlCommand command = connection.CreateCommand();
 
-			string name = txtName.Text;
+			string name = txtName.Text;   
 			string type = txtType.Text == "Thức uống" ? "0" : "1";
 			string id = txtID.Text;
 
@@ -172,6 +172,18 @@ namespace Lab06_Basic_Command
 				frmFood.Show(this);
 				frmFood.LoadFood(Convert.ToInt32(txtID.Text));
 			}
+		}
+
+		private void btnBills_Click(object sender, EventArgs e)
+		{
+			BillsForm billsForm = new BillsForm();
+			billsForm.ShowDialog();
+		}
+
+		private void btnAccount_Click(object sender, EventArgs e)
+		{
+			AccountManagerForm managerForm = new AccountManagerForm();
+			managerForm.ShowDialog();
 		}
 	}
 }

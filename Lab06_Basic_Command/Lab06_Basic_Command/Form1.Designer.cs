@@ -34,6 +34,9 @@
 			this.chID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.chType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.tsmDelete = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmViewFood = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnUpdate = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
@@ -43,9 +46,8 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.txtName = new System.Windows.Forms.TextBox();
 			this.txtType = new System.Windows.Forms.TextBox();
-			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.tsmDelete = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmViewFood = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnBills = new System.Windows.Forms.Button();
+			this.btnAccount = new System.Windows.Forms.Button();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -90,6 +92,28 @@
 			// 
 			this.chType.Text = "Loại";
 			this.chType.Width = 139;
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmDelete,
+            this.tsmViewFood});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(189, 48);
+			// 
+			// tsmDelete
+			// 
+			this.tsmDelete.Name = "tsmDelete";
+			this.tsmDelete.Size = new System.Drawing.Size(188, 22);
+			this.tsmDelete.Text = "Xóa nhóm sản phẩm";
+			this.tsmDelete.Click += new System.EventHandler(this.tsmDelete_Click);
+			// 
+			// tsmViewFood
+			// 
+			this.tsmViewFood.Name = "tsmViewFood";
+			this.tsmViewFood.Size = new System.Drawing.Size(188, 22);
+			this.tsmViewFood.Text = "Xem nhóm sản phẩm";
+			this.tsmViewFood.Click += new System.EventHandler(this.tsmViewFood_Click);
 			// 
 			// btnDelete
 			// 
@@ -172,33 +196,33 @@
 			this.txtType.Size = new System.Drawing.Size(223, 20);
 			this.txtType.TabIndex = 3;
 			// 
-			// contextMenuStrip1
+			// btnBills
 			// 
-			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmDelete,
-            this.tsmViewFood});
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(189, 48);
+			this.btnBills.Location = new System.Drawing.Point(514, 9);
+			this.btnBills.Name = "btnBills";
+			this.btnBills.Size = new System.Drawing.Size(126, 23);
+			this.btnBills.TabIndex = 9;
+			this.btnBills.Text = "Xem hóa đơn";
+			this.btnBills.UseVisualStyleBackColor = true;
+			this.btnBills.Click += new System.EventHandler(this.btnBills_Click);
 			// 
-			// tsmDelete
+			// btnAccount
 			// 
-			this.tsmDelete.Name = "tsmDelete";
-			this.tsmDelete.Size = new System.Drawing.Size(188, 22);
-			this.tsmDelete.Text = "Xóa nhóm sản phẩm";
-			this.tsmDelete.Click += new System.EventHandler(this.tsmDelete_Click);
-			// 
-			// tsmViewFood
-			// 
-			this.tsmViewFood.Name = "tsmViewFood";
-			this.tsmViewFood.Size = new System.Drawing.Size(188, 22);
-			this.tsmViewFood.Text = "Xem nhóm sản phẩm";
-			this.tsmViewFood.Click += new System.EventHandler(this.tsmViewFood_Click);
+			this.btnAccount.Location = new System.Drawing.Point(514, 50);
+			this.btnAccount.Name = "btnAccount";
+			this.btnAccount.Size = new System.Drawing.Size(126, 23);
+			this.btnAccount.TabIndex = 10;
+			this.btnAccount.Text = "Xem tài khoản";
+			this.btnAccount.UseVisualStyleBackColor = true;
+			this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(652, 450);
+			this.Controls.Add(this.btnAccount);
+			this.Controls.Add(this.btnBills);
 			this.Controls.Add(this.txtType);
 			this.Controls.Add(this.txtName);
 			this.Controls.Add(this.label3);
@@ -237,6 +261,8 @@
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem tsmDelete;
 		private System.Windows.Forms.ToolStripMenuItem tsmViewFood;
+		private System.Windows.Forms.Button btnBills;
+		private System.Windows.Forms.Button btnAccount;
 	}
 }
 
