@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.dgvFoodList = new System.Windows.Forms.DataGridView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cboCategory = new System.Windows.Forms.ComboBox();
@@ -35,16 +36,21 @@
 			this.lblQuantity = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.lblCatName = new System.Windows.Forms.Label();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.tsmCaculateQuantity = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.dgvFoodList)).BeginInit();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dgvFoodList
 			// 
 			this.dgvFoodList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvFoodList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvFoodList.ContextMenuStrip = this.contextMenuStrip1;
 			this.dgvFoodList.Location = new System.Drawing.Point(12, 69);
 			this.dgvFoodList.MultiSelect = false;
 			this.dgvFoodList.Name = "dgvFoodList";
+			this.dgvFoodList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvFoodList.Size = new System.Drawing.Size(776, 339);
 			this.dgvFoodList.TabIndex = 0;
 			// 
@@ -102,6 +108,20 @@
 			this.lblCatName.TabIndex = 6;
 			this.lblCatName.Text = "...";
 			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCaculateQuantity});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(187, 26);
+			// 
+			// tsmCaculateQuantity
+			// 
+			this.tsmCaculateQuantity.Name = "tsmCaculateQuantity";
+			this.tsmCaculateQuantity.Size = new System.Drawing.Size(186, 22);
+			this.tsmCaculateQuantity.Text = "Tính số lượng đã bán";
+			this.tsmCaculateQuantity.Click += new System.EventHandler(this.tsmCaculateQuantity_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,6 +138,7 @@
 			this.Text = "Form1";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dgvFoodList)).EndInit();
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -132,6 +153,8 @@
 		private System.Windows.Forms.Label lblQuantity;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label lblCatName;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem tsmCaculateQuantity;
 	}
 }
 

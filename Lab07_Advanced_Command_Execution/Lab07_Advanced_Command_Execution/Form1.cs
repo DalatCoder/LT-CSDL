@@ -83,5 +83,43 @@ namespace Lab07_Advanced_Command_Execution
 			lblQuantity.Text = foodTable.Rows.Count.ToString();
 			lblCatName.Text = cboCategory.Text;
 		}
+
+		private void tsmCaculateQuantity_Click(object sender, EventArgs e)
+		{
+			string connectionString = "server=.; database = RestaurantManagement; Integrated Security = true; ";
+			SqlConnection connection = new SqlConnection(connectionString);
+			SqlCommand command = connection.CreateCommand();
+			command.CommandText = "SELECT @numSaleFood = sum(Quantity) FROM BillDetails WHERE FoodID = @foodId";
+
+			if(dgvFoodList.SelectedRows.Count > 0)
+			{
+				DataGridViewRow selectedRow = dgvFoodList.SelectedRows[0];
+
+				DataRowView rowView = selectedRow.DataBoundItem as DataRowView;
+
+				command.Parameters.Add("@foodId", SqlDbType.Int);
+				command.Parameters["@foodId"].Value = rowView["ID"];
+
+				command.Parameters.Add("@numSaleFood", SqlDbType.Int);
+				command.Parameters["@numSaleFood"].Direction = ParameterDirection.Output;
+
+				connection.Open();
+
+				command.ExecuteNonQuery();
+
+				string result = command.Parameters["@numSaleFood"].Value.ToString();
+				string message = $"Tổng số lượng món {rowView["Name"]} đã bán là {result} {rowView["Unit"]}";
+
+				if (string.IsNullOrWhiteSpace(result))
+					message = $"Món {rowView["Name"]} chưa bán được {rowView["Unit"]} nào!";
+
+				MessageBox.Show(message);
+
+				connection.Close();
+			}
+
+			command.Dispose();
+			connection.Dispose();
+		}
 	}
 }
