@@ -121,5 +121,15 @@ namespace Lab07_Advanced_Command_Execution
 			command.Dispose();
 			connection.Dispose();
 		}
+
+		private void tsmAddFood_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void tsmUpdateFood_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

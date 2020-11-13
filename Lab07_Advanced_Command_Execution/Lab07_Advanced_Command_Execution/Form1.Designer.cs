@@ -38,6 +38,8 @@
 			this.lblCatName = new System.Windows.Forms.Label();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmCaculateQuantity = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmAddFood = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmUpdateFood = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.dgvFoodList)).BeginInit();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -111,9 +113,11 @@
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCaculateQuantity});
+            this.tsmCaculateQuantity,
+            this.tsmAddFood,
+            this.tsmUpdateFood});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(187, 26);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(187, 92);
 			// 
 			// tsmCaculateQuantity
 			// 
@@ -121,6 +125,20 @@
 			this.tsmCaculateQuantity.Size = new System.Drawing.Size(186, 22);
 			this.tsmCaculateQuantity.Text = "Tính số lượng đã bán";
 			this.tsmCaculateQuantity.Click += new System.EventHandler(this.tsmCaculateQuantity_Click);
+			// 
+			// tsmAddFood
+			// 
+			this.tsmAddFood.Name = "tsmAddFood";
+			this.tsmAddFood.Size = new System.Drawing.Size(186, 22);
+			this.tsmAddFood.Text = "Thêm món ăn";
+			this.tsmAddFood.Click += new System.EventHandler(this.tsmAddFood_Click);
+			// 
+			// tsmUpdateFood
+			// 
+			this.tsmUpdateFood.Name = "tsmUpdateFood";
+			this.tsmUpdateFood.Size = new System.Drawing.Size(186, 22);
+			this.tsmUpdateFood.Text = "Cập nhật món ăn";
+			this.tsmUpdateFood.Click += new System.EventHandler(this.tsmUpdateFood_Click);
 			// 
 			// Form1
 			// 
@@ -155,6 +173,8 @@
 		private System.Windows.Forms.Label lblCatName;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem tsmCaculateQuantity;
+		private System.Windows.Forms.ToolStripMenuItem tsmAddFood;
+		private System.Windows.Forms.ToolStripMenuItem tsmUpdateFood;
 	}
 }
 
