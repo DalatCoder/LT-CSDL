@@ -124,12 +124,46 @@ namespace Lab07_Advanced_Command_Execution
 
 		private void tsmAddFood_Click(object sender, EventArgs e)
 		{
+			FormFoodInfo formFood = new FormFoodInfo();
+			formFood.FormClosed += FormFood_FormClosed;
 
+			formFood.Show(this);
+		}
+
+		private void FormFood_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			int index = cboCategory.SelectedIndex;
+			cboCategory.SelectedIndex = -1;
+			cboCategory.SelectedIndex = index;
 		}
 
 		private void tsmUpdateFood_Click(object sender, EventArgs e)
 		{
+			if (dgvFoodList.SelectedRows.Count > 0)
+			{
+				DataGridViewRow selectedRow = dgvFoodList.SelectedRows[0];
+				DataRowView rowView = selectedRow.DataBoundItem as DataRowView;
 
+				FormFoodInfo foodForm = new FormFoodInfo();
+				foodForm.FormClosed += new FormClosedEventHandler(FormFood_FormClosed);
+
+				foodForm.Show(this);
+				foodForm.DisplayFoodInfo(rowView);	
+			}
+		}
+
+		private void txtSearchByName_TextChanged(object sender, EventArgs e)
+		{
+			if (foodTable == null) return;
+
+			string filterExpression = $"Name LIKE '%{txtSearchByName.Text}%'";
+			string sortExpression = "Price DESC";
+
+			DataViewRowState rowStateFilter = DataViewRowState.OriginalRows;
+
+			DataView foodView = new DataView(foodTable, filterExpression, sortExpression, rowStateFilter);
+
+			dgvFoodList.DataSource = foodView;
 		}
 	}
 }
