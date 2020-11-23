@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Lab08_N_Layer
 {
-    public partial class Form1 : Form
+    public partial class frmFood : Form
     {
-        public Form1()
+        public frmFood()
         {
             InitializeComponent();
         }

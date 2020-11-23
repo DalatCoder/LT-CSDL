@@ -16,7 +16,7 @@ namespace Lab08_N_Layer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmFood());
         }
     }
 }
