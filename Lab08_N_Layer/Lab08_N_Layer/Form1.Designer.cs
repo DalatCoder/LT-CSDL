@@ -181,6 +181,7 @@
             this.cmdAdd.TabIndex = 9;
             this.cmdAdd.Text = "Thêm";
             this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // cmdUpdate
             // 
@@ -191,6 +192,7 @@
             this.cmdUpdate.TabIndex = 10;
             this.cmdUpdate.Text = "Sửa";
             this.cmdUpdate.UseVisualStyleBackColor = true;
+            this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
             // 
             // cmdDelete
             // 
@@ -201,6 +203,7 @@
             this.cmdDelete.TabIndex = 11;
             this.cmdDelete.Text = "Xóa";
             this.cmdDelete.UseVisualStyleBackColor = true;
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
             // 
             // txtName
             // 

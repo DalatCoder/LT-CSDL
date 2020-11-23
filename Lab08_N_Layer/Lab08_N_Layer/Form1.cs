@@ -112,5 +112,134 @@ namespace Lab08_N_Layer
                 }
             }
         }
+
+        /// <summary>
+        /// Phương thức thêm dữ liệu cho bảng Food
+        /// </summary>
+        /// <returns>Trả về số dương nếu thành công, ngược lại trả về số âm</returns>
+        public int InsertFood()
+        {
+            //Khai báo đối tượng Food từ tầng DataAccess
+            Food food = new Food();
+            food.ID = 0;
+            // Kiểm tra nếu các ô nhập khác rỗng
+            if (txtName.Text == "" || txtUnit.Text == "" || txtPrice.Text == "")
+                MessageBox.Show("Chưa nhập dữ liệu cho các ô, vui lòng nhập lại");
+            else
+            {
+                //Nhận giá trị Name, Unit, và Notes từ người dùng nhập vào
+                food.Name = txtName.Text;
+                food.Unit = txtUnit.Text;
+                food.Notes = txtNotes.Text;
+                // Giá trị price là giá trị số nên cần bắt lỗi khi người dùng nhập sai
+                int price = 0;
+                try
+                {
+                    // Cố gắng lấy giá trị
+                    price = int.Parse(txtPrice.Text);
+                }
+                catch
+                {
+                    // Nếu sai, gán giá = 0
+                    price = 0;
+                }
+                food.Price = price;
+                // Giá trị FoodCategoryID được lấy từ ComboBox
+                food.FoodCategoryID = int.Parse(cbbCategory.SelectedValue.ToString());
+                // Khao báo đối tượng FoodBL từ tầng Business
+                FoodBL foodBL = new FoodBL();
+                // Chèn dữ liệu vào bảng
+                return foodBL.Insert(food);
+            }
+            return -1;
+        }
+
+        private void cmdAdd_Click(object sender, EventArgs e)
+        {
+            // Gọi phương thức thêm dữ liệu
+            int result = InsertFood();
+            if (result > 0) // Nếu thêm thành công
+            {
+                // Thông báo kết quả
+                MessageBox.Show("Thêm dữ liệu thành công");
+                // Tải lại dữ liệu cho ListView
+                LoadFoodDataToListView();
+            }
+            // Nếu thêm không thành công thì thông báo cho người dùng
+            else MessageBox.Show("Thêm dữ liệu không thành công. Vui lòng kiểm tra lại dữ liệu nhập");
+        }
+
+        private void cmdDelete_Click(object sender, EventArgs e)
+        {
+            // Hỏi người dùng có chắc chắn xoá hay không? Nếu đồng ý thì
+            if (MessageBox.Show("Bạn có chắc chắn muốn xoá mẫu tin này?", "Thông báo",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                // Khai báo đối tượng FoodBL từ BusinessLogic
+                FoodBL foodBL = new FoodBL();
+                if (foodBL.Delete(foodCurrent) > 0)// Nếu xoá thành công
+                {
+                    MessageBox.Show("Xoá thực phẩm thành công");
+                    // Tải tữ liệu lên ListView
+                    LoadFoodDataToListView();
+                }
+                else MessageBox.Show("Xoá không thành công");
+            }
+        }
+
+        /// <summary>
+        /// Phương thức cập nhật dữ liệu cho bảng Food
+        /// </summary>
+        /// <returns>Trả về dương nếu cập nhật thành công, ngược lại là số âm</returns>
+        public int UpdateFood()
+        {
+            //Khai báo đối tượng Food và lấy đối tượng hiện hành
+            Food food = foodCurrent;
+            // Kiểm tra nếu các ô nhập khác rỗng
+            if (txtName.Text == "" || txtUnit.Text == "" || txtPrice.Text == "")
+                MessageBox.Show("Chưa nhập dữ liệu cho các ô, vui lòng nhập lại");
+            else
+            {
+                //Nhận giá trị Name, Unit, và Notes khi người dùng sửa
+                food.Name = txtName.Text;
+                food.Unit = txtUnit.Text;
+                food.Notes = txtNotes.Text;
+                //Giá trị price là giá trị số nên cần bắt lỗi khi người dùng nhập sai
+                int price = 0;
+                try
+                {
+                    // Chuyển giá trị từ kiểu văn bản qua kiểu int
+                    price = int.Parse(txtPrice.Text);
+                }
+                catch
+                {
+                    // Nếu sai, gán giá = 0
+                    price = 0;
+                }
+                food.Price = price;
+                // Giá trị FoodCategoryID được lấy từ ComboBox
+                food.FoodCategoryID = int.Parse(cbbCategory.SelectedValue.ToString());
+                // Khao báo đối tượng FoodBL từ tầng Business
+                FoodBL foodBL = new FoodBL();
+                // Cập nhật dữ liệu trong bảng
+                return foodBL.Update(food);
+            }
+            return -1;
+        }
+
+        private void cmdUpdate_Click(object sender, EventArgs e)
+        {
+            // Gọi phương thức cập nhật dữ liệu
+            int result = UpdateFood();
+            if (result > 0) // Nếu cập nhật thành công
+            {
+                // Thông báo kết quả
+                MessageBox.Show("Cập nhật dữ liệu thành công");
+                // Tải lại dữ liệu cho ListView
+                LoadFoodDataToListView();
+            }
+            // Nếu thêm không thành công thì thông báo cho người dùng
+            else MessageBox.Show("Cập nhật dữ liệu không thành công. Vui lòng kiểm tra lại dữ liệu nhập");
+        }
     }
 }
