@@ -114,6 +114,7 @@
             this.cmdExit.TabIndex = 3;
             this.cmdExit.Text = "Thoát";
             this.cmdExit.UseVisualStyleBackColor = true;
+            this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 
             // label2
             // 
@@ -169,6 +170,7 @@
             this.cmdClear.TabIndex = 4;
             this.cmdClear.Text = "Nhập lại";
             this.cmdClear.UseVisualStyleBackColor = true;
+            this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
             // 
             // cmdAdd
             // 
@@ -256,6 +258,7 @@
             this.lsvFood.TabIndex = 0;
             this.lsvFood.UseCompatibleStateImageBehavior = false;
             this.lsvFood.View = System.Windows.Forms.View.Details;
+            this.lsvFood.Click += new System.EventHandler(this.lsvFood_Click);
             // 
             // colSTT
             // 
@@ -293,6 +296,7 @@
             this.Name = "frmFood";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm - Xóa - Sửa bảng Food";
+            this.Load += new System.EventHandler(this.frmFood_Load);
             this.grpLeft.ResumeLayout(false);
             this.grpLeft.PerformLayout();
             this.grpRight.ResumeLayout(false);
