@@ -199,5 +199,26 @@ namespace Lab09_Entity_Framework
 				lvwFood.Items.Remove(lvwFood.SelectedItems[0]);
 			}
 		}
+
+		private void btnAddFood_Click(object sender, EventArgs e)
+		{
+			var dialog = new UpdateFoodForm();
+			var result = dialog.ShowDialog();
+
+			if (result == DialogResult.OK)
+				ShowFoodsForNode(tvwCategory.SelectedNode);
+		}
+
+		private void lvwFood_DoubleClick(object sender, EventArgs e)
+		{
+			if (lvwFood.SelectedItems.Count == 0) return;
+
+			var foodId = int.Parse(lvwFood.SelectedItems[0].Text);
+			var dialog = new UpdateFoodForm(foodId);
+			var result = dialog.ShowDialog();
+
+			if (result == DialogResult.OK)
+				ShowFoodsForNode(tvwCategory.SelectedNode);
+		}
 	}
 }

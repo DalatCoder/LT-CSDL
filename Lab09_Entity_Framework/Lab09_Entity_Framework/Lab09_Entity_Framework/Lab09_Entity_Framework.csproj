@@ -74,6 +74,12 @@
     <Compile Include="UpdateCategoryForm.Designer.cs">
       <DependentUpon>UpdateCategoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateFoodForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateFoodForm.Designer.cs">
+      <DependentUpon>UpdateFoodForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +94,9 @@
     </Compile>
     <EmbeddedResource Include="UpdateCategoryForm.resx">
       <DependentUpon>UpdateCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateFoodForm.resx">
+      <DependentUpon>UpdateFoodForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

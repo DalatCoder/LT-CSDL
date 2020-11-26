@@ -97,6 +97,7 @@
 			this.btnAddFood.Text = "+";
 			this.toolTip1.SetToolTip(this.btnAddFood, "Thêm món ăn mới");
 			this.btnAddFood.UseVisualStyleBackColor = true;
+			this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
 			// 
 			// btnDeleteFood
 			// 
@@ -154,6 +155,7 @@
 			this.lvwFood.TabIndex = 8;
 			this.lvwFood.UseCompatibleStateImageBehavior = false;
 			this.lvwFood.View = System.Windows.Forms.View.Details;
+			this.lvwFood.DoubleClick += new System.EventHandler(this.lvwFood_DoubleClick);
 			// 
 			// columnHeader1
 			// 
