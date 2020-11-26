@@ -153,5 +153,29 @@ namespace Lab09_Entity_Framework
 		{
 			ShowFoodsForNode(e.Node);
 		}
+
+		private void btnAddCategory_Click(object sender, EventArgs e)
+		{
+			var dialog = new UpdateCategoryForm();
+			var result = dialog.ShowDialog();
+			if (result == DialogResult.OK)
+			{
+				ShowCategories();
+			}
+		}
+
+		private void tvwCategory_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+		{
+			if (e.Node == null || e.Node.Level < 2 || e.Node.Tag == null) return;
+
+			var category = e.Node.Tag as Category;
+			var dialog = new UpdateCategoryForm(category?.Id);
+			var result = dialog.ShowDialog();
+
+			if (result == DialogResult.OK)
+			{
+				ShowCategories();
+			}
+		}
 	}
 }

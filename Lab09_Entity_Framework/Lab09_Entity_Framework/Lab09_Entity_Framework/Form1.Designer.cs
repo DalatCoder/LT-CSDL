@@ -85,6 +85,7 @@
 			this.btnAddCategory.Text = "+";
 			this.toolTip1.SetToolTip(this.btnAddCategory, "Thêm danh mục mới");
 			this.btnAddCategory.UseVisualStyleBackColor = true;
+			this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
 			// 
 			// btnAddFood
 			// 
@@ -128,6 +129,7 @@
 			this.tvwCategory.Size = new System.Drawing.Size(244, 405);
 			this.tvwCategory.TabIndex = 7;
 			this.tvwCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwCategory_AfterSelect);
+			this.tvwCategory.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvwCategory_NodeMouseDoubleClick);
 			// 
 			// lvwFood
 			// 
