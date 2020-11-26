@@ -108,6 +108,7 @@
 			this.btnDeleteFood.Text = "-";
 			this.toolTip1.SetToolTip(this.btnDeleteFood, "Xóa món ăn được chọn");
 			this.btnDeleteFood.UseVisualStyleBackColor = true;
+			this.btnDeleteFood.Click += new System.EventHandler(this.btnDeleteFood_Click);
 			// 
 			// btnReloadFood
 			// 
@@ -119,6 +120,7 @@
 			this.btnReloadFood.Text = "R";
 			this.toolTip1.SetToolTip(this.btnReloadFood, "Tải lại danh sách món ăn");
 			this.btnReloadFood.UseVisualStyleBackColor = true;
+			this.btnReloadFood.Click += new System.EventHandler(this.btnReloadFood_Click);
 			// 
 			// tvwCategory
 			// 

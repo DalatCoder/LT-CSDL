@@ -177,5 +177,27 @@ namespace Lab09_Entity_Framework
 				ShowCategories();
 			}
 		}
+
+		private void btnReloadFood_Click(object sender, EventArgs e)
+		{
+			ShowFoodsForNode(tvwCategory.SelectedNode);
+		}
+
+		private void btnDeleteFood_Click(object sender, EventArgs e)
+		{
+			if (lvwFood.SelectedItems.Count == 0) return;
+
+			var dbContext = new RestaurantContext();
+			var selectedFoodId = int.Parse(lvwFood.SelectedItems[0].Text);
+			var selectedFood = dbContext.Foods.Find(selectedFoodId);
+
+			if (selectedFood != null)
+			{
+				dbContext.Foods.Remove(selectedFood);
+				dbContext.SaveChanges();
+
+				lvwFood.Items.Remove(lvwFood.SelectedItems[0]);
+			}
+		}
 	}
 }
