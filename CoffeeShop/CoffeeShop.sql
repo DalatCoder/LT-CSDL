@@ -70,5 +70,20 @@ CREATE TABLE BillInfo
 )
 GO
 
+INSERT INTO dbo.Account (UserName, DisplayName, PassWord, Type)
+VALUES 
+	(N'TRONGHIEU', N'TRONG HIEU', N'123', 1),
+	(N'THIHA', N'THI HA', N'123', 1),
+	(N'STAFF', N'STAFF', N'123', 0)
+SELECT * FROM dbo.Account
+GO
 
+CREATE PROC USP_GetAccountByUserName
+@userName NVARCHAR(100)
+AS
+BEGIN
+	SELECT * FROM dbo.Account WHERE UserName = @username
+END
+GO
 
+EXEC USP_GetAccountByUserName @userName = N'TRONGHIEU'

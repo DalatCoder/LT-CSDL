@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeShop.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,16 @@ namespace CoffeeShop
 		public fAdmin()
 		{
 			InitializeComponent();
+			LoadAccountList();
+		}
+
+		void LoadAccountList()
+		{
+			string query = "EXEC USP_GetAccountByUserName @userName";
+
+			DataProvider provider = new DataProvider();
+
+			dgvAccount.DataSource = provider.ExecuteQuery(query, new object[] { "TRONGHIEU" });
 		}
 	}
 }
