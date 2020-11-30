@@ -10,8 +10,22 @@ namespace CoffeeShop.DAO
 {
 	public class DataProvider
 	{
+		private static DataProvider _instance;
 		private readonly string connectionSTR;
-		public DataProvider()
+
+		public static DataProvider Instance
+		{
+			get
+			{
+				if (_instance == null)
+				{
+					_instance = new DataProvider();
+				}
+				return _instance;
+			}
+		}
+
+		private DataProvider()
 		{
 			connectionSTR = "Data Source=.;Initial Catalog=CoffeeShop;Integrated Security=True";
 		}

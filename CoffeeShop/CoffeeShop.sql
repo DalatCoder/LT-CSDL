@@ -87,3 +87,17 @@ END
 GO
 
 EXEC USP_GetAccountByUserName @userName = N'TRONGHIEU'
+GO
+
+CREATE PROC USP_Login
+@userName NVARCHAR(100),
+@password NVARCHAR(100)
+AS
+BEGIN
+	SELECT * FROM dbo.Account WHERE UserName = @userName AND PassWord = @password
+END
+GO
+
+EXEC USP_Login @userName = N'TRONGHIEU', @password = N'123'
+
+
