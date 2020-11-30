@@ -47,6 +47,10 @@
 			this.btnCheckout = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.lvFood = new System.Windows.Forms.ListView();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.menuStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nmAmount)).BeginInit();
@@ -223,12 +227,37 @@
 			// 
 			// lvFood
 			// 
+			this.lvFood.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
 			this.lvFood.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lvFood.FullRowSelect = true;
+			this.lvFood.GridLines = true;
 			this.lvFood.Location = new System.Drawing.Point(0, 0);
+			this.lvFood.MultiSelect = false;
 			this.lvFood.Name = "lvFood";
 			this.lvFood.Size = new System.Drawing.Size(379, 370);
 			this.lvFood.TabIndex = 0;
 			this.lvFood.UseCompatibleStateImageBehavior = false;
+			this.lvFood.View = System.Windows.Forms.View.Details;
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "Tên món";
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "Số lượng";
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "Đơn giá";
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Thành tiền";
 			// 
 			// fTableManager
 			// 
@@ -277,5 +306,9 @@
 		private System.Windows.Forms.Button btnSwitchTable;
 		private System.Windows.Forms.NumericUpDown nmDiscount;
 		private System.Windows.Forms.Button btnDiscount;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
 	}
 }

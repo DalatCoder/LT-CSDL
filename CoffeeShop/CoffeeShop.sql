@@ -118,4 +118,77 @@ GO
 UPDATE TableFood SET status = N'Có người' WHERE id = 3
 
 EXEC USP_GetTableList
+GO
 
+INSERT FoodCategory(name) 
+VALUES
+	(N'Hải sản'),
+	(N'Đồ nướng'),
+	(N'Nước ngọt')
+
+INSERT Food(name, idCategory, price)
+VALUES
+	(N'Ốc nhồi thịt', 1, 30000),
+	(N'Nghêu hấp xả', 1, 20000),
+	(N'Mực một nắng nướng sa tế', 2, 120000),
+	(N'Heo rừng nướng muối ớt', 2, 50000),
+	(N'Coca', 3, 10000),
+	(N'Pepsi', 3, 10000),
+	(N'7Up', 3, 10000)
+
+INSERT Bill(DateCheckIn, DateCheckOut, idTable, status)
+VALUES 
+	(GETDATE(), NULL, 1, 0),
+	(GETDATE(), NULL, 2, 0),
+	(GETDATE(), GETDATE(), 2, 1)	
+
+INSERT BillInfo(idBill, idFood, count)
+VALUES 
+	(1, 1, 2),
+	(1, 3, 4),
+	(1, 5, 1),
+	(2, 1, 2),
+	(2, 6, 3),
+	(3, 1, 2),
+	(3, 5, 1)
+
+SELECT * FROM Bill
+SELECT * FROM BillInfo
+SELECT * FROM Food
+SELECT * FROM FoodCategory
+GO
+
+CREATE PROC USP_GetUncheckBillsByTableID
+@tableID INT
+AS
+BEGIN
+	SELECT * FROM Bill WHERE idTable = @tableID AND status = 0
+END
+GO
+
+EXEC USP_GetUncheckBillsByTableID 1
+GO
+
+CREATE PROC USP_GetBillInfosByBillID
+@billID INT
+AS
+BEGIN
+	SELECT * FROM BillInfo WHERE idBill = @billID
+END
+GO
+
+EXEC USP_GetBillInfosByBillID 2
+GO
+
+CREATE PROC USP_GetMenuByBillID
+@billID INT
+AS
+BEGIN
+	SELECT Food.name, Food.price, BillInfo.count FROM BillInfo
+	JOIN Bill ON BillInfo.idBill = Bill.id
+	JOIN Food ON BillInfo.idFood = Food.id
+	WHERE BillInfo.idBill = @billID
+END
+GO
+
+EXEC USP_GetMenuByBillID 2

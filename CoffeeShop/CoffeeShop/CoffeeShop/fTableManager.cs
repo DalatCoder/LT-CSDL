@@ -35,6 +35,7 @@ namespace CoffeeShop
 					Height = TableDAO.TableHeight
 				};
 				btn.Text = table.Name + Environment.NewLine + table.Status;
+				btn.Tag = table;
 
 				switch (table.Status)
 				{
@@ -47,13 +48,35 @@ namespace CoffeeShop
 						break;
 				}
 
+				btn.Click += Btn_Click;
 				fpTable.Controls.Add(btn);
 			}
 		}
 
+		void ShowBill(int tableId)
+		{
+			List<DTO.Menu> listMenu = MenuDAO.Instance.GetListMenuByTable(tableId);
+
+			lvFood.Items.Clear();
+			foreach (DTO.Menu item in listMenu)
+			{
+				ListViewItem lsvItem = new ListViewItem(item.FoodName);
+				lsvItem.SubItems.Add(item.Count.ToString());
+				lsvItem.SubItems.Add(item.Price.ToString());
+				lsvItem.SubItems.Add(item.TotalPrice.ToString());
+				lvFood.Items.Add(lsvItem);
+			}
+		}
 		#endregion
 
-		#region events
+
+		#region Events
+		private void Btn_Click(object sender, EventArgs e)
+		{
+			int tableID = ((sender as Button).Tag as Table).ID;
+			ShowBill(tableID);
+		}
+
 		private void menuLogOut_Click(object sender, EventArgs e)
 		{
 			this.Close();
