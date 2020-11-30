@@ -100,4 +100,22 @@ GO
 
 EXEC USP_Login @userName = N'TRONGHIEU', @password = N'123'
 
+DECLARE @i INT = 1
+WHILE @i <= 17
+BEGIN
+	INSERT TableFood(name) VALUES (N'Bàn ' + CAST(@i AS NVARCHAR(100)))
+	SET @i = @i + 1
+END
+GO
+
+SELECT * FROM TableFood
+GO
+
+CREATE PROC USP_GetTableList
+AS SELECT * FROM TableFood
+GO
+
+UPDATE TableFood SET status = N'Có người' WHERE id = 3
+
+EXEC USP_GetTableList
 

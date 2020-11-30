@@ -98,6 +98,7 @@
 			// 
 			// fpTable
 			// 
+			this.fpTable.AutoScroll = true;
 			this.fpTable.Location = new System.Drawing.Point(12, 27);
 			this.fpTable.Name = "fpTable";
 			this.fpTable.Size = new System.Drawing.Size(375, 522);
