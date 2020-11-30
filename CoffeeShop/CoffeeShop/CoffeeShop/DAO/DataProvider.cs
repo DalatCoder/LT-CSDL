@@ -50,5 +50,71 @@ namespace CoffeeShop.DAO
 
 			return data;
 		}
+
+		public int ExecuteNonQuery(string query, object[] parameter = null)
+		{
+			int numRowEffected = 0;
+
+			using (SqlConnection connection = new SqlConnection(connectionSTR))
+			{
+				connection.Open();
+
+				SqlCommand command = new SqlCommand(query, connection);
+
+				if (parameter != null)
+				{
+					string[] listParams = query.Split(' ');
+					int i = 0;
+
+					foreach (string item in listParams)
+					{
+						if (item.StartsWith("@"))
+						{
+							command.Parameters.AddWithValue(item, parameter[i]);
+							i += 1;
+						}
+					}
+				}
+
+				numRowEffected = command.ExecuteNonQuery();
+
+				connection.Close();
+			}
+
+			return numRowEffected;
+		}
+
+		public object ExecuteScalar(string query, object[] parameter = null)
+		{
+			object data = null;
+
+			using (SqlConnection connection = new SqlConnection(connectionSTR))
+			{
+				connection.Open();
+
+				SqlCommand command = new SqlCommand(query, connection);
+
+				if (parameter != null)
+				{
+					string[] listParams = query.Split(' ');
+					int i = 0;
+
+					foreach (string item in listParams)
+					{
+						if (item.StartsWith("@"))
+						{
+							command.Parameters.AddWithValue(item, parameter[i]);
+							i += 1;
+						}
+					}
+				}
+
+				data = command.ExecuteScalar();
+
+				connection.Close();
+			}
+
+			return data;
+		}	
 	}
 }
