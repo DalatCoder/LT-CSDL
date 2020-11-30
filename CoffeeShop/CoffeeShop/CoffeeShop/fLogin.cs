@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace CoffeeShop
 {
-	public partial class frmLogin : Form
+	public partial class fLogin : Form
 	{
-		public frmLogin()
+		public fLogin()
 		{
 			InitializeComponent();
 		}
 
 		private void btnLogin_Click(object sender, EventArgs e)
 		{
-			frmTableManager f = new frmTableManager();
+			fTableManager f = new fTableManager();
 			this.Hide();
 			f.ShowDialog();
 			this.Show();

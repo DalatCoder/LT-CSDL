@@ -1,6 +1,6 @@
 ﻿namespace CoffeeShop
 {
-	partial class frmLogin
+	partial class fLogin
 	{
 		/// <summary>
 		/// Required designer variable.

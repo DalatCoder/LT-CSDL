@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CoffeeShop
 {
-	public partial class frmTableManager : Form
+	public partial class fAccountProfile : Form
 	{
-		public frmTableManager()
+		public fAccountProfile()
 		{
 			InitializeComponent();
 		}
