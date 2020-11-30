@@ -27,5 +27,11 @@ namespace CoffeeShop
 			fAccountProfile f = new fAccountProfile();
 			f.ShowDialog();
 		}
+
+		private void menuAdmin_Click(object sender, EventArgs e)
+		{
+			fAdmin f = new fAdmin();
+			f.ShowDialog();
+		}
 	}
 }

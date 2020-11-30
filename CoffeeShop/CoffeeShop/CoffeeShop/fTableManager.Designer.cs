@@ -71,6 +71,7 @@
 			this.menuAdmin.Name = "menuAdmin";
 			this.menuAdmin.Size = new System.Drawing.Size(55, 20);
 			this.menuAdmin.Text = "Admin";
+			this.menuAdmin.Click += new System.EventHandler(this.menuAdmin_Click);
 			// 
 			// thôngTinTàiKhoảnToolStripMenuItem
 			// 
@@ -84,14 +85,14 @@
 			// menuPersonalInfo
 			// 
 			this.menuPersonalInfo.Name = "menuPersonalInfo";
-			this.menuPersonalInfo.Size = new System.Drawing.Size(180, 22);
+			this.menuPersonalInfo.Size = new System.Drawing.Size(171, 22);
 			this.menuPersonalInfo.Text = "Thông tin cá nhân";
 			this.menuPersonalInfo.Click += new System.EventHandler(this.menuPersonalInfo_Click);
 			// 
 			// menuLogOut
 			// 
 			this.menuLogOut.Name = "menuLogOut";
-			this.menuLogOut.Size = new System.Drawing.Size(180, 22);
+			this.menuLogOut.Size = new System.Drawing.Size(171, 22);
 			this.menuLogOut.Text = "Đăng xuất";
 			this.menuLogOut.Click += new System.EventHandler(this.menuLogOut_Click);
 			// 
