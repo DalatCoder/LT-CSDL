@@ -366,3 +366,17 @@ END
 GO
 
 EXEC USP_GetCategoryByID 1
+GO
+
+CREATE PROC USP_InsertFood
+@name NVARCHAR(100), @idCategory INT, @price FLOAT
+AS
+BEGIN
+	IF (EXISTS (SELECT * FROM FoodCategory WHERE id = @idCategory))
+	BEGIN
+		INSERT Food(name, idCategory, price)
+		VALUES (@name, @idCategory, @price)
+	END
+END
+GO
+

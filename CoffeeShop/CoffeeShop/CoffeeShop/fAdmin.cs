@@ -60,10 +60,11 @@ namespace CoffeeShop
 
 		void AddFoodBinding()
 		{
-			txtFoodName.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "Name"));
-			txtFoodId.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "ID"));
-			nmFoodPrice.DataBindings.Add(new Binding("Value", dgvFood.DataSource, "Price"));
-			cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dgvFood.DataSource, "CategoryID"));
+			// DataSourceUpdateMode.Never: đi 1 luồng, one way binding
+			txtFoodName.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "Name", true, DataSourceUpdateMode.Never));
+			txtFoodId.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "ID", true, DataSourceUpdateMode.Never));
+			nmFoodPrice.DataBindings.Add(new Binding("Value", dgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
+			cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dgvFood.DataSource, "CategoryID", true, DataSourceUpdateMode.Never));
 		}
 
 		#endregion
@@ -79,6 +80,23 @@ namespace CoffeeShop
 		private void btnViewFood_Click(object sender, EventArgs e)
 		{
 			LoadListFood();
+		}
+
+		private void btnAddFood_Click(object sender, EventArgs e)
+		{
+			string name = txtFoodName.Text;
+			int categoryID = (int)cbFoodCategory.SelectedValue;
+			float price = (float)nmFoodPrice.Value;
+
+			if (FoodDAO.Instance.InsertFood(name, categoryID, price))
+			{
+				MessageBox.Show("Thêm món thành công");
+				LoadListFood();
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi khi thêm món");
+			}
 		}
 	}
 }

@@ -462,6 +462,7 @@
 			this.btnAddFood.TabIndex = 0;
 			this.btnAddFood.Text = "Thêm";
 			this.btnAddFood.UseVisualStyleBackColor = true;
+			this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
 			// 
 			// tpFoodCategory
 			// 

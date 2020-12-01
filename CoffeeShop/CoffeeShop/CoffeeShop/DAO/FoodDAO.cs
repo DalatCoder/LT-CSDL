@@ -57,5 +57,13 @@ namespace CoffeeShop.DAO
 
 			return foods;
 		}
+
+		public bool InsertFood(string name, int idCategory, float price)
+		{
+			string query = "EXEC USP_InsertFood @name , @idCategory , @price";
+			object[] param = new object[] { name, idCategory, price };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
 	}
 }
