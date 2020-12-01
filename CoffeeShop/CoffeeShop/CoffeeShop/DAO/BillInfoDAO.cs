@@ -49,5 +49,12 @@ namespace CoffeeShop.DAO
 
 			DataProvider.Instance.ExecuteNonQuery(query, param);
 		}
+
+		public void DeleteBillInfoByFoodID(int foodID)
+		{
+			string query = "EXEC USP_DeleteBillInfoByFoodID @foodID";
+			object[] param = new object[] { foodID };
+			DataProvider.Instance.ExecuteNonQuery(query, param);
+		}
 	}
 }

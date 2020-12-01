@@ -329,4 +329,165 @@ BEGIN
 END
 GO
 
+EXEC USP_GetAccountByUserName N'TrongHieu'
+GO
+
+CREATE PROC USP_UpdateAccount
+@userName NVARCHAR(100), @displayName NVARCHAR(100), @password NVARCHAR(100), @newPassword NVARCHAR(100)
+AS
+BEGIN
+	DECLARE @isRightPass INT = 0
+
+	SELECT @isRightPass = COUNT(*) FROM Account WHERE UserName = @userName AND Password = @password
+
+	IF (@isRightPass = 1)
+	BEGIN
+		IF (@newPassword = NULL OR @newPassword = '')
+			UPDATE Account SET DisplayName = @displayName WHERE Username = @userName
+		ELSE
+			UPDATE Account SET DisplayName = @displayName, Password = @newPassword WHERE Username = @userName
+	END
+END
+GO
+
+CREATE PROC USP_GetAllFood
+AS SELECT * FROM Food
+GO
+
+EXEC USP_GetAllFood
+GO
+
+CREATE PROC USP_GetCategoryByID
+@id INT
+AS
+BEGIN
+	SELECT * FROM FoodCategory WHERE id = @id
+END
+GO
+
+EXEC USP_GetCategoryByID 1
+GO
+
+CREATE PROC USP_InsertFood
+@name NVARCHAR(100), @idCategory INT, @price FLOAT
+AS
+BEGIN
+	IF (EXISTS (SELECT * FROM FoodCategory WHERE id = @idCategory))
+	BEGIN
+		INSERT Food(name, idCategory, price)
+		VALUES (@name, @idCategory, @price)
+	END
+END
+GO
+
+CREATE PROC USP_UpdateFood
+@id INT, @name NVARCHAR(100), @idCategory INT, @price FLOAT
+AS
+BEGIN
+	IF (EXISTS (SELECT * FROM FoodCategory WHERE id = @idCategory))
+	BEGIN
+		UPDATE Food
+		SET name = @name, idCategory = @idCategory, price = @price
+		WHERE id = @id
+	END
+END
+GO
+
+CREATE PROC USP_DeleteBillInfoByFoodID
+@foodID INT
+AS
+BEGIN
+	DELETE BillInfo WHERE idFood = @foodID
+END
+GO
+
+EXEC USP_DeleteBillInfoByFoodID 1
+GO
+
+CREATE PROC USP_DeleteFood
+@id INT
+AS
+BEGIN
+	EXEC USP_DeleteBillInfoByFoodID @id
+	DELETE Food WHERE id = @id
+END
+GO
+
+CREATE TRIGGER UTG_DeleteBillInfo
+ON BillInfo FOR DELETE
+AS
+BEGIN
+	DECLARE @idBillInfo INT
+	DECLARE @idBill INT
+	SELECT @idBillInfo = id, @idBill = deleted.idBill FROM deleted
+
+	DECLARE @idTable INT
+	SELECT @idTable = idTable FROM Bill WHERE id = @idBill
+	
+	DECLARE @count INT = 0
+	SELECT @count = COUNT(*) FROM BillInfo 
+								JOIN Bill ON Bill.id = BillInfo.idBill
+								WHERE Bill.id = @idBill AND status = 0
+	IF (@count = 0)
+		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable
+END
+GO
+
+CREATE FUNCTION [dbo].[fuConvertToUnsign1] ( @strInput NVARCHAR(4000) ) RETURNS NVARCHAR(4000) AS BEGIN IF @strInput IS NULL RETURN @strInput IF @strInput = '' RETURN @strInput DECLARE @RT NVARCHAR(4000) DECLARE @SIGN_CHARS NCHAR(136) DECLARE @UNSIGN_CHARS NCHAR (136) SET @SIGN_CHARS = N'ăâđêôơưàảãạáằẳẵặắầẩẫậấèẻẽẹéềểễệế ìỉĩịíòỏõọóồổỗộốờởỡợớùủũụúừửữựứỳỷỹỵý ĂÂĐÊÔƠƯÀẢÃẠÁẰẲẴẶẮẦẨẪẬẤÈẺẼẸÉỀỂỄỆẾÌỈĨỊÍ ÒỎÕỌÓỒỔỖỘỐỜỞỠỢỚÙỦŨỤÚỪỬỮỰỨỲỶỸỴÝ' +NCHAR(272)+ NCHAR(208) SET @UNSIGN_CHARS = N'aadeoouaaaaaaaaaaaaaaaeeeeeeeeee iiiiiooooooooooooooouuuuuuuuuuyyyyy AADEOOUAAAAAAAAAAAAAAAEEEEEEEEEEIIIII OOOOOOOOOOOOOOOUUUUUUUUUUYYYYYDD' DECLARE @COUNTER int DECLARE @COUNTER1 int SET @COUNTER = 1 WHILE (@COUNTER <=LEN(@strInput)) BEGIN SET @COUNTER1 = 1 WHILE (@COUNTER1 <=LEN(@SIGN_CHARS)+1) BEGIN IF UNICODE(SUBSTRING(@SIGN_CHARS, @COUNTER1,1)) = UNICODE(SUBSTRING(@strInput,@COUNTER ,1) ) BEGIN IF @COUNTER=1 SET @strInput = SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)-1) ELSE SET @strInput = SUBSTRING(@strInput, 1, @COUNTER-1) +SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)- @COUNTER) BREAK END SET @COUNTER1 = @COUNTER1 +1 END SET @COUNTER = @COUNTER +1 END SET @strInput = replace(@strInput,' ','-') RETURN @strInput END
+GO
+
+ALTER PROC USP_SearchFoodByName
+@name NVARCHAR(100)
+AS
+BEGIN
+	SELECT * FROM Food WHERE dbo.fuConvertToUnsign1(name) LIKE '%'+ dbo.fuConvertToUnsign1(@name) +'%'
+END
+GO 
+
+CREATE PROC USP_GetAllAccount
+AS
+BEGIN
+	SELECT UserName, DisplayName, Type FROM Account
+END
+GO
+
+CREATE PROC USP_CreateAccount
+@userName NVARCHAR(100), @displayName NVARCHAR(100), @type INT
+AS
+BEGIN
+	IF (NOT EXISTS(SELECT * FROM Account WHERE UserName = @userName))
+	BEGIN
+		INSERT Account(UserName, DisplayName, Type, PassWord)
+		VALUES (@userName, @displayName, @type, 'password')
+	END
+END
+GO
+
+CREATE PROC USP_UpdateAccountAdmin
+@userName NVARCHAR(100), @displayName NVARCHAR(100), @type INT
+AS
+BEGIN
+		UPDATE Account 
+		SET DisplayName = @displayName, Type = @type
+		WHERE UserName = @userName
+END
+GO
+
+CREATE PROC USP_DeleteAccount
+@userName NVARCHAR(100)
+AS
+BEGIN
+	DELETE Account WHERE UserName = @userName
+END
+GO
+
+CREATE PROC USP_ResetPassword
+@userName NVARCHAR(100)
+AS
+BEGIN
+	UPDATE Account
+	SET PassWord = 'password'
+	WHERE UserName = @userName
+END 
+GO
 
