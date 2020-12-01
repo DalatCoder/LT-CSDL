@@ -216,8 +216,43 @@ CREATE PROC USP_InsertBill
 @idTable INT
 AS
 BEGIN
-	INSERT Bill(DateCheckIn, DateCheckOut, idTable, status)
-	VALUES (GETDATE(), NULL, @idTable, 0)
+	IF (NOT EXISTS(SELECT * FROM Bill WHERE idTable = @idTable AND status = 0))
+	BEGIN
+		INSERT Bill(DateCheckIn, DateCheckOut, idTable, status)
+		VALUES (GETDATE(), NULL, @idTable, 0)
+	END
 END
 GO
+
+EXEC USP_InsertBill 1
+GO
+
+CREATE PROC USP_InsertBillInfo
+@idBill INT, @idFood INT, @count INT
+AS
+BEGIN
+	DECLARE @isExistsBillInfo INT
+	DECLARE @foodCount INT = 1
+
+	SELECT @isExistsBillInfo = id, @foodCount = count FROM BillInfo WHERE idBill = @idBill AND idFood = @idFood
+
+	IF (@isExistsBillInfo > 0)
+	BEGIN
+		DECLARE @newCount INT = @foodCount + @count
+		IF (@newCount > 0)
+			UPDATE BillInfo
+			SET count = @newCount
+			WHERE idBill = @idBill AND idFood = @idFood
+		ELSE
+			DELETE BillInfo WHERE idBill = @idBill AND idFood = @idFood
+	END
+	ELSE
+	BEGIN
+		INSERT BillInfo(idBill, idFood, count)
+		VALUES (@idBill, @idFood, @count)
+	END
+END
+GO
+
+EXEC USP_InsertBillInfo 1, 1, 1
 

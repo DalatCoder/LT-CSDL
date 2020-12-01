@@ -40,6 +40,7 @@
 			this.cbCategory = new System.Windows.Forms.ComboBox();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.txtTotalPrice = new System.Windows.Forms.TextBox();
 			this.cbSwitchTable = new System.Windows.Forms.ComboBox();
 			this.btnSwitchTable = new System.Windows.Forms.Button();
 			this.nmDiscount = new System.Windows.Forms.NumericUpDown();
@@ -51,7 +52,6 @@
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.txtTotalPrice = new System.Windows.Forms.TextBox();
 			this.menuStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nmAmount)).BeginInit();
@@ -163,6 +163,7 @@
 			this.btnAdd.TabIndex = 0;
 			this.btnAdd.Text = "Thêm món";
 			this.btnAdd.UseVisualStyleBackColor = true;
+			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
 			// panel2
 			// 
@@ -176,6 +177,18 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(379, 70);
 			this.panel2.TabIndex = 3;
+			// 
+			// txtTotalPrice
+			// 
+			this.txtTotalPrice.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtTotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
+			this.txtTotalPrice.Location = new System.Drawing.Point(186, 21);
+			this.txtTotalPrice.Name = "txtTotalPrice";
+			this.txtTotalPrice.ReadOnly = true;
+			this.txtTotalPrice.Size = new System.Drawing.Size(84, 25);
+			this.txtTotalPrice.TabIndex = 1;
+			this.txtTotalPrice.Text = "0";
+			this.txtTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// cbSwitchTable
 			// 
@@ -261,18 +274,6 @@
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "Thành tiền";
-			// 
-			// txtTotalPrice
-			// 
-			this.txtTotalPrice.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtTotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
-			this.txtTotalPrice.Location = new System.Drawing.Point(186, 21);
-			this.txtTotalPrice.Name = "txtTotalPrice";
-			this.txtTotalPrice.ReadOnly = true;
-			this.txtTotalPrice.Size = new System.Drawing.Size(84, 25);
-			this.txtTotalPrice.TabIndex = 1;
-			this.txtTotalPrice.Text = "0";
-			this.txtTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// fTableManager
 			// 

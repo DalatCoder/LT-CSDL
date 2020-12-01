@@ -86,7 +86,7 @@ namespace CoffeeShop
 
 				totalPrice += item.TotalPrice;
 			}
-			
+
 			CultureInfo culture = new CultureInfo("vi-VN");
 			// Thread.CurrentThread.CurrentCulture = culture;
 			txtTotalPrice.Text = totalPrice.ToString("c", culture);
@@ -137,5 +137,23 @@ namespace CoffeeShop
 		}
 		#endregion
 
+		private void btnAdd_Click(object sender, EventArgs e)
+		{
+			Table table = lvFood.Tag as Table;
+
+			int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+			int idFood = (cbFood.SelectedItem as Food).ID;
+			int count = (int)nmAmount.Value;
+
+			if (idBill == -1)
+			{
+				BillDAO.Instance.InsertBill(table.ID);
+				idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+			}
+
+			BillInfoDAO.Instance.InsertBillInfo(idBill, idFood, count);
+
+			ShowBill(table.ID);
+		}
 	}
 }

@@ -41,5 +41,13 @@ namespace CoffeeShop.DAO
 
 			return billInfos;
 		}
+
+		public void InsertBillInfo(int idBill, int idFood, int count)
+		{
+			string query = "EXEC USP_InsertBillInfo @idBill , @idFood , @count";
+			object[] param = new object[] { idBill, idFood, count };
+
+			DataProvider.Instance.ExecuteNonQuery(query, param);
+		}
 	}
 }
