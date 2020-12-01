@@ -255,4 +255,56 @@ END
 GO
 
 EXEC USP_InsertBillInfo 1, 1, 1
+GO
+
+CREATE PROC USP_CheckoutBill
+@billID INT
+AS
+BEGIN
+	UPDATE Bill
+	SET status = 1
+	WHERE id = @billID
+END
+GO
+
+EXEC USP_CheckoutBill 1
+GO
+
+-- Khi thêm mới hoặc cập nhật billInfo thì thay đổi trạng thái của bàn
+CREATE TRIGGER UTG_UpdateBillInfo
+ON dbo.BillInfo FOR INSERT, UPDATE
+AS
+BEGIN
+	DECLARE @idBill INT
+
+	SELECT @idBill = idBill FROM inserted
+
+	DECLARE @idTable INT
+
+	SELECT @idTable = idTable FROM Bill WHERE id = @idBill AND status = 0
+
+	UPDATE TableFood SET status = N'Có người' WHERE id = @idTable
+END
+GO	
+
+CREATE TRIGGER UTG_UpdateBill
+ON dbo.Bill FOR UPDATE
+AS
+BEGIN
+	DECLARE @idBill INT
+	
+	SELECT @idBill = id FROM inserted
+
+	DECLARE @idTable INT
+
+	SELECT @idTable = idTable FROM Bill WHERE id = @idBill
+
+	DECLARE @count INT = 0
+
+	SELECT @count = COUNT(*) FROM Bill WHERE idTable = @idTable AND status = 0
+
+	IF (@count = 0)
+		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable
+END
+GO
 

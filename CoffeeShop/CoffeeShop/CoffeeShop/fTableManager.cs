@@ -16,6 +16,8 @@ namespace CoffeeShop
 {
 	public partial class fTableManager : Form
 	{
+		public Table CurerntTable { get => lvFood.Tag as Table; }
+
 		public fTableManager()
 		{
 			InitializeComponent();
@@ -42,6 +44,7 @@ namespace CoffeeShop
 
 		void LoadTable()
 		{
+			fpTable.Controls.Clear();
 			List<Table> tableList = TableDAO.Instance.LoadTableList();
 
 			foreach (Table table in tableList)
@@ -139,7 +142,9 @@ namespace CoffeeShop
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			Table table = lvFood.Tag as Table;
+			if (this.CurerntTable == null) return;
+
+			Table table = this.CurerntTable;
 
 			int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
 			int idFood = (cbFood.SelectedItem as Food).ID;
@@ -154,6 +159,26 @@ namespace CoffeeShop
 			BillInfoDAO.Instance.InsertBillInfo(idBill, idFood, count);
 
 			ShowBill(table.ID);
+			LoadTable();
+		}
+
+		private void btnCheckout_Click(object sender, EventArgs e)
+		{
+			if (this.CurerntTable == null) return;
+
+			int billID = BillDAO.Instance.GetUncheckBillIDByTableID(this.CurerntTable.ID);
+			if (billID != -1)
+			{
+				string msg = "Bạn có chắc thanh toán hóa đơn cho " + this.CurerntTable.Name + " ?";
+				DialogResult result = MessageBox.Show(msg, "Thông báo", MessageBoxButtons.OKCancel);
+				if (result == DialogResult.OK)
+				{
+					BillDAO.Instance.Checkout(billID);
+					ShowBill(this.CurerntTable.ID);
+				}
+			}
+
+			LoadTable();
 		}
 	}
 }
