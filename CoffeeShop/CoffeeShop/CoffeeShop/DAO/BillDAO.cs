@@ -55,12 +55,19 @@ namespace CoffeeShop.DAO
 			DataProvider.Instance.ExecuteNonQuery(query, param);
 		}
 
-		public void Checkout(int billID, int discount)
+		public void Checkout(int billID, int discount, float totalPrice)
 		{
-			string query = "EXEC USP_CheckoutBill @billID @discount";
-			object[] param = new object[] { billID, discount };
+			string query = "EXEC USP_CheckoutBill @billID , @discount , @totalPrice";
+			object[] param = new object[] { billID, discount, totalPrice };
 
 			DataProvider.Instance.ExecuteNonQuery(query, param);
+		}
+
+		public DataTable GetBillListByDate(DateTime checkIn, DateTime checkOut)
+		{
+			string query = "EXEC USP_GetListBillByDate @checkIn , @checkOut";
+			object[] param = new object[] { checkIn, checkOut };
+			return DataProvider.Instance.ExecuteQuery(query, param);
 		}
 	}
 }

@@ -183,7 +183,7 @@ namespace CoffeeShop
 				DialogResult result = MessageBox.Show(msg, "Thông báo", MessageBoxButtons.OKCancel);
 				if (result == DialogResult.OK)
 				{
-					BillDAO.Instance.Checkout(billID, discount);
+					BillDAO.Instance.Checkout(billID, discount, (float)finalTotalPrice);
 					ShowBill(this.CurerntTable.ID);
 				}
 			}

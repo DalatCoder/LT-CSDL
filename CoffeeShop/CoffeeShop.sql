@@ -258,11 +258,11 @@ EXEC USP_InsertBillInfo 1, 1, 1
 GO
 
 ALTER PROC USP_CheckoutBill
-@billID INT, @discount INT
+@billID INT, @discount INT, @totalPrice FLOAT
 AS
 BEGIN
 	UPDATE Bill
-	SET status = 1, discount = @discount
+	SET status = 1, discount = @discount, DateCheckOut = GETDATE(), TotalPrice = @totalPrice
 	WHERE id = @billID
 END
 GO
@@ -313,4 +313,18 @@ ADD discount INT DEFAULT 0
 
 UPDATE Bill SET discount = 0
 
+ALTER TABLE Bill
+ADD TotalPrice FLOAT DEFAULT 0
+
 SELECT * FROM Bill
+
+CREATE PROC USP_GetListBillByDate
+@checkIn DATE, @checkOut DATE
+AS
+BEGIN
+	SELECT TableFood.name AS [Tên bàn], DateCheckIn AS [Ngày vào], DateCheckOut AS [Ngày ra], discount AS [Giảm giá], TotalPrice AS [Tổng tiền]
+	FROM Bill 
+	JOIN TableFood ON Bill.idTable = TableFood.id
+	WHERE Bill.status = 1 AND Bill.DateCheckIn >= @checkIn AND Bill.DateCheckOut <= @checkOut
+END
+GO
