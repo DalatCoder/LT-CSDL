@@ -136,7 +136,34 @@ namespace CoffeeShop
 		private void menuAdmin_Click(object sender, EventArgs e)
 		{
 			fAdmin f = new fAdmin();
+			f.InsertFood += F_InsertFood;
+			f.UpdateFood += F_UpdateFood;
+			f.DeleteFood += F_DeleteFood;
 			f.ShowDialog();
+		}
+
+		private void F_DeleteFood(object sender, EventArgs e)
+		{
+			LoadFoodListByCategoryID((cbCategory.SelectedItem as Category).ID);
+			if (this.CurerntTable != null)
+			{
+				ShowBill(this.CurerntTable.ID);
+				LoadTable();
+			}
+		}
+
+		private void F_UpdateFood(object sender, EventArgs e)
+		{
+			LoadFoodListByCategoryID((cbCategory.SelectedItem as Category).ID);
+			if (this.CurerntTable != null)
+				ShowBill(this.CurerntTable.ID);
+		}
+
+		private void F_InsertFood(object sender, EventArgs e)
+		{
+			LoadFoodListByCategoryID((cbCategory.SelectedItem as Category).ID);
+			if (this.CurerntTable != null)
+				ShowBill(this.CurerntTable.ID);
 		}
 
 		private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,7 +184,11 @@ namespace CoffeeShop
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			if (this.CurerntTable == null) return;
+			if (this.CurerntTable == null)
+			{
+				MessageBox.Show("Hãy chọn bàn cần thêm món");
+				return;
+			}
 
 			Table table = this.CurerntTable;
 

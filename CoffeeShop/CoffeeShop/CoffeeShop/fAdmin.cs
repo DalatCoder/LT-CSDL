@@ -92,11 +92,68 @@ namespace CoffeeShop
 			{
 				MessageBox.Show("Thêm món thành công");
 				LoadListFood();
+				insertFood?.Invoke(this, new EventArgs());
 			}
 			else
 			{
 				MessageBox.Show("Có lỗi khi thêm món");
 			}
+		}
+
+		private void btnEditFood_Click(object sender, EventArgs e)
+		{
+			string name = txtFoodName.Text;
+			int categoryID = (int)cbFoodCategory.SelectedValue;
+			float price = (float)nmFoodPrice.Value;
+			int foodID = int.Parse(txtFoodId.Text);
+
+			if (FoodDAO.Instance.UpdateFood(foodID, name, categoryID, price))
+			{
+				MessageBox.Show("Cập nhật món thành công");
+				LoadListFood();
+				updateFood?.Invoke(this, new EventArgs());
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi khi cập nhật món");
+			}
+		}
+
+		private void btnDeleteFood_Click(object sender, EventArgs e)
+		{
+			int foodID = int.Parse(txtFoodId.Text);
+
+			if (FoodDAO.Instance.Delete(foodID))
+			{
+				MessageBox.Show("Xóa món thành công");
+				LoadListFood();
+				deleteFood?.Invoke(this, new EventArgs());
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi khi xóa món");
+			}
+		}
+
+		private event EventHandler insertFood;
+		public event EventHandler InsertFood
+		{
+			add { insertFood += value; }
+			remove { insertFood -= value; }
+		}
+
+		private event EventHandler updateFood;
+		public event EventHandler UpdateFood
+		{
+			add { updateFood += value; }
+			remove { updateFood  -= value; }
+		}
+
+		private event EventHandler deleteFood;
+		public event EventHandler DeleteFood
+		{
+			add { deleteFood += value; }
+			remove { deleteFood -= value; }
 		}
 	}
 }

@@ -434,6 +434,7 @@
 			this.btnDeleteFood.TabIndex = 3;
 			this.btnDeleteFood.Text = "Xóa";
 			this.btnDeleteFood.UseVisualStyleBackColor = true;
+			this.btnDeleteFood.Click += new System.EventHandler(this.btnDeleteFood_Click);
 			// 
 			// btnEditFood
 			// 
@@ -443,6 +444,7 @@
 			this.btnEditFood.TabIndex = 2;
 			this.btnEditFood.Text = "Sửa";
 			this.btnEditFood.UseVisualStyleBackColor = true;
+			this.btnEditFood.Click += new System.EventHandler(this.btnEditFood_Click);
 			// 
 			// btnViewFood
 			// 

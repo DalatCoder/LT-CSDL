@@ -65,5 +65,23 @@ namespace CoffeeShop.DAO
 			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
 			return result > 0;
 		}
+
+		public bool UpdateFood(int foodID, string name, int idCategory, float price)
+		{
+			string query = "EXEC USP_UpdateFood @id , @name , @idCategory , @price";
+			object[] param = new object[] { foodID, name, idCategory, price };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
+
+		public bool Delete(int foodID)
+		{
+			BillInfoDAO.Instance.DeleteBillInfoByFoodID(foodID);
+
+			string query = "EXEC USP_DeleteFood @id";
+			object[] param = new object[] { foodID };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
 	}
 }

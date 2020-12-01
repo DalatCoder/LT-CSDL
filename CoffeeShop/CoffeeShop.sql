@@ -380,3 +380,58 @@ BEGIN
 END
 GO
 
+CREATE PROC USP_UpdateFood
+@id INT, @name NVARCHAR(100), @idCategory INT, @price FLOAT
+AS
+BEGIN
+	IF (EXISTS (SELECT * FROM FoodCategory WHERE id = @idCategory))
+	BEGIN
+		UPDATE Food
+		SET name = @name, idCategory = @idCategory, price = @price
+		WHERE id = @id
+	END
+END
+GO
+
+CREATE PROC USP_DeleteBillInfoByFoodID
+@foodID INT
+AS
+BEGIN
+	DELETE BillInfo WHERE idFood = @foodID
+END
+GO
+
+EXEC USP_DeleteBillInfoByFoodID 1
+GO
+
+CREATE PROC USP_DeleteFood
+@id INT
+AS
+BEGIN
+	EXEC USP_DeleteBillInfoByFoodID @id
+	DELETE Food WHERE id = @id
+END
+GO
+
+CREATE TRIGGER UTG_DeleteBillInfo
+ON BillInfo FOR DELETE
+AS
+BEGIN
+	DECLARE @idBillInfo INT
+	DECLARE @idBill INT
+	SELECT @idBillInfo = id, @idBill = deleted.idBill FROM deleted
+
+	DECLARE @idTable INT
+	SELECT @idTable = idTable FROM Bill WHERE id = @idBill
+	
+	DECLARE @count INT = 0
+	SELECT @count = COUNT(*) FROM BillInfo 
+								JOIN Bill ON Bill.id = BillInfo.idBill
+								WHERE Bill.id = @idBill AND status = 0
+	IF (@count = 0)
+		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable
+END
+GO
+
+
+
