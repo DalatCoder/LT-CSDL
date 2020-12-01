@@ -136,6 +136,7 @@ namespace CoffeeShop
 		private void menuAdmin_Click(object sender, EventArgs e)
 		{
 			fAdmin f = new fAdmin();
+			f.LoginAccount = account;
 			f.InsertFood += F_InsertFood;
 			f.UpdateFood += F_UpdateFood;
 			f.DeleteFood += F_DeleteFood;

@@ -17,6 +17,8 @@ namespace CoffeeShop
 		BindingSource foodList = new BindingSource();
 		BindingSource accountList = new BindingSource();
 
+		public Account LoginAccount;
+
 		public fAdmin()
 		{
 			InitializeComponent();
@@ -122,6 +124,12 @@ namespace CoffeeShop
 
 		void DeleteAccount(string userName)
 		{
+			if (userName.Equals(LoginAccount.UserName))
+			{
+				MessageBox.Show("Tài khoản đang đăng nhập nên không thể xóa");
+				return;
+			}
+
 			if (AccountDAO.Instance.Delete(userName))
 			{
 				MessageBox.Show("Xóa tài khoản thành công");
