@@ -44,7 +44,6 @@
 			this.cbSwitchTable = new System.Windows.Forms.ComboBox();
 			this.btnSwitchTable = new System.Windows.Forms.Button();
 			this.nmDiscount = new System.Windows.Forms.NumericUpDown();
-			this.btnDiscount = new System.Windows.Forms.Button();
 			this.btnCheckout = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.lvFood = new System.Windows.Forms.ListView();
@@ -52,6 +51,10 @@
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.label1 = new System.Windows.Forms.Label();
+			this.chứcNăngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.thêmMónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.thanhToánToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nmAmount)).BeginInit();
@@ -64,7 +67,8 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAdmin,
-            this.thôngTinTàiKhoảnToolStripMenuItem});
+            this.thôngTinTàiKhoảnToolStripMenuItem,
+            this.chứcNăngToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(784, 24);
@@ -167,11 +171,11 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.label1);
 			this.panel2.Controls.Add(this.txtTotalPrice);
 			this.panel2.Controls.Add(this.cbSwitchTable);
 			this.panel2.Controls.Add(this.btnSwitchTable);
 			this.panel2.Controls.Add(this.nmDiscount);
-			this.panel2.Controls.Add(this.btnDiscount);
 			this.panel2.Controls.Add(this.btnCheckout);
 			this.panel2.Location = new System.Drawing.Point(393, 479);
 			this.panel2.Name = "panel2";
@@ -182,10 +186,10 @@
 			// 
 			this.txtTotalPrice.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtTotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
-			this.txtTotalPrice.Location = new System.Drawing.Point(186, 21);
+			this.txtTotalPrice.Location = new System.Drawing.Point(110, 37);
 			this.txtTotalPrice.Name = "txtTotalPrice";
 			this.txtTotalPrice.ReadOnly = true;
-			this.txtTotalPrice.Size = new System.Drawing.Size(84, 25);
+			this.txtTotalPrice.Size = new System.Drawing.Size(160, 25);
 			this.txtTotalPrice.TabIndex = 1;
 			this.txtTotalPrice.Text = "0";
 			this.txtTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -193,14 +197,14 @@
 			// cbSwitchTable
 			// 
 			this.cbSwitchTable.FormattingEnabled = true;
-			this.cbSwitchTable.Location = new System.Drawing.Point(3, 46);
+			this.cbSwitchTable.Location = new System.Drawing.Point(3, 42);
 			this.cbSwitchTable.Name = "cbSwitchTable";
 			this.cbSwitchTable.Size = new System.Drawing.Size(83, 21);
 			this.cbSwitchTable.TabIndex = 4;
 			// 
 			// btnSwitchTable
 			// 
-			this.btnSwitchTable.Location = new System.Drawing.Point(3, 3);
+			this.btnSwitchTable.Location = new System.Drawing.Point(3, 9);
 			this.btnSwitchTable.Name = "btnSwitchTable";
 			this.btnSwitchTable.Size = new System.Drawing.Size(83, 33);
 			this.btnSwitchTable.TabIndex = 6;
@@ -209,20 +213,11 @@
 			// 
 			// nmDiscount
 			// 
-			this.nmDiscount.Location = new System.Drawing.Point(97, 47);
+			this.nmDiscount.Location = new System.Drawing.Point(187, 11);
 			this.nmDiscount.Name = "nmDiscount";
 			this.nmDiscount.Size = new System.Drawing.Size(83, 20);
 			this.nmDiscount.TabIndex = 4;
 			this.nmDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// btnDiscount
-			// 
-			this.btnDiscount.Location = new System.Drawing.Point(97, 3);
-			this.btnDiscount.Name = "btnDiscount";
-			this.btnDiscount.Size = new System.Drawing.Size(83, 33);
-			this.btnDiscount.TabIndex = 5;
-			this.btnDiscount.Text = "Giảm giá";
-			this.btnDiscount.UseVisualStyleBackColor = true;
 			// 
 			// btnCheckout
 			// 
@@ -276,6 +271,40 @@
 			// 
 			this.columnHeader4.Text = "Thành tiền";
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(107, 13);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(68, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Giảm giá (%):";
+			// 
+			// chứcNăngToolStripMenuItem
+			// 
+			this.chứcNăngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thêmMónToolStripMenuItem,
+            this.thanhToánToolStripMenuItem});
+			this.chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
+			this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+			this.chứcNăngToolStripMenuItem.Text = "Chức năng";
+			// 
+			// thêmMónToolStripMenuItem
+			// 
+			this.thêmMónToolStripMenuItem.Name = "thêmMónToolStripMenuItem";
+			this.thêmMónToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+			this.thêmMónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.thêmMónToolStripMenuItem.Text = "Thêm món";
+			this.thêmMónToolStripMenuItem.Click += new System.EventHandler(this.thêmMónToolStripMenuItem_Click);
+			// 
+			// thanhToánToolStripMenuItem
+			// 
+			this.thanhToánToolStripMenuItem.Name = "thanhToánToolStripMenuItem";
+			this.thanhToánToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+			this.thanhToánToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.thanhToánToolStripMenuItem.Text = "Thanh toán";
+			this.thanhToánToolStripMenuItem.Click += new System.EventHandler(this.thanhToánToolStripMenuItem_Click);
+			// 
 			// fTableManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,11 +352,14 @@
 		private System.Windows.Forms.ComboBox cbSwitchTable;
 		private System.Windows.Forms.Button btnSwitchTable;
 		private System.Windows.Forms.NumericUpDown nmDiscount;
-		private System.Windows.Forms.Button btnDiscount;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.TextBox txtTotalPrice;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ToolStripMenuItem chứcNăngToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem thêmMónToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem thanhToánToolStripMenuItem;
 	}
 }

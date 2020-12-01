@@ -237,5 +237,15 @@ namespace CoffeeShop
 
 			LoadTable();
 		}
+
+		private void thêmMónToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnAdd.PerformClick();
+		}
+
+		private void thanhToánToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnCheckout.PerformClick();
+		}
 	}
 }
