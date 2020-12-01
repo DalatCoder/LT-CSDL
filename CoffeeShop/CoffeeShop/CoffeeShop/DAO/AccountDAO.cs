@@ -43,6 +43,12 @@ namespace CoffeeShop.DAO
 			return result > 0;
 		}
 
+		public DataTable GetListAccount()
+		{
+			string query = "EXEC USP_GetAllAccount";
+			return DataProvider.Instance.ExecuteQuery(query);
+		}
+
 		public Account GetAccountByUserName(string userName)
 		{
 			string query = "EXEC USP_GetAccountByUserName @userName";

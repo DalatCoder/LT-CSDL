@@ -97,7 +97,6 @@
 			this.panel22 = new System.Windows.Forms.Panel();
 			this.btnResetPassword = new System.Windows.Forms.Button();
 			this.panel23 = new System.Windows.Forms.Panel();
-			this.cbAccountType = new System.Windows.Forms.ComboBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.panel24 = new System.Windows.Forms.Panel();
 			this.txtDisplayName = new System.Windows.Forms.TextBox();
@@ -106,12 +105,13 @@
 			this.txtUserName = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.panel26 = new System.Windows.Forms.Panel();
-			this.dgvAccount = new System.Windows.Forms.DataGridView();
 			this.panel27 = new System.Windows.Forms.Panel();
 			this.btnDeleteAccount = new System.Windows.Forms.Button();
 			this.btnEditAccount = new System.Windows.Forms.Button();
 			this.btnViewAccount = new System.Windows.Forms.Button();
 			this.btnAddAccount = new System.Windows.Forms.Button();
+			this.dgvAccount = new System.Windows.Forms.DataGridView();
+			this.txtAccountType = new System.Windows.Forms.TextBox();
 			this.tcAdmin.SuspendLayout();
 			this.tpBill.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -149,8 +149,8 @@
 			this.panel24.SuspendLayout();
 			this.panel25.SuspendLayout();
 			this.panel26.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
 			this.panel27.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tcAdmin
@@ -822,20 +822,12 @@
 			// 
 			// panel23
 			// 
-			this.panel23.Controls.Add(this.cbAccountType);
+			this.panel23.Controls.Add(this.txtAccountType);
 			this.panel23.Controls.Add(this.label10);
 			this.panel23.Location = new System.Drawing.Point(4, 139);
 			this.panel23.Name = "panel23";
 			this.panel23.Size = new System.Drawing.Size(373, 56);
 			this.panel23.TabIndex = 3;
-			// 
-			// cbAccountType
-			// 
-			this.cbAccountType.FormattingEnabled = true;
-			this.cbAccountType.Location = new System.Drawing.Point(133, 17);
-			this.cbAccountType.Name = "cbAccountType";
-			this.cbAccountType.Size = new System.Drawing.Size(237, 21);
-			this.cbAccountType.TabIndex = 1;
 			// 
 			// label10
 			// 
@@ -908,15 +900,6 @@
 			this.panel26.Size = new System.Drawing.Size(389, 467);
 			this.panel26.TabIndex = 11;
 			// 
-			// dgvAccount
-			// 
-			this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvAccount.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dgvAccount.Location = new System.Drawing.Point(0, 0);
-			this.dgvAccount.Name = "dgvAccount";
-			this.dgvAccount.Size = new System.Drawing.Size(389, 467);
-			this.dgvAccount.TabIndex = 0;
-			// 
 			// panel27
 			// 
 			this.panel27.Controls.Add(this.btnDeleteAccount);
@@ -954,6 +937,7 @@
 			this.btnViewAccount.TabIndex = 1;
 			this.btnViewAccount.Text = "Xem";
 			this.btnViewAccount.UseVisualStyleBackColor = true;
+			this.btnViewAccount.Click += new System.EventHandler(this.btnViewAccount_Click);
 			// 
 			// btnAddAccount
 			// 
@@ -963,6 +947,27 @@
 			this.btnAddAccount.TabIndex = 0;
 			this.btnAddAccount.Text = "Thêm";
 			this.btnAddAccount.UseVisualStyleBackColor = true;
+			// 
+			// dgvAccount
+			// 
+			this.dgvAccount.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvAccount.BackgroundColor = System.Drawing.Color.White;
+			this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dgvAccount.GridColor = System.Drawing.Color.DarkGray;
+			this.dgvAccount.Location = new System.Drawing.Point(0, 0);
+			this.dgvAccount.MultiSelect = false;
+			this.dgvAccount.Name = "dgvAccount";
+			this.dgvAccount.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvAccount.Size = new System.Drawing.Size(389, 467);
+			this.dgvAccount.TabIndex = 1;
+			// 
+			// txtAccountType
+			// 
+			this.txtAccountType.Location = new System.Drawing.Point(133, 17);
+			this.txtAccountType.Name = "txtAccountType";
+			this.txtAccountType.Size = new System.Drawing.Size(237, 20);
+			this.txtAccountType.TabIndex = 2;
 			// 
 			// fAdmin
 			// 
@@ -1023,8 +1028,8 @@
 			this.panel25.ResumeLayout(false);
 			this.panel25.PerformLayout();
 			this.panel26.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
 			this.panel27.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1098,7 +1103,6 @@
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Panel panel22;
 		private System.Windows.Forms.Panel panel23;
-		private System.Windows.Forms.ComboBox cbAccountType;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Panel panel24;
 		private System.Windows.Forms.TextBox txtDisplayName;
@@ -1107,7 +1111,6 @@
 		private System.Windows.Forms.TextBox txtUserName;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Panel panel26;
-		private System.Windows.Forms.DataGridView dgvAccount;
 		private System.Windows.Forms.Panel panel27;
 		private System.Windows.Forms.Button btnDeleteAccount;
 		private System.Windows.Forms.Button btnEditAccount;
@@ -1115,5 +1118,7 @@
 		private System.Windows.Forms.Button btnAddAccount;
 		private System.Windows.Forms.Button btnResetPassword;
 		private System.Windows.Forms.DataGridView dgvFood;
+		private System.Windows.Forms.DataGridView dgvAccount;
+		private System.Windows.Forms.TextBox txtAccountType;
 	}
 }

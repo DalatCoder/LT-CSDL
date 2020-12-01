@@ -444,5 +444,11 @@ BEGIN
 END
 GO 
 
+CREATE PROC USP_GetAllAccount
+AS
+BEGIN
+	SELECT UserName, DisplayName, Type FROM Account
+END
+GO
 
 

@@ -15,6 +15,7 @@ namespace CoffeeShop
 	public partial class fAdmin : Form
 	{
 		BindingSource foodList = new BindingSource();
+		BindingSource accountList = new BindingSource();
 
 		public fAdmin()
 		{
@@ -27,12 +28,15 @@ namespace CoffeeShop
 		void LoadState()
 		{
 			dgvFood.DataSource = foodList;
+			dgvAccount.DataSource = accountList;
 
 			LoadDateTimePickerBill();
 			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
 			LoadListFood();
+			LoadAccount();
 			LoadCategoryIntoCombobox(cbFoodCategory);
 			AddFoodBinding();
+			AddAccountBinding();
 		}
 
 		void LoadDateTimePickerBill()
@@ -68,10 +72,22 @@ namespace CoffeeShop
 			cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dgvFood.DataSource, "CategoryID", true, DataSourceUpdateMode.Never));
 		}
 
+		void AddAccountBinding()
+		{
+			txtUserName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
+			txtDisplayName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
+			txtAccountType.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never));
+		}
+
 		List<Food> SearchFoodByName(string name)
 		{
 			List<Food> listFood = FoodDAO.Instance.SearchFoodByName(name);
 			return listFood;	
+		}
+
+		void LoadAccount()
+		{
+			accountList.DataSource = AccountDAO.Instance.GetListAccount();
 		}
 
 		#endregion
@@ -165,6 +181,11 @@ namespace CoffeeShop
 		{
 			add { deleteFood += value; }
 			remove { deleteFood -= value; }
+		}
+
+		private void btnViewAccount_Click(object sender, EventArgs e)
+		{
+			LoadAccount();
 		}
 		#endregion
 	}
