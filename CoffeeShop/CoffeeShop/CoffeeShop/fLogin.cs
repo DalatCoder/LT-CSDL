@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CoffeeShop.DAO;
+using CoffeeShop.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,10 +21,25 @@ namespace CoffeeShop
 
 		private void btnLogin_Click(object sender, EventArgs e)
 		{
-			fTableManager f = new fTableManager();
+			string userName = txtUserName.Text;
+			string password = txtPassWord.Text;
+
+			if (!Login(userName, password))
+			{
+				MessageBox.Show("Sai tên tài khoản hoặc mật khẩu", "Thông tin không hợp lệ");
+				return;
+			}
+
+			Account account = AccountDAO.Instance.GetAccountByUserName(userName);
+			fTableManager f = new fTableManager(account);
 			this.Hide();
 			f.ShowDialog();
 			this.Show();
+		}
+
+		bool Login(string userName, string password)
+		{
+			return AccountDAO.Instance.Login(userName, password);
 		}
 
 		private void btnExit_Click(object sender, EventArgs e)

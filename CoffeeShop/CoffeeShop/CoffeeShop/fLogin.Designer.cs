@@ -92,6 +92,7 @@
 			this.txtPassWord.Name = "txtPassWord";
 			this.txtPassWord.Size = new System.Drawing.Size(287, 20);
 			this.txtPassWord.TabIndex = 2;
+			this.txtPassWord.Text = "123";
 			this.txtPassWord.UseSystemPasswordChar = true;
 			// 
 			// label2
@@ -119,6 +120,7 @@
 			this.txtUserName.Name = "txtUserName";
 			this.txtUserName.Size = new System.Drawing.Size(287, 20);
 			this.txtUserName.TabIndex = 1;
+			this.txtUserName.Text = "TRONGHIEU";
 			// 
 			// label1
 			// 
@@ -130,7 +132,7 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Tên Đăng Nhập:";
 			// 
-			// frmLogin
+			// fLogin
 			// 
 			this.AcceptButton = this.btnLogin;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,7 +142,7 @@
 			this.Controls.Add(this.panel1);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "frmLogin";
+			this.Name = "fLogin";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Đăng Nhập";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
