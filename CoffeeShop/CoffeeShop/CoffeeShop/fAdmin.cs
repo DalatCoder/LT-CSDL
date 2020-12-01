@@ -1,4 +1,5 @@
 ﻿using CoffeeShop.DAO;
+using CoffeeShop.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,6 +68,12 @@ namespace CoffeeShop
 			cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dgvFood.DataSource, "CategoryID", true, DataSourceUpdateMode.Never));
 		}
 
+		List<Food> SearchFoodByName(string name)
+		{
+			List<Food> listFood = FoodDAO.Instance.SearchFoodByName(name);
+			return listFood;	
+		}
+
 		#endregion
 
 
@@ -75,11 +82,15 @@ namespace CoffeeShop
 		{
 			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
 		}
-		#endregion
 
 		private void btnViewFood_Click(object sender, EventArgs e)
 		{
 			LoadListFood();
+		}
+
+		private void btnSearchFood_Click(object sender, EventArgs e)
+		{
+			foodList.DataSource = SearchFoodByName(txtSearchFoodName.Text);
 		}
 
 		private void btnAddFood_Click(object sender, EventArgs e)
@@ -146,7 +157,7 @@ namespace CoffeeShop
 		public event EventHandler UpdateFood
 		{
 			add { updateFood += value; }
-			remove { updateFood  -= value; }
+			remove { updateFood -= value; }
 		}
 
 		private event EventHandler deleteFood;
@@ -155,5 +166,6 @@ namespace CoffeeShop
 			add { deleteFood += value; }
 			remove { deleteFood -= value; }
 		}
+		#endregion
 	}
 }

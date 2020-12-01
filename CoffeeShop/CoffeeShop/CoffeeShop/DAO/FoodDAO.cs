@@ -58,6 +58,23 @@ namespace CoffeeShop.DAO
 			return foods;
 		}
 
+		public List<Food> SearchFoodByName(string name)
+		{
+			List<Food> foods = new List<Food>();
+
+			string query = "EXEC USP_SearchFoodByName @name";
+			object[] param = new object[] { name };
+
+			DataTable table = DataProvider.Instance.ExecuteQuery(query, param);
+
+			foreach (DataRow row in table.Rows)
+			{
+				foods.Add(new Food(row));
+			}
+
+			return foods;
+		}
+
 		public bool InsertFood(string name, int idCategory, float price)
 		{
 			string query = "EXEC USP_InsertFood @name , @idCategory , @price";
