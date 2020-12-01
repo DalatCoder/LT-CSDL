@@ -51,7 +51,6 @@
 			this.txtFoodId = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
-			this.dgvFood = new System.Windows.Forms.DataGridView();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.txtSearchFoodName = new System.Windows.Forms.TextBox();
 			this.btnSearchFood = new System.Windows.Forms.Button();
@@ -112,6 +111,7 @@
 			this.btnEditAccount = new System.Windows.Forms.Button();
 			this.btnViewAccount = new System.Windows.Forms.Button();
 			this.btnAddAccount = new System.Windows.Forms.Button();
+			this.dgvFood = new System.Windows.Forms.DataGridView();
 			this.tcAdmin.SuspendLayout();
 			this.tpBill.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -125,7 +125,6 @@
 			this.panel8.SuspendLayout();
 			this.panel7.SuspendLayout();
 			this.panel5.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgvFood)).BeginInit();
 			this.panel4.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.tpFoodCategory.SuspendLayout();
@@ -151,6 +150,7 @@
 			this.panel26.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
 			this.panel27.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvFood)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tcAdmin
@@ -390,15 +390,6 @@
 			this.panel5.Size = new System.Drawing.Size(389, 467);
 			this.panel5.TabIndex = 1;
 			// 
-			// dgvFood
-			// 
-			this.dgvFood.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvFood.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dgvFood.Location = new System.Drawing.Point(0, 0);
-			this.dgvFood.Name = "dgvFood";
-			this.dgvFood.Size = new System.Drawing.Size(389, 467);
-			this.dgvFood.TabIndex = 0;
-			// 
 			// panel4
 			// 
 			this.panel4.Controls.Add(this.txtSearchFoodName);
@@ -461,6 +452,7 @@
 			this.btnViewFood.TabIndex = 1;
 			this.btnViewFood.Text = "Xem";
 			this.btnViewFood.UseVisualStyleBackColor = true;
+			this.btnViewFood.Click += new System.EventHandler(this.btnViewFood_Click);
 			// 
 			// btnAddFood
 			// 
@@ -954,6 +946,20 @@
 			this.btnAddAccount.Text = "Thêm";
 			this.btnAddAccount.UseVisualStyleBackColor = true;
 			// 
+			// dgvFood
+			// 
+			this.dgvFood.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvFood.BackgroundColor = System.Drawing.Color.White;
+			this.dgvFood.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvFood.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dgvFood.GridColor = System.Drawing.Color.DarkGray;
+			this.dgvFood.Location = new System.Drawing.Point(0, 0);
+			this.dgvFood.MultiSelect = false;
+			this.dgvFood.Name = "dgvFood";
+			this.dgvFood.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvFood.Size = new System.Drawing.Size(389, 467);
+			this.dgvFood.TabIndex = 1;
+			// 
 			// fAdmin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -980,7 +986,6 @@
 			this.panel7.ResumeLayout(false);
 			this.panel7.PerformLayout();
 			this.panel5.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dgvFood)).EndInit();
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
 			this.panel3.ResumeLayout(false);
@@ -1015,6 +1020,7 @@
 			this.panel26.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
 			this.panel27.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dgvFood)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1037,7 +1043,6 @@
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Panel panel6;
 		private System.Windows.Forms.Panel panel5;
-		private System.Windows.Forms.DataGridView dgvFood;
 		private System.Windows.Forms.Button btnSearchFood;
 		private System.Windows.Forms.Button btnDeleteFood;
 		private System.Windows.Forms.Button btnEditFood;
@@ -1105,5 +1110,6 @@
 		private System.Windows.Forms.Button btnViewAccount;
 		private System.Windows.Forms.Button btnAddAccount;
 		private System.Windows.Forms.Button btnResetPassword;
+		private System.Windows.Forms.DataGridView dgvFood;
 	}
 }

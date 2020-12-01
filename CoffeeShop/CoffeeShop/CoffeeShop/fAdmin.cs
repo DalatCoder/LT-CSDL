@@ -17,11 +17,17 @@ namespace CoffeeShop
 		{
 			InitializeComponent();
 
-			LoadDateTimePickerBill();
-			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
+			LoadState();
 		}
 
 		#region Methods	
+		void LoadState()
+		{
+			LoadDateTimePickerBill();
+			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
+			LoadListFood();
+		}
+
 		void LoadDateTimePickerBill()
 		{
 			DateTime today = DateTime.Now;
@@ -34,6 +40,11 @@ namespace CoffeeShop
 			dtgvBill.DataSource = BillDAO.Instance.GetBillListByDate(checkIn, checkOut);
 		}
 
+		void LoadListFood()
+		{
+			dgvFood.DataSource = FoodDAO.Instance.GetListFood();
+		}
+
 		#endregion
 
 
@@ -43,5 +54,10 @@ namespace CoffeeShop
 			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
 		}
 		#endregion
+
+		private void btnViewFood_Click(object sender, EventArgs e)
+		{
+			LoadListFood();
+		}
 	}
 }

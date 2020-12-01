@@ -41,5 +41,21 @@ namespace CoffeeShop.DAO
 
 			return foods;
 		}
+
+		public List<Food> GetListFood()
+		{
+			List<Food> foods = new List<Food>();
+
+			string query = "EXEC USP_GetAllFood";
+
+			DataTable table = DataProvider.Instance.ExecuteQuery(query);
+
+			foreach (DataRow row in table.Rows)
+			{
+				foods.Add(new Food(row));
+			}
+
+			return foods;
+		}
 	}
 }
