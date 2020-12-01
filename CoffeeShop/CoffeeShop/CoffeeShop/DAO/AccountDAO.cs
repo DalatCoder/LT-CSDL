@@ -62,5 +62,29 @@ namespace CoffeeShop.DAO
 
 			return null;
 		}
+
+		public bool Insert(string userName, string displayName, int type)
+		{
+			string query = "EXEC USP_CreateAccount @userName , @displayName , @type";
+			object[] param = new object[] { userName, displayName, type };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
+
+		public bool Update(string userName, string displayName, int type)
+		{
+			string query = "EXEC USP_UpdateAccountAdmin @userName , @displayName , @type";
+			object[] param = new object[] { userName, displayName, type };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
+
+		public bool Delete(string userName)
+		{
+			string query = "EXEC USP_DeleteAccount @userName";
+			object[] param = new object[] { userName };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
 	}
 }

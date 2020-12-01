@@ -451,4 +451,32 @@ BEGIN
 END
 GO
 
+CREATE PROC USP_CreateAccount
+@userName NVARCHAR(100), @displayName NVARCHAR(100), @type INT
+AS
+BEGIN
+	IF (NOT EXISTS(SELECT * FROM Account WHERE UserName = @userName))
+	BEGIN
+		INSERT Account(UserName, DisplayName, Type, PassWord)
+		VALUES (@userName, @displayName, @type, 'password')
+	END
+END
+GO
 
+CREATE PROC USP_UpdateAccountAdmin
+@userName NVARCHAR(100), @displayName NVARCHAR(100), @type INT
+AS
+BEGIN
+		UPDATE Account 
+		SET DisplayName = @displayName, Type = @type
+		WHERE UserName = @userName
+END
+GO
+
+CREATE PROC USP_DeleteAccount
+@userName NVARCHAR(100)
+AS
+BEGIN
+	DELETE Account WHERE UserName = @userName
+END
+GO

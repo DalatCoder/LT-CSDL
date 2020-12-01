@@ -76,7 +76,7 @@ namespace CoffeeShop
 		{
 			txtUserName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
 			txtDisplayName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
-			txtAccountType.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never));
+			nmAccountType.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never));
 		}
 
 		List<Food> SearchFoodByName(string name)
@@ -88,6 +88,45 @@ namespace CoffeeShop
 		void LoadAccount()
 		{
 			accountList.DataSource = AccountDAO.Instance.GetListAccount();
+		}
+
+		void AddAccount(string userName, string displayNane, int type)
+		{
+			if (AccountDAO.Instance.Insert(userName, displayNane, type))
+			{
+				MessageBox.Show("Thêm tài khoản mới thành công");
+				LoadAccount();
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi trong quá trình thêm tài khoản");
+			}	
+		}
+
+		void UpdateAccount(string userName, string displayNane, int type)
+		{
+			if (AccountDAO.Instance.Update(userName, displayNane, type))
+			{
+				MessageBox.Show("Cập nhât tài khoản thành công");
+				LoadAccount();
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi trong quá trình cập nhật tài khoản");
+			}
+		}
+
+		void DeleteAccount(string userName)
+		{
+			if (AccountDAO.Instance.Delete(userName))
+			{
+				MessageBox.Show("Xóa tài khoản thành công");
+				LoadAccount();
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi trong quá trình xóa tài khoản");
+			}
 		}
 
 		#endregion
@@ -186,6 +225,31 @@ namespace CoffeeShop
 		private void btnViewAccount_Click(object sender, EventArgs e)
 		{
 			LoadAccount();
+		}
+
+		private void btnAddAccount_Click(object sender, EventArgs e)
+		{
+			string userName = txtNewUserName.Text;
+			string displayName = txtDisplayName.Text;
+			int type = (int)nmAccountType.Value;
+
+			AddAccount(userName, displayName, type);
+		}
+
+		private void btnEditAccount_Click(object sender, EventArgs e)
+		{
+			string userName = txtUserName.Text;
+			string displayName = txtDisplayName.Text;
+			int type = (int)nmAccountType.Value;
+
+			UpdateAccount(userName, displayName, type);
+		}
+
+		private void btnDeleteAccount_Click(object sender, EventArgs e)
+		{
+			string userName = txtUserName.Text;
+
+			DeleteAccount(userName);
 		}
 		#endregion
 	}
