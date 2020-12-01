@@ -153,6 +153,7 @@
 			this.cbCategory.Name = "cbCategory";
 			this.cbCategory.Size = new System.Drawing.Size(208, 21);
 			this.cbCategory.TabIndex = 1;
+			this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.cbCategory_SelectedIndexChanged);
 			// 
 			// btnAdd
 			// 

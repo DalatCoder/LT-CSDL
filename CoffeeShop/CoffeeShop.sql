@@ -192,3 +192,32 @@ END
 GO
 
 EXEC USP_GetMenuByBillID 2
+GO
+
+CREATE PROC USP_GetAllCategory
+AS SELECT * FROM FoodCategory
+GO
+
+EXEC USP_GetAllCategory
+GO
+
+CREATE PROC USP_GetFoodByCategoryID
+@catID INT
+AS
+BEGIN
+	SELECT * FROM Food WHERE Food.idCategory = @catID
+END
+GO
+
+EXEC USP_GetFoodByCategoryID 3
+GO
+
+CREATE PROC USP_InsertBill
+@idTable INT
+AS
+BEGIN
+	INSERT Bill(DateCheckIn, DateCheckOut, idTable, status)
+	VALUES (GETDATE(), NULL, @idTable, 0)
+END
+GO
+

@@ -21,9 +21,24 @@ namespace CoffeeShop
 			InitializeComponent();
 
 			LoadTable();
+			LoadCategory();
 		}
 
 		#region Method
+
+		void LoadCategory()
+		{
+			List<Category> categories = CategoryDAO.Instance.GetListCategory();
+			cbCategory.DataSource = categories;
+			cbCategory.DisplayMember = "Name";
+		}
+
+		void LoadFoodListByCategoryID(int catID)
+		{
+			List<Food> foods = FoodDAO.Instance.GetFoodsByCategoryID(catID);
+			cbFood.DataSource = foods;
+			cbFood.DisplayMember = "Name";
+		}
 
 		void LoadTable()
 		{
@@ -82,7 +97,10 @@ namespace CoffeeShop
 		#region Events
 		private void Btn_Click(object sender, EventArgs e)
 		{
-			int tableID = ((sender as Button).Tag as Table).ID;
+			Table currentTable = (sender as Button).Tag as Table;
+			int tableID = currentTable.ID;
+			lvFood.Tag = currentTable; // Lưu trữ bàn hiện tại vào tag của listview để dễ sử dụng 
+
 			ShowBill(tableID);
 		}
 
@@ -102,6 +120,22 @@ namespace CoffeeShop
 			fAdmin f = new fAdmin();
 			f.ShowDialog();
 		}
+
+		private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			int id = 0;
+
+			ComboBox cb = sender as ComboBox;
+
+			if (cb.SelectedItem == null)
+				return;
+
+			Category selected = cb.SelectedItem as Category;
+			id = selected.ID;
+
+			LoadFoodListByCategoryID(id);
+		}
 		#endregion
+
 	}
 }
