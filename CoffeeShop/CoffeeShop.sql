@@ -355,3 +355,14 @@ AS SELECT * FROM Food
 GO
 
 EXEC USP_GetAllFood
+GO
+
+CREATE PROC USP_GetCategoryByID
+@id INT
+AS
+BEGIN
+	SELECT * FROM FoodCategory WHERE id = @id
+END
+GO
+
+EXEC USP_GetCategoryByID 1

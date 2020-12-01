@@ -40,5 +40,19 @@ namespace CoffeeShop.DAO
 
 			return categories;
 		}
+
+		public Category GetCategoryByID(int id)
+		{
+			string query = "EXEC USP_GetCategoryByID @id";
+			object[] param = new object[] { id };
+
+			DataTable table = DataProvider.Instance.ExecuteQuery(query, param);
+			foreach (DataRow row in table.Rows)
+			{
+				return new Category(row);
+			}
+
+			return null;
+		}
 	}
 }

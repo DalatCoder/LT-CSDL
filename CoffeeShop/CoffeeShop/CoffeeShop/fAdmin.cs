@@ -13,6 +13,8 @@ namespace CoffeeShop
 {
 	public partial class fAdmin : Form
 	{
+		BindingSource foodList = new BindingSource();
+
 		public fAdmin()
 		{
 			InitializeComponent();
@@ -23,9 +25,13 @@ namespace CoffeeShop
 		#region Methods	
 		void LoadState()
 		{
+			dgvFood.DataSource = foodList;
+
 			LoadDateTimePickerBill();
 			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
 			LoadListFood();
+			LoadCategoryIntoCombobox(cbFoodCategory);
+			AddFoodBinding();
 		}
 
 		void LoadDateTimePickerBill()
@@ -40,9 +46,24 @@ namespace CoffeeShop
 			dtgvBill.DataSource = BillDAO.Instance.GetBillListByDate(checkIn, checkOut);
 		}
 
+		void LoadCategoryIntoCombobox(ComboBox cb)
+		{
+			cb.DataSource = CategoryDAO.Instance.GetListCategory();
+			cb.DisplayMember = "Name";
+			cb.ValueMember = "ID";
+		}
+
 		void LoadListFood()
 		{
-			dgvFood.DataSource = FoodDAO.Instance.GetListFood();
+			foodList.DataSource = FoodDAO.Instance.GetListFood();
+		}
+
+		void AddFoodBinding()
+		{
+			txtFoodName.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "Name"));
+			txtFoodId.DataBindings.Add(new Binding("Text", dgvFood.DataSource, "ID"));
+			nmFoodPrice.DataBindings.Add(new Binding("Value", dgvFood.DataSource, "Price"));
+			cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dgvFood.DataSource, "CategoryID"));
 		}
 
 		#endregion
