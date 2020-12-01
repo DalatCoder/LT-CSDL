@@ -86,5 +86,13 @@ namespace CoffeeShop.DAO
 			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
 			return result > 0;
 		}
+
+		public bool ResetPassword(string userName)
+		{
+			string query = "EXEC USP_ResetPassword @userName";
+			object[] param = new object[] { userName };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
 	}
 }

@@ -100,7 +100,9 @@ namespace CoffeeShop
 			else
 			{
 				MessageBox.Show("Có lỗi trong quá trình thêm tài khoản");
-			}	
+			}
+
+			LoadAccount();
 		}
 
 		void UpdateAccount(string userName, string displayNane, int type)
@@ -114,6 +116,8 @@ namespace CoffeeShop
 			{
 				MessageBox.Show("Có lỗi trong quá trình cập nhật tài khoản");
 			}
+
+			LoadAccount();
 		}
 
 		void DeleteAccount(string userName)
@@ -126,6 +130,21 @@ namespace CoffeeShop
 			else
 			{
 				MessageBox.Show("Có lỗi trong quá trình xóa tài khoản");
+			}
+
+			LoadAccount();
+		}
+
+		void ResetPassword(string userName)
+		{
+			if (AccountDAO.Instance.ResetPassword(userName))
+			{
+				MessageBox.Show("Đặt lại mật khẩu mặc định thành công");
+				LoadAccount();
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi trong quá trình đặt lại mật khẩu");
 			}
 		}
 
@@ -252,5 +271,12 @@ namespace CoffeeShop
 			DeleteAccount(userName);
 		}
 		#endregion
+
+		private void btnResetPassword_Click(object sender, EventArgs e)
+		{
+			string userName = txtUserName.Text;
+
+			ResetPassword(userName);
+		}
 	}
 }

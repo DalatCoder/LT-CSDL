@@ -825,6 +825,7 @@
 			this.btnResetPassword.TabIndex = 4;
 			this.btnResetPassword.Text = "Đặt lại mật khẩu";
 			this.btnResetPassword.UseVisualStyleBackColor = true;
+			this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
 			// 
 			// panel23
 			// 

@@ -480,3 +480,14 @@ BEGIN
 	DELETE Account WHERE UserName = @userName
 END
 GO
+
+CREATE PROC USP_ResetPassword
+@userName NVARCHAR(100)
+AS
+BEGIN
+	UPDATE Account
+	SET PassWord = 'password'
+	WHERE UserName = @userName
+END 
+GO
+
