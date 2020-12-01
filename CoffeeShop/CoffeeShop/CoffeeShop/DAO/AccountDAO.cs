@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeShop.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -31,6 +32,20 @@ namespace CoffeeShop.DAO
 			object[] param = new object[] { userName, password };
 			DataTable result = DataProvider.Instance.ExecuteQuery(query, param);
 			return result.Rows.Count > 0;
+		}
+
+		public Account GetAccountByUserName(string userName)
+		{
+			string query = "EXEC USP_GetAccountByUserName @userName";
+			object[] param = new object[] { userName };
+
+			DataTable table = DataProvider.Instance.ExecuteQuery(query, param);
+			foreach (DataRow row in table.Rows)
+			{
+				return new Account(row);
+			}
+
+			return null;
 		}
 	}
 }

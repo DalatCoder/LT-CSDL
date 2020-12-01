@@ -328,3 +328,5 @@ BEGIN
 	WHERE Bill.status = 1 AND Bill.DateCheckIn >= @checkIn AND Bill.DateCheckOut <= @checkOut
 END
 GO
+
+

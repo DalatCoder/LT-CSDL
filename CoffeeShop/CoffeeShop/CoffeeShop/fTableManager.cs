@@ -16,17 +16,25 @@ namespace CoffeeShop
 {
 	public partial class fTableManager : Form
 	{
+		private Account account;
 		public Table CurerntTable { get => lvFood.Tag as Table; }
 
-		public fTableManager()
+		public fTableManager(Account acc)
 		{
+			account = acc;
 			InitializeComponent();
 
+			ChangeAccount();
 			LoadTable();
 			LoadCategory();
 		}
 
 		#region Method
+
+		void ChangeAccount()
+		{
+			menuAdmin.Enabled = account.Type == 1;
+		}
 
 		void LoadCategory()
 		{

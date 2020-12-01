@@ -1,4 +1,5 @@
 ﻿using CoffeeShop.DAO;
+using CoffeeShop.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,8 @@ namespace CoffeeShop
 				return;
 			}
 
-			fTableManager f = new fTableManager();
+			Account account = AccountDAO.Instance.GetAccountByUserName(userName);
+			fTableManager f = new fTableManager(account);
 			this.Hide();
 			f.ShowDialog();
 			this.Show();
