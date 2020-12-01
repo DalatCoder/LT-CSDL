@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -56,6 +58,7 @@ namespace CoffeeShop
 		void ShowBill(int tableId)
 		{
 			List<DTO.Menu> listMenu = MenuDAO.Instance.GetListMenuByTable(tableId);
+			float totalPrice = 0;
 
 			lvFood.Items.Clear();
 			foreach (DTO.Menu item in listMenu)
@@ -63,9 +66,15 @@ namespace CoffeeShop
 				ListViewItem lsvItem = new ListViewItem(item.FoodName);
 				lsvItem.SubItems.Add(item.Count.ToString());
 				lsvItem.SubItems.Add(item.Price.ToString());
-				lsvItem.SubItems.Add(item.TotalPrice.ToString());
+				lsvItem.SubItems.Add(item.TotalPrice.ToString("###,###,###"));
 				lvFood.Items.Add(lsvItem);
+
+				totalPrice += item.TotalPrice;
 			}
+			
+			CultureInfo culture = new CultureInfo("vi-VN");
+			// Thread.CurrentThread.CurrentCulture = culture;
+			txtTotalPrice.Text = totalPrice.ToString("c", culture);
 		}
 		#endregion
 
