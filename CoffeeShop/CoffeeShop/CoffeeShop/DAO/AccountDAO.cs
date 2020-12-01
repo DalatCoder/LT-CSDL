@@ -34,6 +34,15 @@ namespace CoffeeShop.DAO
 			return result.Rows.Count > 0;
 		}
 
+		public bool UpdateAccount(string username, string displayName, string pass, string newPass)
+		{
+			string query = "EXEC USP_UpdateAccount @userName , @displayName , @password , @newPassword";
+			object[] param = new object[] { username, displayName, pass, newPass };
+
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
+
 		public Account GetAccountByUserName(string userName)
 		{
 			string query = "EXEC USP_GetAccountByUserName @userName";

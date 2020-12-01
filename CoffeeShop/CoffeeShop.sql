@@ -329,4 +329,24 @@ BEGIN
 END
 GO
 
+EXEC USP_GetAccountByUserName N'TrongHieu'
+GO
+
+CREATE PROC USP_UpdateAccount
+@userName NVARCHAR(100), @displayName NVARCHAR(100), @password NVARCHAR(100), @newPassword NVARCHAR(100)
+AS
+BEGIN
+	DECLARE @isRightPass INT = 0
+
+	SELECT @isRightPass = COUNT(*) FROM Account WHERE UserName = @userName AND Password = @password
+
+	IF (@isRightPass = 1)
+	BEGIN
+		IF (@newPassword = NULL OR @newPassword = '')
+			UPDATE Account SET DisplayName = @displayName WHERE Username = @userName
+		ELSE
+			UPDATE Account SET DisplayName = @displayName, Password = @newPassword WHERE Username = @userName
+	END
+END
+GO
 

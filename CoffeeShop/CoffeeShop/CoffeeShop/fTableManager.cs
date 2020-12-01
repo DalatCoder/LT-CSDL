@@ -34,6 +34,7 @@ namespace CoffeeShop
 		void ChangeAccount()
 		{
 			menuAdmin.Enabled = account.Type == 1;
+			thôngTinTàiKhoảnToolStripMenuItem.Text += $" ({account.DisplayName})";
 		}
 
 		void LoadCategory()
@@ -122,8 +123,14 @@ namespace CoffeeShop
 
 		private void menuPersonalInfo_Click(object sender, EventArgs e)
 		{
-			fAccountProfile f = new fAccountProfile();
+			fAccountProfile f = new fAccountProfile(account);
+			f.UpdateAccountEvent += F_UpdateAccountEvent;
 			f.ShowDialog();
+		}
+
+		private void F_UpdateAccountEvent(object sender, AccountEvent e)
+		{
+			this.thôngTinTàiKhoảnToolStripMenuItem.Text = $"Thông tin tài khoản ({e.Acc.DisplayName})";
 		}
 
 		private void menuAdmin_Click(object sender, EventArgs e)

@@ -195,6 +195,7 @@
 			this.btnExit.TabIndex = 5;
 			this.btnExit.Text = "Thoát";
 			this.btnExit.UseVisualStyleBackColor = true;
+			this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
 			// 
 			// btnUpdate
 			// 
@@ -204,6 +205,7 @@
 			this.btnUpdate.TabIndex = 6;
 			this.btnUpdate.Text = "Cập nhật";
 			this.btnUpdate.UseVisualStyleBackColor = true;
+			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
 			// 
 			// fAccountProfile
 			// 
