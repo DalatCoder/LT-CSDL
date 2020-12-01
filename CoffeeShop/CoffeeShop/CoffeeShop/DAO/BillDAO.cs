@@ -55,10 +55,10 @@ namespace CoffeeShop.DAO
 			DataProvider.Instance.ExecuteNonQuery(query, param);
 		}
 
-		public void Checkout(int billID)
+		public void Checkout(int billID, int discount)
 		{
-			string query = "EXEC USP_CheckoutBill @billID";
-			object[] param = new object[] { billID };
+			string query = "EXEC USP_CheckoutBill @billID @discount";
+			object[] param = new object[] { billID, discount };
 
 			DataProvider.Instance.ExecuteNonQuery(query, param);
 		}

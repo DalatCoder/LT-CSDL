@@ -212,14 +212,14 @@ GO
 EXEC USP_GetFoodByCategoryID 3
 GO
 
-CREATE PROC USP_InsertBill
+ALTER PROC USP_InsertBill
 @idTable INT
 AS
 BEGIN
 	IF (NOT EXISTS(SELECT * FROM Bill WHERE idTable = @idTable AND status = 0))
 	BEGIN
-		INSERT Bill(DateCheckIn, DateCheckOut, idTable, status)
-		VALUES (GETDATE(), NULL, @idTable, 0)
+		INSERT Bill(DateCheckIn, DateCheckOut, idTable, status, discount)
+		VALUES (GETDATE(), NULL, @idTable, 0, 0)
 	END
 END
 GO
@@ -257,12 +257,12 @@ GO
 EXEC USP_InsertBillInfo 1, 1, 1
 GO
 
-CREATE PROC USP_CheckoutBill
-@billID INT
+ALTER PROC USP_CheckoutBill
+@billID INT, @discount INT
 AS
 BEGIN
 	UPDATE Bill
-	SET status = 1
+	SET status = 1, discount = @discount
 	WHERE id = @billID
 END
 GO
@@ -306,5 +306,11 @@ BEGIN
 	IF (@count = 0)
 		UPDATE TableFood SET status = N'Trống' WHERE id = @idTable
 END
-GO
+GO 
 
+ALTER TABLE Bill
+ADD discount INT DEFAULT 0
+
+UPDATE Bill SET discount = 0
+
+SELECT * FROM Bill

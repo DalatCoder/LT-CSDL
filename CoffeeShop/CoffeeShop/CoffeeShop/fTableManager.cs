@@ -167,13 +167,23 @@ namespace CoffeeShop
 			if (this.CurerntTable == null) return;
 
 			int billID = BillDAO.Instance.GetUncheckBillIDByTableID(this.CurerntTable.ID);
+			int discount = (int)nmDiscount.Value;
+			double totalPrice = Convert.ToDouble(txtTotalPrice.Text.Replace(".", string.Empty).Split(',')[0]);
+			double finalTotalPrice = totalPrice - (totalPrice * discount / 100);
+
 			if (billID != -1)
 			{
-				string msg = "Bạn có chắc thanh toán hóa đơn cho " + this.CurerntTable.Name + " ?";
+				StringBuilder builder = new StringBuilder();
+				builder.AppendLine($"Bạn có chắc chắn thanh toán hóa đơn cho {this.CurerntTable.Name} ?");
+				builder.AppendLine($"Tổng tiền ban đầu: {totalPrice}");
+				builder.AppendLine($"Discount: {discount}%");
+				builder.AppendLine($"Tổng tiền sau khi giảm giá: {finalTotalPrice}");
+				string msg = builder.ToString();
+
 				DialogResult result = MessageBox.Show(msg, "Thông báo", MessageBoxButtons.OKCancel);
 				if (result == DialogResult.OK)
 				{
-					BillDAO.Instance.Checkout(billID);
+					BillDAO.Instance.Checkout(billID, discount);
 					ShowBill(this.CurerntTable.ID);
 				}
 			}
