@@ -105,7 +105,6 @@ namespace CoffeeShop
 		}
 		#endregion
 
-
 		#region Events
 		private void Btn_Click(object sender, EventArgs e)
 		{
@@ -140,7 +139,31 @@ namespace CoffeeShop
 			f.InsertFood += F_InsertFood;
 			f.UpdateFood += F_UpdateFood;
 			f.DeleteFood += F_DeleteFood;
+			f.InsertCategoryEvent += F_InsertCategoryEvent;
+			f.UpdateCategoryEvent += F_UpdateCategoryEvent;
+			f.InsertTableEvent += F_InsertTableEvent;
+			f.UpdateTableEvent += F_UpdateTableEvent;
 			f.ShowDialog();
+		}
+
+		private void F_UpdateTableEvent(object sender, EventArgs e)
+		{
+			LoadTable();
+		}
+
+		private void F_InsertTableEvent(object sender, EventArgs e)
+		{
+			LoadTable();
+		}
+
+		private void F_UpdateCategoryEvent(object sender, EventArgs e)
+		{
+			LoadCategory();
+		}
+
+		private void F_InsertCategoryEvent(object sender, EventArgs e)
+		{
+			LoadCategory();
 		}
 
 		private void F_DeleteFood(object sender, EventArgs e)
@@ -181,8 +204,7 @@ namespace CoffeeShop
 
 			LoadFoodListByCategoryID(id);
 		}
-		#endregion
-
+		
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			if (this.CurerntTable == null)
@@ -237,5 +259,17 @@ namespace CoffeeShop
 
 			LoadTable();
 		}
+
+		private void thêmMónToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnAdd.PerformClick();
+		}
+
+		private void thanhToánToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnCheckout.PerformClick();
+		}
+
+		#endregion
 	}
 }
