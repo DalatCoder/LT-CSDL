@@ -77,7 +77,6 @@
 			this.tpTable = new System.Windows.Forms.TabPage();
 			this.panel12 = new System.Windows.Forms.Panel();
 			this.panel21 = new System.Windows.Forms.Panel();
-			this.cbTableStatus = new System.Windows.Forms.ComboBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.panel13 = new System.Windows.Forms.Panel();
 			this.txtTableName = new System.Windows.Forms.TextBox();
@@ -115,6 +114,7 @@
 			this.btnAddAccount = new System.Windows.Forms.Button();
 			this.dgvCategory = new System.Windows.Forms.DataGridView();
 			this.dgvTable = new System.Windows.Forms.DataGridView();
+			this.txtTableStatus = new System.Windows.Forms.TextBox();
 			this.tcAdmin.SuspendLayout();
 			this.tpBill.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -644,20 +644,12 @@
 			// 
 			// panel21
 			// 
-			this.panel21.Controls.Add(this.cbTableStatus);
+			this.panel21.Controls.Add(this.txtTableStatus);
 			this.panel21.Controls.Add(this.label9);
 			this.panel21.Location = new System.Drawing.Point(4, 139);
 			this.panel21.Name = "panel21";
 			this.panel21.Size = new System.Drawing.Size(373, 56);
 			this.panel21.TabIndex = 3;
-			// 
-			// cbTableStatus
-			// 
-			this.cbTableStatus.FormattingEnabled = true;
-			this.cbTableStatus.Location = new System.Drawing.Point(133, 17);
-			this.cbTableStatus.Name = "cbTableStatus";
-			this.cbTableStatus.Size = new System.Drawing.Size(237, 21);
-			this.cbTableStatus.TabIndex = 1;
 			// 
 			// label9
 			// 
@@ -758,6 +750,7 @@
 			this.btnEditTable.TabIndex = 2;
 			this.btnEditTable.Text = "Sửa";
 			this.btnEditTable.UseVisualStyleBackColor = true;
+			this.btnEditTable.Click += new System.EventHandler(this.btnEditTable_Click);
 			// 
 			// btnViewTable
 			// 
@@ -767,6 +760,7 @@
 			this.btnViewTable.TabIndex = 1;
 			this.btnViewTable.Text = "Xem";
 			this.btnViewTable.UseVisualStyleBackColor = true;
+			this.btnViewTable.Click += new System.EventHandler(this.btnViewTable_Click);
 			// 
 			// btnAddTable
 			// 
@@ -776,6 +770,7 @@
 			this.btnAddTable.TabIndex = 0;
 			this.btnAddTable.Text = "Thêm";
 			this.btnAddTable.UseVisualStyleBackColor = true;
+			this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
 			// 
 			// tpAccount
 			// 
@@ -1023,6 +1018,13 @@
 			this.dgvTable.Size = new System.Drawing.Size(389, 467);
 			this.dgvTable.TabIndex = 1;
 			// 
+			// txtTableStatus
+			// 
+			this.txtTableStatus.Location = new System.Drawing.Point(133, 17);
+			this.txtTableStatus.Name = "txtTableStatus";
+			this.txtTableStatus.Size = new System.Drawing.Size(237, 20);
+			this.txtTableStatus.TabIndex = 2;
+			// 
 			// fAdmin
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1154,7 +1156,6 @@
 		private System.Windows.Forms.Button btnViewTable;
 		private System.Windows.Forms.Button btnAddTable;
 		private System.Windows.Forms.Panel panel21;
-		private System.Windows.Forms.ComboBox cbTableStatus;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Panel panel22;
 		private System.Windows.Forms.Panel panel23;
@@ -1180,5 +1181,6 @@
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.DataGridView dgvCategory;
 		private System.Windows.Forms.DataGridView dgvTable;
+		private System.Windows.Forms.TextBox txtTableStatus;
 	}
 }

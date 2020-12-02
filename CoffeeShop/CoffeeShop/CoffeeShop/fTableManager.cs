@@ -142,7 +142,19 @@ namespace CoffeeShop
 			f.DeleteFood += F_DeleteFood;
 			f.InsertCategoryEvent += F_InsertCategoryEvent;
 			f.UpdateCategoryEvent += F_UpdateCategoryEvent;
+			f.InsertTableEvent += F_InsertTableEvent;
+			f.UpdateTableEvent += F_UpdateTableEvent;
 			f.ShowDialog();
+		}
+
+		private void F_UpdateTableEvent(object sender, EventArgs e)
+		{
+			LoadTable();
+		}
+
+		private void F_InsertTableEvent(object sender, EventArgs e)
+		{
+			LoadTable();
 		}
 
 		private void F_UpdateCategoryEvent(object sender, EventArgs e)

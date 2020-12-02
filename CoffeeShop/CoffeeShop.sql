@@ -509,3 +509,22 @@ BEGIN
 	WHERE id = @id
 END
 GO
+
+CREATE PROC USP_TableInsert
+@name NVARCHAR(100)
+AS
+BEGIN
+	IF (NOT EXISTS(SELECT * FROM TableFood WHERE name = @name))
+		INSERT TableFood(name) VALUES (@name)
+END
+GO
+
+CREATE PROC USP_TableUpdate
+@id INT, @name NVARCHAR(100), @status NVARCHAR(100)
+AS
+BEGIN
+	UPDATE TableFood
+	SET name = @name, status = @status
+	WHERE id = @id
+END
+GO

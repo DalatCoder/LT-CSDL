@@ -17,6 +17,7 @@ namespace CoffeeShop
 		BindingSource foodList = new BindingSource();
 		BindingSource accountList = new BindingSource();
 		BindingSource categoryList = new BindingSource();
+		BindingSource tableList = new BindingSource();
 
 		public Account LoginAccount;
 
@@ -28,21 +29,27 @@ namespace CoffeeShop
 		}
 
 		#region Methods	
+
+		#region Init Methods
+
 		void LoadState()
 		{
 			dgvFood.DataSource = foodList;
 			dgvAccount.DataSource = accountList;
 			dgvCategory.DataSource = categoryList;
+			dgvTable.DataSource = tableList;
 
 			LoadDateTimePickerBill();
 			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
 			LoadListFood();
 			LoadListCategory();
+			LoadTableList();
 			LoadAccount();
 			LoadCategoryIntoCombobox(cbFoodCategory);
 			AddFoodBinding();
 			AddCategoryBinding();
 			AddAccountBinding();
+			AddTableBinding();
 		}
 
 		void LoadDateTimePickerBill()
@@ -57,6 +64,10 @@ namespace CoffeeShop
 			dtgvBill.DataSource = BillDAO.Instance.GetBillListByDate(checkIn, checkOut);
 		}
 
+		#endregion
+
+		#region Util Methods
+
 		void LoadCategoryIntoCombobox(ComboBox cb)
 		{
 			cb.DataSource = CategoryDAO.Instance.GetListCategory();
@@ -64,12 +75,14 @@ namespace CoffeeShop
 			cb.ValueMember = "ID";
 		}
 
+		#endregion
+
+		#region Food Methods
+
 		void LoadListFood()
 		{
 			foodList.DataSource = FoodDAO.Instance.GetListFood();
 		}
-
-		
 
 		void AddFoodBinding()
 		{
@@ -79,6 +92,30 @@ namespace CoffeeShop
 			nmFoodPrice.DataBindings.Add(new Binding("Value", dgvFood.DataSource, "Price", true, DataSourceUpdateMode.Never));
 			cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dgvFood.DataSource, "CategoryID", true, DataSourceUpdateMode.Never));
 		}
+
+		List<Food> SearchFoodByName(string name)
+		{
+			List<Food> listFood = FoodDAO.Instance.SearchFoodByName(name);
+			return listFood;
+		}
+
+		#endregion
+
+		#region Table Methods
+
+		void LoadTableList()
+		{
+			tableList.DataSource = TableDAO.Instance.LoadTableList();
+		}
+
+		void AddTableBinding()
+		{
+			txtTableId.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "ID"));
+			txtTableName.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Name"));
+			txtTableStatus.DataBindings.Add(new Binding("Text", dgvTable.DataSource, "Status"));
+		}
+
+		#endregion
 
 		#region Category Methods
 
@@ -94,12 +131,6 @@ namespace CoffeeShop
 		}
 
 		#endregion
-
-		List<Food> SearchFoodByName(string name)
-		{
-			List<Food> listFood = FoodDAO.Instance.SearchFoodByName(name);
-			return listFood;	
-		}
 
 		#region Account Methods
 
@@ -185,10 +216,17 @@ namespace CoffeeShop
 
 
 		#region Events
+
+		#region Bill Page
+
 		private void btnViewBill_Click(object sender, EventArgs e)
 		{
 			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
 		}
+
+		#endregion
+
+		#region Food Page
 
 		private void btnViewFood_Click(object sender, EventArgs e)
 		{
@@ -274,43 +312,9 @@ namespace CoffeeShop
 			remove { deleteFood -= value; }
 		}
 
-		private void btnViewAccount_Click(object sender, EventArgs e)
-		{
-			LoadAccount();
-		}
-
-		private void btnAddAccount_Click(object sender, EventArgs e)
-		{
-			string userName = txtNewUserName.Text;
-			string displayName = txtDisplayName.Text;
-			int type = (int)nmAccountType.Value;
-
-			AddAccount(userName, displayName, type);
-		}
-
-		private void btnEditAccount_Click(object sender, EventArgs e)
-		{
-			string userName = txtUserName.Text;
-			string displayName = txtDisplayName.Text;
-			int type = (int)nmAccountType.Value;
-
-			UpdateAccount(userName, displayName, type);
-		}
-
-		private void btnDeleteAccount_Click(object sender, EventArgs e)
-		{
-			string userName = txtUserName.Text;
-
-			DeleteAccount(userName);
-		}
 		#endregion
 
-		private void btnResetPassword_Click(object sender, EventArgs e)
-		{
-			string userName = txtUserName.Text;
-
-			ResetPassword(userName);
-		}
+		#region Category Page
 
 		private void btnViewCategory_Click(object sender, EventArgs e)
 		{
@@ -365,5 +369,113 @@ namespace CoffeeShop
 				MessageBox.Show("Có lỗi xảy ra trong quá trinh cập nhật món thức ăn");
 			}
 		}
+
+		#endregion
+
+		#region Table Page
+
+		private event EventHandler insertTableEvent;
+		public event EventHandler InsertTableEvent
+		{
+			add { insertTableEvent += value; }
+			remove { insertTableEvent -= value; }
+		}
+
+		private event EventHandler updateTableEvent;
+		public event EventHandler UpdateTableEvent
+		{
+			add { updateTableEvent += value; }
+			remove { updateTableEvent -= value; }
+		}
+
+		private void btnViewTable_Click(object sender, EventArgs e)
+		{
+			LoadTableList();
+		}
+
+		private void btnAddTable_Click(object sender, EventArgs e)
+		{
+			string name = txtTableName.Text;
+
+			if (TableDAO.Instance.InsertTable(name))
+			{
+				MessageBox.Show("Thêm bàn ăn mới thành công");
+				LoadTableList();
+				insertTableEvent?.Invoke(this, new EventArgs());
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi xảy ra trong quá trình thêm bàn ăn");
+			}
+		}
+
+		private void btnEditTable_Click(object sender, EventArgs e)
+		{
+			int id = Convert.ToInt32(txtTableId.Text);
+			string name = txtTableName.Text;
+			string status = txtTableStatus.Text;
+
+			if (status != "Trống" && status != "Có người")
+			{
+				MessageBox.Show("Trạng thái của bàn ăn không hợp lệ");
+				return;
+			}
+
+			if (TableDAO.Instance.UpdateTable(id, name, status))
+			{
+				MessageBox.Show("Cập nhật bàn ăn hợp lệ");
+				LoadTableList();
+				updateTableEvent?.Invoke(this, new EventArgs());
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật bàn ăn");
+			}
+		}
+
+		#endregion
+
+		#region Account Page
+
+		private void btnViewAccount_Click(object sender, EventArgs e)
+		{
+			LoadAccount();
+		}
+
+		private void btnAddAccount_Click(object sender, EventArgs e)
+		{
+			string userName = txtNewUserName.Text;
+			string displayName = txtDisplayName.Text;
+			int type = (int)nmAccountType.Value;
+
+			AddAccount(userName, displayName, type);
+		}
+
+		private void btnEditAccount_Click(object sender, EventArgs e)
+		{
+			string userName = txtUserName.Text;
+			string displayName = txtDisplayName.Text;
+			int type = (int)nmAccountType.Value;
+
+			UpdateAccount(userName, displayName, type);
+		}
+
+		private void btnDeleteAccount_Click(object sender, EventArgs e)
+		{
+			string userName = txtUserName.Text;
+
+			DeleteAccount(userName);
+		}
+
+		private void btnResetPassword_Click(object sender, EventArgs e)
+		{
+			string userName = txtUserName.Text;
+
+			ResetPassword(userName);
+		}
+
+		#endregion
+
+		#endregion
 	}
 }
