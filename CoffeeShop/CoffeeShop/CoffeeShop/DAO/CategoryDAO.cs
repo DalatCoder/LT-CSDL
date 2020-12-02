@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeShop.DAO
 {
-	public class CategoryDAO
+	public class CategoryDAO : ICategoryDAO
 	{
 		private static CategoryDAO _instance;
 
@@ -53,6 +53,27 @@ namespace CoffeeShop.DAO
 			}
 
 			return null;
+		}
+
+		public bool InsertCategory(string name)
+		{
+			string query = "EXEC USP_CategoryInsert @name";
+			object[] param = new object[] { name };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
+
+		public bool UpdateCategory(int id, string name)
+		{
+			string query = "EXEC USP_CategoryUpdate @id , @name";
+			object[] param = new object[] { id, name };
+			int result = DataProvider.Instance.ExecuteNonQuery(query, param);
+			return result > 0;
+		}
+
+		public bool DeleteCategory(int id)
+		{
+			return true;
 		}
 	}
 }

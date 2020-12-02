@@ -16,6 +16,7 @@ namespace CoffeeShop
 	{
 		BindingSource foodList = new BindingSource();
 		BindingSource accountList = new BindingSource();
+		BindingSource categoryList = new BindingSource();
 
 		public Account LoginAccount;
 
@@ -31,13 +32,16 @@ namespace CoffeeShop
 		{
 			dgvFood.DataSource = foodList;
 			dgvAccount.DataSource = accountList;
+			dgvCategory.DataSource = categoryList;
 
 			LoadDateTimePickerBill();
 			LoadListBillByDate(dtpFromDate.Value, dtpToDate.Value);
 			LoadListFood();
+			LoadListCategory();
 			LoadAccount();
 			LoadCategoryIntoCombobox(cbFoodCategory);
 			AddFoodBinding();
+			AddCategoryBinding();
 			AddAccountBinding();
 		}
 
@@ -65,6 +69,8 @@ namespace CoffeeShop
 			foodList.DataSource = FoodDAO.Instance.GetListFood();
 		}
 
+		
+
 		void AddFoodBinding()
 		{
 			// DataSourceUpdateMode.Never: đi 1 luồng, one way binding
@@ -74,12 +80,20 @@ namespace CoffeeShop
 			cbFoodCategory.DataBindings.Add(new Binding("SelectedValue", dgvFood.DataSource, "CategoryID", true, DataSourceUpdateMode.Never));
 		}
 
-		void AddAccountBinding()
+		#region Category Methods
+
+		void LoadListCategory()
 		{
-			txtUserName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
-			txtDisplayName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
-			nmAccountType.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never));
+			categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
 		}
+
+		void AddCategoryBinding()
+		{
+			txtCategoryId.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "ID", true, DataSourceUpdateMode.Never));
+			txtCategoryName.DataBindings.Add(new Binding("Text", dgvCategory.DataSource, "Name", true, DataSourceUpdateMode.Never));
+		}
+
+		#endregion
 
 		List<Food> SearchFoodByName(string name)
 		{
@@ -87,9 +101,18 @@ namespace CoffeeShop
 			return listFood;	
 		}
 
+		#region Account Methods
+
 		void LoadAccount()
 		{
 			accountList.DataSource = AccountDAO.Instance.GetListAccount();
+		}
+
+		void AddAccountBinding()
+		{
+			txtUserName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "UserName", true, DataSourceUpdateMode.Never));
+			txtDisplayName.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "DisplayName", true, DataSourceUpdateMode.Never));
+			nmAccountType.DataBindings.Add(new Binding("Text", dgvAccount.DataSource, "Type", true, DataSourceUpdateMode.Never));
 		}
 
 		void AddAccount(string userName, string displayNane, int type)
@@ -155,6 +178,8 @@ namespace CoffeeShop
 				MessageBox.Show("Có lỗi trong quá trình đặt lại mật khẩu");
 			}
 		}
+
+		#endregion
 
 		#endregion
 
@@ -285,6 +310,60 @@ namespace CoffeeShop
 			string userName = txtUserName.Text;
 
 			ResetPassword(userName);
+		}
+
+		private void btnViewCategory_Click(object sender, EventArgs e)
+		{
+			LoadListCategory();
+		}
+
+		private event EventHandler insertCategoryEvent;
+		public event EventHandler InsertCategoryEvent
+		{
+			add { insertCategoryEvent += value; }
+			remove { insertCategoryEvent -= value; }
+		}
+
+		private event EventHandler updateCategoryEvent;
+		public event EventHandler UpdateCategoryEvent
+		{
+			add { updateCategoryEvent += value; }
+			remove { updateCategoryEvent -= value; }
+		}
+
+		private void btnAddCategory_Click(object sender, EventArgs e)
+		{
+			string name = txtCategoryName.Text;
+
+			if (CategoryDAO.Instance.InsertCategory(name))
+			{
+				string msg = "Thêm nhóm thức ăn mới thành công";
+				MessageBox.Show(msg);
+				LoadListCategory();
+				insertCategoryEvent?.Invoke(this, new EventArgs());
+			}
+			else
+			{
+				string msg = "Có lỗi xảy ra trong quá trình thêm nhóm thức ăn";
+				MessageBox.Show(msg);
+			}
+		}
+
+		private void btnEditCategory_Click(object sender, EventArgs e)
+		{
+			int id = int.Parse(txtCategoryId.Text);
+			string name = txtCategoryName.Text;
+
+			if (CategoryDAO.Instance.UpdateCategory(id, name))
+			{
+				MessageBox.Show("Cập nhật nhóm thức ăn thành công");
+				LoadListCategory();
+				updateCategoryEvent?.Invoke(this, new EventArgs());
+			}
+			else
+			{
+				MessageBox.Show("Có lỗi xảy ra trong quá trinh cập nhật món thức ăn");
+			}
 		}
 	}
 }

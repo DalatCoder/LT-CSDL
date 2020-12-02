@@ -491,3 +491,21 @@ BEGIN
 END 
 GO
 
+CREATE PROC USP_CategoryInsert
+@name NVARCHAR(100)
+AS
+BEGIN
+	IF (NOT EXISTS (SELECT * FROM FoodCategory WHERE name = @name))
+		INSERT FoodCategory(name) VALUES (@name)
+END
+GO
+
+CREATE PROC USP_CategoryUpdate
+@id INT, @name NVARCHAR(100)
+AS
+BEGIN
+	UPDATE FoodCategory
+	SET name = @name
+	WHERE id = @id
+END
+GO
