@@ -105,7 +105,6 @@ namespace CoffeeShop
 		}
 		#endregion
 
-
 		#region Events
 		private void Btn_Click(object sender, EventArgs e)
 		{
@@ -205,8 +204,7 @@ namespace CoffeeShop
 
 			LoadFoodListByCategoryID(id);
 		}
-		#endregion
-
+		
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			if (this.CurerntTable == null)
@@ -271,5 +269,7 @@ namespace CoffeeShop
 		{
 			btnCheckout.PerformClick();
 		}
+
+		#endregion
 	}
 }
