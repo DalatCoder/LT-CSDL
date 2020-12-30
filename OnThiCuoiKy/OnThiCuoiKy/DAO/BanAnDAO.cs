@@ -49,5 +49,25 @@ namespace OnThiCuoiKy.DAO
 
 			return false;
 		}
+
+		public bool CapNhatBanAn(int id, string tenBanAn, int status, int capacity)
+		{
+			string query = String.Format("" +
+				"UPDATE [Table]" +
+				"SET" +
+				"	Name = N'{0}'," +
+				"	Status = {1}," +
+				"	Capacity = {2}" +
+				"WHERE ID = {3}",
+				tenBanAn, status, capacity, id
+			).ToString();
+
+			DataProvider provider = new DataProvider();
+			int soDongBiTacDong = provider.ExecuteNonQuery(query);
+
+			if (soDongBiTacDong > 0) return true;
+
+			return false;
+		}
 	}
 }

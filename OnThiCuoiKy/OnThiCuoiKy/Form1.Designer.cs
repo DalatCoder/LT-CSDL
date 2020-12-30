@@ -109,6 +109,7 @@
 			this.dgvBanAn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvBanAn.Size = new System.Drawing.Size(458, 483);
 			this.dgvBanAn.TabIndex = 0;
+			this.dgvBanAn.Click += new System.EventHandler(this.dgvBanAn_Click);
 			// 
 			// dgvChiTietHD
 			// 
@@ -222,6 +223,7 @@
 			this.btnCapNhat.TabIndex = 4;
 			this.btnCapNhat.Text = "Cập nhật";
 			this.btnCapNhat.UseVisualStyleBackColor = true;
+			this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
 			// 
 			// btnXoa
 			// 
