@@ -13,25 +13,10 @@ namespace OnThiCuoiKy.DAO
 	{
 		public List<BanAnDTO> LayDSBanAn()
 		{
-			string connectionString = "Data Source=.;Initial Catalog=RestaurantManagement;Integrated Security=True";
-
 			string query = "SELECT * FROM [Table]";
+			DataProvider provider = new DataProvider();
 
-			SqlConnection connection = new SqlConnection(connectionString);
-
-			SqlCommand command = new SqlCommand();
-			command.Connection = connection;
-			command.CommandText = query;
-
-			connection.Open();
-
-			DataTable table = new DataTable();
-
-			SqlDataAdapter adapter = new SqlDataAdapter(command);
-			adapter.Fill(table);
-
-			connection.Close();
-			connection.Dispose();
+			DataTable table = provider.ExecuteQuery(query);
 
 			List<BanAnDTO> dsBanAn = new List<BanAnDTO>();
 
@@ -52,25 +37,13 @@ namespace OnThiCuoiKy.DAO
 	
 		public bool TaoBanAn(string tenBanAn, int status, int capacity)
 		{
-			string connectionString = "Data Source=.;Initial Catalog=RestaurantManagement;Integrated Security=True";
-
 			string query = String.Format("" +
 				"INSERT INTO [Table] (Name, Status, Capacity)" +
 				"VALUES(N'{0}', {1}, {2})", tenBanAn, status, capacity
 				).ToString();
 
-			SqlConnection connection = new SqlConnection(connectionString);
-
-			SqlCommand command = new SqlCommand();
-			command.Connection = connection;
-			command.CommandText = query;
-
-			connection.Open();
-
-			int soDongBiTacDong = command.ExecuteNonQuery();
-
-			connection.Close();
-			connection.Dispose();
+			DataProvider provider = new DataProvider();
+			int soDongBiTacDong = provider.ExecuteNonQuery(query);
 
 			if (soDongBiTacDong > 0) return true;
 
